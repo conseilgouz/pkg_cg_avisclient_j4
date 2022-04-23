@@ -1,9 +1,9 @@
 <?php
 /**
 * CG Avis Client Module  - Joomla 4.0.0 Module 
-* Version			: 2.0.0
+* Version			: 2.0.2
 * Package			: CG Avis Client
-* copyright 		: Copyright (C) 2021 ConseilGouz. All rights reserved.
+* copyright 		: Copyright (C) 2022 ConseilGouz. All rights reserved.
 * license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 */
 // No direct access to this file
@@ -16,7 +16,7 @@ use Joomla\CMS\Filesystem\File;
 
 class mod_cg_avisclientInstallerScript
 {
-	private $min_joomla_version      = '3.9.0';
+	private $min_joomla_version      = '4.0.0';
 	private $min_php_version         = '7.2';
 	private $name                    = 'CG Avis Client';
 	private $exttype                 = 'module';

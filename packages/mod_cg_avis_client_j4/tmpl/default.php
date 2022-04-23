@@ -1,12 +1,11 @@
 <?php 
 /**
 * CG Avis Client - Joomla Module 
-* Version			: 1.1.2
-* Package			: Joomla 3.x.x
-* copyright 		: Copyright (C) 2017 ConseilGouz. All rights reserved.
+* Version			: 2.0.2
+* Package			: Joomla 4.x.x
+* copyright 		: Copyright (C) 2022 ConseilGouz. All rights reserved.
 * license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 * From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
-* Updated on        : July, 2018
 */
 
 // no direct access
@@ -36,6 +35,7 @@ $cls_spavisclient = $params->get('cls_spavisclient','');
 
 $button_bootstrap = "btn btn-sm ";   // classe des boutons
 $col_bootstrap_sort = "col-md-4 col-xs-5";    // largeur de la colonne des boutons de tri
+$col_bootstrap_filter = "col-md-4 col-xs-5";    // largeur de la colonne des boutons de filtrage
 
 // libellés affichés
 $libreverse=Text::_('MOD_CGAVISCLIENT_ISOLIBREVERSE');
