@@ -1,0 +1,35 @@
+<changelogs>
+	<changelog>
+		<element>cgavisclient</element>
+		<type>component</type>
+		<version>2.0.2</version>
+        <note>
+            <item>Update : 25/11/2021</item>
+        </note>
+        <fix>
+            <item>SEF URL</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>cgavisclient</element>
+		<type>component</type>
+		<version>2.0.1</version>
+        <note>
+            <item>Update : 13/11/2021</item>
+        </note>
+        <fix>
+            <item>Joomla 4.0 changelog file</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>cgavisclient</element>
+		<type>component</type>
+		<version>2.0.0</version>
+        <note>
+            <item>Update : 11/11/2021</item>
+        </note>
+        <addition>
+            <item>Joomla 4.0 compatibility</item>
+        </addition>
+	</changelog>
+</changelogs>

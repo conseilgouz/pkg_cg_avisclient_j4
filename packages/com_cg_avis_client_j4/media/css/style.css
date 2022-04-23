@@ -1,0 +1,409 @@
+/**
+* CG Avis Client - Joomla Module 
+* Version			: 2.0.2
+* Package			: Joomla 4.x.x
+* copyright 		: Copyright (C) 2021 ConseilGouz. All rights reserved.
+* license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
+*/
+div.stars {
+  display: inline-block;
+}
+input.star { display: none; }
+label.star {
+  float: right;
+  padding: 10px;
+  font-size: 36px;
+  color: #444;
+  transition: all .2s;
+}
+input.star:checked ~ label.star:before {
+  content: '\f005';
+  color: #FD4;
+  transition: all .25s;
+}
+label.star:hover { transform: rotate(-15deg) scale(1.3); }
+label.star:before {
+  content: '\f006';
+  font-family: FontAwesome;
+}
+.cgavisclient-form .col-sm-1 {
+	width: 8%;
+	float:left;
+    padding-left: 15px;
+}
+.cgavisclient-form .col-sm-2 {
+	width: 15% !important;
+	float:left;
+    padding-left: 15px;
+}
+.cgavisclient-form .col-sm-3 {
+    float:left;
+	width: 25% !important;
+    padding-left: 15px;
+}
+.cgavisclient-form .col-sm-4 {
+	width: 30%;
+    padding-left: 15px;
+}
+.cgavisclient-form .col-md-5 {
+    float:left;
+	width: 30%;
+	margin-left:20px;
+}
+.cgavisclient-form .col-sm-6 {
+	width: 45%;
+	float:right;
+    padding-left: 15px;
+}
+.cgavisclient-form .col-sm-7 {
+	width: 60%;
+	float:right;
+    padding-left: 15px;
+}
+.cgavisclient-form .col-sm-8 {
+    float:right;
+	width: 66%;
+}
+.cgavisclient-form .col-sm-9 {
+    float:right;
+	width: 70%;
+}
+@media only screen and (max-width: 768px) {
+.cgavisclient-form .col-sm-1 ,
+.cgavisclient-form .col-sm-2 ,
+.cgavisclient-form .col-sm-3 ,
+.cgavisclient-form .col-sm-4,
+.cgavisclient-form .col-md-5, 
+.cgavisclient-form .col-md-6, 
+.cgavisclient-form .col-sm-7 ,
+.cgavisclient-form .col-md-8, 
+.cgavisclient-form .col-sm-9 {
+	width: 100%;
+	}
+}
+
+div.cgavisclient-freetext {
+    margin: 10px 0;
+    padding: 0 15px;
+}
+
+div.cgavisclient-form h3 {
+    text-transform: uppercase;
+}
+.js-editor-tinymce .toggle-editor {display:none}
+
+#cgavisclient-toggle {
+    border-top: #ddd 1px solid;
+    padding-top: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+#cgavisclient-toggle a{
+    cursor: pointer;
+    width: 225px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    background: #3f86c2;
+    display: block;
+    color: #fff;
+    padding-left: 10px;
+}
+#cgavisclient-toggle a:hover {
+    text-decoration: none;
+}
+#cgavisclient-toggle span {
+    top:3px;
+    padding-left: 5px;
+    font-size: 13px;
+}
+
+/* FORM */
+
+div.cgavisclient-form .form-horizontal .control-group {
+    display:flex;
+}
+
+div.cgavisclient-form .form-horizontal .control-label {
+    width: 25%;
+}
+
+div.cgavisclient-form .form-horizontal .controls {
+    margin: 0;
+}
+div.cgavisclient-form input {height: 2em !important}
+div.cgavisclient-form input, div.cgavisclient-form textarea, div.cgavisclient-form select{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;    
+    padding: 4px;
+    width: 100%;
+    height: auto;
+}
+
+/* Default layout */
+div.cgavisclient-default {
+    text-align: center;
+    color: #818181;
+    font-family: tahoma;
+}
+div.cgavisclient-default .items {
+    border-bottom: dashed 1px #dddddd; 
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+}
+div.cgavisclient-default .items:last-child{
+    border: none;
+}
+div.cgavisclient-default div.cgavisclient-avatar img {
+    border-radius: 50%;
+    width: 85px;
+    height: 85px;
+}
+div.cgavisclient-default div.cgavisclient-avatar {
+    margin-bottom: 20px;
+}
+div.cgavisclient-default div.cgavisclient-info ul {
+    padding: 0;
+    margin: 0;      
+}
+div.cgavisclient-default div.cgavisclient-info ul li {
+    list-style: none;
+    display: inline-block;
+    font-size: 12px;
+}
+div.cgavisclient-default div.cgavisclient-info ul li + li:before {
+    content: " | ";
+    padding: 0 2px;
+    font-style: italic;
+}
+div.cgavisclient-default .cgavisclient-comment {
+    font-size: 16px;
+    line-height: 30px;
+    margin-bottom: 20px;
+}
+div.cgavisclient-default .testimony-name {
+    font-weight: bold;
+    color: #daa520;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+div.cgavisclient-default .cgavisclient-info {
+    margin-bottom: 15px;
+}
+
+/* Quote list Layout */
+
+div.cgavisclient-quote_list {
+    text-align: left;
+    color: #818181;
+    font-family: tahoma;
+}
+div.cgavisclient-left {
+    text-align: center;
+}
+div.cgavisclient-quote_list .items {
+    border-bottom: dashed 1px #dddddd; 
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+}
+div.cgavisclient-quote_list .items:last-child{
+    border: none;
+}
+div.cgavisclient-quote_list div.cgavisclient-avatar img {
+    border-radius: 50%;
+    height: 76px;
+    width: 76px;
+    display: inline;
+}
+
+div.cgavisclient-quote_list div.cgavisclient-info ul {
+    padding: 0;
+    margin: 0;      
+}
+div.cgavisclient-quote_list div.cgavisclient-info ul li {
+    list-style: none;
+    font-size: 12px;
+    color: #8ad7f9;
+}
+div.cgavisclient-quote_list div.cgavisclient-info ul li + li:before {
+    padding: 0 2px;
+    font-style: italic;
+}
+div.cgavisclient-quote_list .cgavisclient-comment {
+    font-size: 14px;
+    line-height: 30px;
+    margin-bottom: 20px;
+    font-style: italic;
+    color: #525252;
+}
+span.cgavisclient-quote {
+    background: url("../images/quote.png") 0 1px no-repeat; 
+    width: 28px;
+    height: 24px;
+    display: inline-block;
+    margin-right: 10px;
+}
+div.cgavisclient-quote_list .testimony-name {
+    font-weight: bold;
+    color: #333333;
+    font-size: 14px;
+}
+div.cgavisclient-quote_list .cgavisclient-info {
+    margin-bottom: 5px;
+}
+
+/* Grid layout */
+div.cgavisclient-grid {
+    text-align: left;
+    color: #818181;
+    font-family: tahoma;
+}
+div.cgavisclient-grid .row {
+    border-bottom: dashed 1px #dddddd;
+    overflow: hidden;    
+}
+
+div.cgavisclient-grid .items {
+  border-right: dashed 1px #dddddd;  
+  padding: 25px 0;
+}
+div.cgavisclient-grid .row:last-child, div.cgavisclient-grid .items + .items{
+    border: none;
+}     
+div.cgavisclient-grid div.cgavisclient-avatar img {
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+    display: inline;
+}
+div.cgavisclient-grid div.cgavisclient-avatar {
+    margin-bottom: 20px;
+    text-align: center;
+}
+div.cgavisclient-grid div.cgavisclient-info ul {
+    padding: 0;
+    margin: 0;      
+}
+div.cgavisclient-grid div.cgavisclient-info ul li {
+    list-style: none;
+    display: inline-block;
+    font-size: 12px;
+}
+div.cgavisclient-grid div.cgavisclient-info ul li + li:before {
+    content: " | ";
+    padding: 0 2px;
+    font-style: italic;
+}
+div.cgavisclient-grid .cgavisclient-comment {
+    font-size: 14px;
+    line-height: 30px;
+    margin-bottom: 20px;
+}
+div.cgavisclient-grid .testimony-name {
+    font-weight: bold;
+    color: #daa520;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+div.cgavisclient-grid .cgavisclient-info {
+    margin-bottom: 10px;
+}
+
+/* Quote Grid layout */
+div.cgavisclient-quote_grid {
+    text-align: left;
+    color: #818181;
+    font-family: tahoma;
+}
+div.cgavisclient-quote_grid .row {
+    border-bottom: dashed 1px #dddddd;
+    overflow: hidden;    
+}
+
+div.cgavisclient-quote_grid .items {
+  border-right: dashed 1px #dddddd;  
+  padding: 25px 0;
+}
+div.cgavisclient-quote_grid .row:last-child, div.cgavisclient-quote_grid .items + .items{
+    border: none;
+}
+div.cgavisclient-quote_grid div.cgavisclient-avatar img {
+    border-radius: 50%;
+    height: 75px;
+    width: 75px;
+}
+div.cgavisclient-quote_grid div.cgavisclient-avatar {
+    margin-bottom: 20px;
+}
+div.cgavisclient-quote_grid div.cgavisclient-info ul {
+    padding: 0;
+    margin: 0;      
+}
+div.cgavisclient-quote_grid div.cgavisclient-info ul li {
+    list-style: none;
+    display: inline-block;
+    font-size: 12px;
+    color: #6dc1f1;
+}
+div.cgavisclient-quote_grid div.cgavisclient-info ul li + li:before {
+    content: " | ";
+    padding: 0 2px;
+    font-style: italic;
+}
+div.cgavisclient-quote_grid .cgavisclient-comment {
+    font-size: 14px;
+    line-height: 30px;
+    margin-bottom: 20px;
+    color: #525252;    
+    font-style: italic;    
+}
+div.cgavisclient-quote_grid .testimony-name {
+    font-weight: bold;
+    color: #333333;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+div.cgavisclient-quote_grid .cgavisclient-info {
+    margin-bottom: 10px;
+}
+
+
+/*Thank you page*/
+
+div.cgavisclient-thankyou {
+    text-align: center;
+    font-family: Calibri;
+}
+
+div.cgavisclient-thankyou-title {
+    font-size: 48px;
+    line-height: 48px;
+    color: #636363;
+    margin: 43px 0 59px 0;
+}
+div.cgavisclient-thankyou-content {
+    font-size: 30px;
+    color: #9f9f9f;
+    line-height: 30px;
+}
+/*Error page*/
+
+div.cgavisclient-error {
+    text-align: center;
+    font-family: Calibri;
+}
+
+div.cgavisclient-error-title {
+    font-size: 48px;
+    line-height: 48px;
+    color: #636363;
+    margin: 43px 0 59px 0;
+}
+div.cgavisclient-error-content {
+    font-size: 25px;
+    color: #9f9f9f;
+    line-height: 30px;
+}

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="4.0" client="site" method="upgrade">
+	<name>CG Avis Client</name>
+	<author>ConseilGouz</author>
+	<creationDate>September 2021</creationDate>
+	<copyright>Copyright (c) 2021 ConseilGouz. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
+    <authorUrl>https://www.conseilgouz.com</authorUrl>
+	<version>2.0.0</version>
+	<description>
+	<![CDATA[
+	Affichage simple des avis clients avec module isotope
+	]]>
+	</description>
+	<namespace path="src">ConseilGouz\Module\CGAvisClient</namespace>
+	<scriptfile>script.php</scriptfile>
+	
+	<files>
+		<filename module="mod_cg_avisclient">mod_cg_avisclient.php</filename>
+		<filename>mod_cg_avisclient.xml</filename>
+        <filename>index.html</filename>
+        <folder>layouts</folder>
+        <folder>tmpl</folder>
+		<folder>src</folder>
+        <folder>language</folder>
+	</files>
+    <languages folder="language">
+        <language tag="fr-FR">fr-FR/mod_cg_avisclient.ini</language>
+        <language tag="fr-FR">fr-FR/mod_cg_avisclient.sys.ini</language>
+	</languages>	
+	<media destination="mod_cg_avisclient" folder="media">
+		<folder>js</folder>
+		<folder>css</folder>
+		<folder>images</folder>
+		<filename>index.html</filename>
+	</media>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+                <field name="include_bootstrap" type="hidden" class="btn-group" default="0"
+                >                
+                </field> 				 
+				<field
+					name="count"
+					type="text"
+					default="5"
+					label="Limite"
+					description="Nombre d'avis à afficher" />
+				<field
+					name="add_pagination" type="hidden" class="btn-group" default="0"
+				>
+				</field>
+				<field
+					name="show_featured" type="radio" class="btn-group"	default="0"
+					label="Montrer les 'en vedette'" description="Montrer ou non uniquement les 'en vedette'">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="categories" 
+					type="category" 
+					extension="com_cgavisclient"
+					label="MOD_CGAVISCLIENT_ISOCAT" 
+					description="MOD_CGAVISCLIENT_ISOCATDESC" 
+					multiple="true" 
+					custom="deny"/>	
+				<field
+					name="add_cgavisclient" type="radio" class="btn-group" default="0"
+					label="MOD_CGAVISCLIENT_SHOW_PROPOSE_LABEL" description="MOD_CGAVISCLIENT_SHOW_PROPOSE_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field
+					name="plus_cgavisclient" type="radio" class="btn-group" default="0"
+					label="MOD_CGAVISCLIENT_SHOW_PLUS_LABEL" description="MOD_CGAVISCLIENT_SHOW_PLUS_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field 
+					showon="plus_cgavisclient:1"
+					name="plusmenu" 
+					type="menuitem"  
+					label="MOD_CGAVISCLIENT_PLUS_MENU_LABEL" 
+					description="MOD_CGAVISCLIENT_PLUS_MENU_DESC" />
+				
+			</fieldset>
+			<fieldset name="isotope">
+				<field
+					name="iso_layout"
+					type="list"
+					default="masonry"
+					label="MOD_CGAVISCLIENT_ISODISPLAYTYPE"
+					description="MOD_CGAVISCLIENT_ISODISPLAYTYPEDESC" 
+				>
+					<option value="fitRows">MOD_CGAVISCLIENT_ISODISPLAYTYPELINES</option> 
+					<option value="masonry">MOD_CGAVISCLIENT_ISODISPLAYTYPEMASO</option> 
+					<option value="vertical">MOD_CGAVISCLIENT_ISODISPLAYTYPEVERT</option>
+					<option value="packery">MOD_CGAVISCLIENT_ISODISPLAYTYPEPACK</option> 
+				</field>
+				<field name="intro_maxwidth"
+				type="number" 
+				default="0" 
+                label="Taille Texte Intro"
+				description="Taille maximum du texte d'introduction. Au delà, un bouton 'lire la suite' est affiché. 0 => pas de limite"
+				min="0" max="9000" step="50" />
+				<field name="introimg_maxheight"
+				type="hidden" 
+				default="0" 
+                label="MOD_CGAVISCLIENT_ISOMAXIMGHEIGHT"
+				description="MOD_CGAVISCLIENT_ISOMAXIMGHEIGHTDESC"
+				min="0" max="1000" step="10" />
+				<field
+					showon="iso_layout:masonry,fitRows,packery"
+					name="iso_nbcol"
+					type="number"
+					default="2"
+					label="MOD_CGAVISCLIENT_ISONBCOL"
+					description="MOD_CGAVISCLIENT_ISONBCOLDESC" 
+					min="1"
+					max="10"
+					step="1"
+				/>
+				<field name="backgroundcolor" 
+					type="color" default="#eee"
+					label="MOD_CGAVISCLIENT_ISOBACKGD"
+					description="MOD_CGAVISCLIENT_ISOBACKGDDESC" />	
+				<field
+					name="cls_cgavisclient"
+					type="text"
+					default=""
+					label="Classe des boutons "
+					description="Classe des boutons">
+				</field>
+
+				<field name="buttoncolor" 
+					type="color" default="#eee"
+					label="MOD_CGAVISCLIENT_ISOBUTTONSBACKGD"
+					description="MOD_CGAVISCLIENT_ISOBUTTONSBACKGDDESC" />	
+				<field
+					name="displaysearch"
+					type="radio" class="btn-group "
+					default="hide"
+					label="MOD_CGAVISCLIENT_ISODISPLAYSEARCH"
+					description="MOD_CGAVISCLIENT_ISODISPLAYSEARCHDESC" 
+				>
+					<option value="show">MOD_CGAVISCLIENT_ISODISPLAYSEARCHSHOW</option> 
+					<option value="hide">MOD_CGAVISCLIENT_ISODISPLAYSEARCHHIDE</option>
+				</field>
+				<field
+					name="displaysort"
+					type="radio" class="btn-group "
+					default="show"
+					label="MOD_CGAVISCLIENT_ISODISPLAYSORT"
+					description="MOD_CGAVISCLIENT_ISODISPLAYSORTDESC" 
+				>
+					<option value="show">MOD_CGAVISCLIENT_ISODISPLAYSORTSHOW</option> 
+					<option value="hide">MOD_CGAVISCLIENT_ISODISPLAYSORTHIDE</option> 
+				</field>
+				<field
+					showon="displaysort:show"
+					name="choixdate"
+					type="hidden"
+					default="created"
+					label="MOD_CGAVISCLIENT_ISODATECHOICE"
+					description="MOD_CGAVISCLIENT_ISODATECHOICEDESC" 
+				>
+					<option value="created">MOD_CGAVISCLIENT_ISODATECHOICECREATE</option> 
+					<option value="modified">MOD_CGAVISCLIENT_ISODATECHOICEMODIF</option> 
+				</field>
+				<field name="defaultdisplay_article" 
+					showon="displaysort:show"
+					type="list" 
+					default="date_desc"
+					label="MOD_CGAVISCLIENT_ISODEFDISPLAY"
+					description="MOD_CGAVISCLIENT_ISODEFDISPLAYDESC">				
+					<option value="date_asc">MOD_CGAVISCLIENT_ISODEFDISPLAYOLDERDATE</option> 
+					<option value="date_desc">MOD_CGAVISCLIENT_ISODEFDISPLAYRECENTDATE</option>
+					<option value="vote_asc">MOD_CGAVISCLIENT_ISODEFDISPLAYVOTES</option> 
+					<option value="vote_desc">MOD_CGAVISCLIENT_ISODEFDISPLAYVOTESREV</option> 
+					<option value="cat_asc">MOD_CGAVISCLIENT_ISODEFDISPLAYCAT</option> 
+					<option value="cat_desc">MOD_CGAVISCLIENT_ISODEFDISPLAYCATREV</option> 
+				</field>
+				<field
+					name="displayfilter"
+					type="radio" class="btn-group "
+					default="0"
+					label="MOD_CGAVISCLIENT_ISODISPLAYFILTER"
+					description="MOD_CGAVISCLIENT_ISODISPLAYFILTER_DESC" 
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				
+				</field>
+			</fieldset>			
+			<fieldset name="MOD_CGAVISCLIENT_CSS_PERSO">
+			    <field type="note" name="note1" label="MOD_CGAVISCLIENT_NOTE1" heading="p" />
+				<field name="perso" type="textarea" label="MOD_CGAVISCLIENT_PERSO" description="MOD_CGAVISCLIENT_PERSO_DESC" cols="40" rows="4" filter="raw" 
+					default="{first} - {zip} {stars}"
+					/>			
+				<field name="css" type="textarea" label="MOD_CGAVISCLIENT_CSS" description="MOD_CGAVISCLIENT_CSS_DESC" cols="40" rows="4" filter="raw" 
+					default="@media screen and (max-width: 600px) {.isotope_item img{max-width:100% !important} .isotope_item {width: 100% !important;}}"
+					/>	
+				<field type="spacer" name="sep" class="text" label="MOD_CGAVISCLIENT_SPACER_TEXT" />					
+				<field
+					name="btndate"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="true"
+					label="MOD_CGAVISCLIENT_DISPLAYBTNDATE"
+					description="MOD_CGAVISCLIENT_DISPLAYBTNDATEDESC" 
+				>
+					<option value="true">JYES</option> 
+					<option value="false">JNO</option> 
+				</field>
+				<field
+					name="btncat"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="true"
+					label="MOD_CGAVISCLIENT_DISPLAYBTNCAT"
+					description="MOD_CGAVISCLIENT_DISPLAYBTNCATDESC" 
+				>
+					<option value="true">JYES</option> 
+					<option value="false">JNO</option> 
+				</field>
+				<field
+					name="btnrating"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="true"
+					label="MOD_CGAVISCLIENT_DISPLAYBTNRATING"
+					description="MOD_CGAVISCLIENT_DISPLAYBTNRATINGDESC" 
+				>
+					<option value="true">JYES</option> 
+					<option value="false">JNO</option> 
+				</field>
+			</fieldset>			
+			<fieldset name="advanced">
+				<field
+					name="moduleclass_sfx"
+					type="text"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
+				/>
+				<field
+					name="cache"
+					type="list"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC"
+				>
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC"
+				/>
+
+				<field
+					name="cachemode"
+					type="hidden"
+					default="static"
+				>
+					<option value="static"></option>
+				</field>
+			</fieldset>		</fields>
+	</config>
+	<updateservers>
+	<server type="extension" name="CG Avis Client" priority="1">https://www.conseilgouz.com/updates/cg_avis_client_update.xml
+	</server>
+	</updateservers>
+	
+</extension>

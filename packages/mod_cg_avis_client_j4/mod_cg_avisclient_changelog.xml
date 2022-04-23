@@ -1,0 +1,36 @@
+<changelogs>
+	<changelog>
+		<element>mod_cg_gallery</element>
+		<type>Module</type>
+		<version>2.0.2</version>
+        <note>
+            <item>Update : 14/09/2021</item>
+        </note>
+        <fix>
+            <item>Rename CGHelper class</item>
+            <item>Various Joomla 4.0 fixes</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>mod_cg_gallery</element>
+		<type>Module</type>
+		<version>2.0.1</version>
+        <note>
+            <item>Update : 11/07/2021</item>
+        </note>
+        <fix>
+            <item>Error if article not found</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>mod_cg_gallery</element>
+		<type>Module</type>
+		<version>2.0.0</version>
+        <note>
+            <item>Update : 11/07/2021</item>
+        </note>
+        <addition>
+            <item>Joomla 4.0 RC2 compatibility</item>
+        </addition>
+	</changelog>
+</changelogs>

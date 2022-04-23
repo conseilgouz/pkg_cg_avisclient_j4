@@ -1,0 +1,13 @@
+<changelogs>
+	<changelog>
+		<element>pkg_cg_avis_client</element>
+		<type>package</type>
+		<version>2.0.0</version>
+        <note>
+            <item>Update : 25/09/2021</item>
+        </note>
+        <addition>
+            <item>Joomla 4.0 compatibility</item>
+        </addition>
+	</changelog>
+</changelogs>

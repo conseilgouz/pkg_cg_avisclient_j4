@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Id: config.xml $ -->
+<config>
+    <fieldset
+        name="general"
+        label="General"
+        description="General"
+        >
+        <field
+            name="recipient_email"
+            type="text"
+            label="COM_CGAVISCLIENT_FIELD_EMAIL_RECIPIENT_LABEL"
+            description="COM_CGAVISCLIENT_FIELD_EMAIL_RECIPIENT_DESC"
+            default=""
+        />
+        <field
+            name="freetext"
+            type="hidden"
+            label="COM_CGAVISCLIENT_FIELD_FREETEXT_LABEL"
+            description="COM_CGAVISCLIENT_FIELD_FREETEXT_DESC"
+            default=""
+        /> 
+        <field
+            name="form_content"
+            type="editor"
+            label="COM_CGAVISCLIENT_FIELD_FORMCONTENT_LABEL"
+            description="COM_CGAVISCLIENT_FIELD_FORMCONTENT_DESC"
+            default="Commentaires associés au formulaire"
+			filter="safehtml"
+			height="100"
+			row="5"
+        />          
+        <field
+            name="captcha"
+            type="plugins"
+            folder="captcha"
+            default=""
+            label="COM_CGAVISCLIENT_FIELD_CAPTCHA_LABEL"
+            description="COM_CGAVISCLIENT_FIELD_CAPTCHA_DESC"
+            filter="cmd" >
+            <option
+                value="">JOPTION_USE_DEFAULT</option>
+            <option
+                value="0">JOPTION_DO_NOT_USE</option>
+        </field>  
+        <field
+            name="use_bootstrap"
+            type="hidden"
+            default="0"
+            label="COM_CGAVISCLIENT_FIELD_USEBOOTSTRAP_LABEL"
+            description="COM_CGAVISCLIENT_FIELD_USEBOOTSTRAP_DESC">
+        </field>                 
+        <field
+            name="show_rating"
+            type="hidden"
+            class="btn-group btn-group-yesno"
+            default="1"
+            label="COM_CGAVISCLIENT_SHOW_RATING_LABEL"
+            description="COM_CGAVISCLIENT_SHOW_RATING_DESC">
+        </field>
+		<field 
+			name="returnmenu" 
+			type="menuitem"  
+			label="COM_CGAVISCLIENT_SHOW_RETURN_LABEL" 
+			description="COM_CGAVISCLIENT_SHOW_RETURN_DESC" />
+		
+    </fieldset>
+	<fieldset
+		name="permissions"
+		label="JCONFIG_PERMISSIONS_LABEL"
+		description="JCONFIG_PERMISSIONS_DESC"
+		>
+
+		<field
+			name="rules"
+			type="rules"
+			label="JCONFIG_PERMISSIONS_LABEL"
+			class="inputbox"
+			filter="rules"
+			validate="rules"
+			component="com_cgavisclient"
+			section="component" />          
+	</fieldset>
+</config>
