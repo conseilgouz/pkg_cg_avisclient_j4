@@ -94,6 +94,20 @@ class pkg_CGAvisClientInstallerScript
 				}
 			}
 		}
+		// remove obsolete update sites
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true)
+			->delete('#__update_sites')
+			->where($db->quoteName('location') . ' like "%432473037d.url-de-test.ws/%"');
+		$db->setQuery($query);
+		$db->execute();
+		// Simple Isotope is now on Github
+		$query = $db->getQuery(true)
+			->delete('#__update_sites')
+			->where($db->quoteName('location') . ' like "%conseilgouz.com/updates/pkg_cg_avis%"');
+		$db->setQuery($query);
+		$db->execute();
+		
 	}
 	// enable CGStyle plugin
 	private function postinstall_enable_plugin() {
