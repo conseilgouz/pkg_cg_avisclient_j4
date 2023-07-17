@@ -27,7 +27,7 @@
             description="COM_CGAVISCLIENT_FIELD_FORMCONTENT_DESC"
             default="Commentaires associés au formulaire"
 			filter="safehtml"
-			height="100"
+			height="300"
 			row="5"
         />          
         <field

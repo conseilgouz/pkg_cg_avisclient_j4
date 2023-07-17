@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="4.0" method="upgrade">
 	<name>COM_CGAVISCLIENT</name>
-	<creationDate>September 2021</creationDate>
+	<creationDate>2023-07-17</creationDate>
 	<author>ConseilGouz</author>
 	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
 	<authorUrl>www.conseilgouz.com</authorUrl>
-	<copyright>Copyright (C) 2017 ConseilGouz.com. All Rights Reserved</copyright>
+	<copyright>Copyright (C) 2021 ConseilGouz.com. All Rights Reserved</copyright>
 	<license>GNU/GPL Version 2 or later - http://www.gnu.org/licenses/gpl-2.0.html</license>
-	<version>2.0.2</version>
+	<version>2.1.0</version>
 	<namespace path="src">ConseilGouz\Component\CGAvisClient</namespace>
 	<description><![CDATA[
 		<h1>CG Avis Client</h1>
@@ -68,9 +68,9 @@
 		</languages>
 
 	</administration>
-	<updateservers>
-	<server type="extension" name="Simple Avis Client" priority="1">https://www.conseilgouz.com/updates/com_cgavisclient_update.xml
-	</server>
-	</updateservers>
+	<changelogurl>https://raw.githubusercontent.com/conseilgouz/pkg_cg_avisclient_j4/master/packages/com_cg_avis_client_j4/cgavisclient_changelog.xml</changelogurl>
+    <updateservers>
+        <server type="extension" name="automsg">https://raw.githubusercontent.com/conseilgouz/updates_github/master/com_automsg_update.xml</server>
+    </updateservers>
 
 </extension>

@@ -2,12 +2,12 @@
 <extension type="module" version="4.0" client="site" method="upgrade">
 	<name>CG Avis Client</name>
 	<author>ConseilGouz</author>
-	<creationDate>April 2022</creationDate>
-	<copyright>Copyright (c) 2022 ConseilGouz. All rights reserved.</copyright>
+	<creationDate>2023/07/17</creationDate>
+	<copyright>Copyright (c) 2023 ConseilGouz. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
     <authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
     <authorUrl>https://www.conseilgouz.com</authorUrl>
-	<version>2.0.2</version>
+	<version>2.1.0</version>
 	<description>
 	<![CDATA[
 	Affichage simple des avis clients avec module isotope
@@ -15,7 +15,6 @@
 	</description>
 	<namespace path="src">ConseilGouz\Module\CGAvisClient</namespace>
 	<scriptfile>script.php</scriptfile>
-	
 	<files>
 		<filename module="mod_cg_avisclient">mod_cg_avisclient.php</filename>
 		<filename>mod_cg_avisclient.xml</filename>
@@ -35,7 +34,6 @@
 		<folder>images</folder>
 		<filename>index.html</filename>
 	</media>
-
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
@@ -269,11 +267,7 @@
 				>
 					<option value="static"></option>
 				</field>
-			</fieldset>		</fields>
+			</fieldset>		
+		</fields>
 	</config>
-	<updateservers>
-	<server type="extension" name="CG Avis Client" priority="1">https://www.conseilgouz.com/updates/cg_avis_client_update.xml
-	</server>
-	</updateservers>
-	
 </extension>

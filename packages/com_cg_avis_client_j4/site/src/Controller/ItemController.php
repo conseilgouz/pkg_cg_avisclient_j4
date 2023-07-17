@@ -1,9 +1,9 @@
 <?php
 /**
 * CG Avis Client - Joomla Module 
-* Version			: 2.0.2
-* Package			: Joomla 4.x.x
-* copyright 		: Copyright (C) 2021 ConseilGouz. All rights reserved.
+* Version			: 2.1.0
+* Package			: Joomla 4.x/5.x
+* copyright 		: Copyright (C) 2023 ConseilGouz. All rights reserved.
 * license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 * From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
 */
@@ -73,7 +73,7 @@ class ItemController extends BaseController
 
         // Prepare email body
         $prefix = Text::sprintf('ENQUIRY_TEXT', URI::base());                
-        $subject    = 'Un nouveau témoignage a été proposé';  
+        $subject    = 'Nouvel Avis Client';  
         $body	  = utf8_encode(Text::_('CGAVISCLIENT_MESSAGE'));
         $body     = sprintf($body,$data->name,$data->firstname,$data->zipcode,$data->city,$data->email,$data->comment);
 

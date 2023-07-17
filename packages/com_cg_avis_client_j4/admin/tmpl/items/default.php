@@ -1,9 +1,9 @@
 <?php
 /**
 * CG Avis Client - Joomla Module 
-* Version			: 2.0.2
-* Package			: Joomla 4.x.x
-* copyright 		: Copyright (C) 2021 ConseilGouz. All rights reserved.
+* Version			: 2.1.0
+* Package			: Joomla 4.x/5.x
+* copyright 		: Copyright (C) 2023 ConseilGouz. All rights reserved.
 * license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 * From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
 */
@@ -42,7 +42,7 @@ $saveOrder	= $listOrder=='ordering';
         </div>
         <div class="btn-group pull-left">            
 			<button type="submit" class="btn hasTooltip"><?php echo Text::_('JSEARCH_FILTER_SUBMIT'); ?></button>
-			<button type="button" class="btn hasTooltip" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
+			<button type="button" class="btn hasTooltip" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo Text::_('JSEARCH_FILTER_CLEAR'); ?></button>
 		</div>
 		<div class="btn-group pull-right hidden-phone">
 			

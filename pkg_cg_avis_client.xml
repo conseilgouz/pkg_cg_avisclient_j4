@@ -2,9 +2,9 @@
  <extension type="package" version="4.0" method="upgrade">
  <name>Package CG Avis Client</name>
  <author>ConseilGouz</author>
- <creationDate>September 2021</creationDate>
+ <creationDate>2023-07-17</creationDate>
  <packagename>CG Avis Client</packagename>
- <version>2.0.2</version>
+ <version>2.1.0</version>
  <url>https://www.conseilgouz.com/</url>
  <packager>ConseilGouz</packager>
  <description>Package CG Avis Client</description>
@@ -13,8 +13,8 @@
    <file type="component" id="CG Avis Client" >com_cg_avis_client_j4.zip</file>
    <file type="module" id="CG Avis Client" client="site">mod_cg_avis_client_j4.zip</file>
  </files>
- <changelogurl>https://www.conseilgouz.com/updates/pkg_cg_avis_client_changelog.xml</changelogurl>
+ <changelogurl>https://raw.githubusercontent.com/conseilgouz/pkg_cg_avisclient_j4/master/pkg_cg_avis_client_changelog.xml</changelogurl>
  <updateservers>
-	<server type="extension" name="CG Avis Client" priority="1">https://www.conseilgouz.com/updates/pkg_cg_avis_client_update.xml</server>
+    <server type="extension" name="CG Avis Client">https://raw.githubusercontent.com/conseilgouz/updates_github/master/pkg_cg_avis_client_update.xml</server>
  </updateservers>
  </extension>
