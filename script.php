@@ -15,7 +15,7 @@ use Joomla\CMS\Filesystem\File;
 
 class pkg_CGAvisClientInstallerScript
 {
-	private $min_joomla_version      = '3.10.0';
+	private $min_joomla_version      = '4.0.0';
 	private $min_php_version         = '7.4';
 	private $name                    = 'CG Avis Client';
 	private $exttype                 = 'package';
@@ -150,7 +150,7 @@ class pkg_CGAvisClientInstallerScript
 	}
 	private function uninstallInstaller()
 	{
-		if ( ! JFolder::exists(JPATH_PLUGINS . '/system/' . $this->installerName)) {
+		if ( ! Folder::exists(JPATH_PLUGINS . '/system/' . $this->installerName)) {
 			return;
 		}
 		$this->delete([
