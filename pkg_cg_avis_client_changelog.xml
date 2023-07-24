@@ -2,12 +2,23 @@
 	<changelog>
 		<element>pkg_cg_avis_client</element>
 		<type>package</type>
-		<version>2.1.1</version>
+		<version>2.1.2</version>
         <note>
-            <item>use Joomla\Filesystem instead of Joomla\CMS\Filesystem classes in script.php</item>
+            <item>Update : 2023-07-24</item>
         </note>
         <fix>
-            <item>Joomla 5.x compatibility</item>
+            <item>Invalid version number in manifest file</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>pkg_cg_avis_client</element>
+		<type>package</type>
+		<version>2.1.1</version>
+        <note>
+            <item>Update : 2023-07-24</item>
+        </note>
+        <fix>
+            <item>use Joomla\Filesystem instead of Joomla\CMS\Filesystem classes in script.php</item>
         </fix>
 	</changelog>
 	<changelog>
