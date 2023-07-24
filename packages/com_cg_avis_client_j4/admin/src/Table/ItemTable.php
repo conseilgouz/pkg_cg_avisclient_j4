@@ -1,9 +1,9 @@
 <?php
 /**
 * CG Avis Client - Joomla Module 
-* Version			: 2.0.2
-* Package			: Joomla 4.x.x
-* copyright 		: Copyright (C) 2021 ConseilGouz. All rights reserved.
+* Version			: 2.1.1
+* Package			: Joomla 4.x/5x
+* copyright 		: Copyright (C) 2023 ConseilGouz. All rights reserved.
 * license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 * From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
 */
@@ -86,7 +86,7 @@ class ItemTable extends Table
 				$pks = array($this->$k);
 			}
 			else {
-				$this->setError(JText::_('JLIB_DATABASE_ERROR_NO_ROWS_SELECTED'));
+				$this->setError(Text::_('JLIB_DATABASE_ERROR_NO_ROWS_SELECTED'));
 				return false;
 			}
 		}

@@ -1,18 +1,18 @@
 <?php
 /**
-* CG Avis Client Module  - Joomla 4.0.0 Module 
-* Version			: 2.0.2
+* CG Avis Client Module  - Joomla 4.x/5.x Module 
+* Version			: 2.1.1
 * Package			: CG Avis Client
-* copyright 		: Copyright (C) 2022 ConseilGouz. All rights reserved.
+* copyright 		: Copyright (C) 2023 ConseilGouz. All rights reserved.
 * license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 */
 // No direct access to this file
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\Filesystem\Folder;
+use Joomla\Filesystem\Folder;
 use Joomla\CMS\Version;
-use Joomla\CMS\Filesystem\File;
+use Joomla\Filesystem\File;
 
 class mod_cg_avisclientInstallerScript
 {
@@ -144,7 +144,7 @@ class mod_cg_avisclientInstallerScript
 	}
 	private function uninstallInstaller()
 	{
-		if ( ! Folder::exists(JPATH_PLUGINS . '/system/' . $this->installerName)) {
+		if ( ! is_dir(JPATH_PLUGINS . '/system/' . $this->installerName)) {
 			return;
 		}
 		$this->delete([

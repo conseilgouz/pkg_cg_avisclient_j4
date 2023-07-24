@@ -1,7 +1,7 @@
 <?php
 /**
-* CG Avis Client  - Joomla 4.0.0 Module 
-* Version			: 2.0.0
+* CG Avis Client  - Joomla 4.x/5x package 
+* Version			: 2.1.1
 * Package			: CG Avis Client
 * copyright 		: Copyright (C) 2021 ConseilGouz. All rights reserved.
 * license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
@@ -9,9 +9,9 @@
 // No direct access to this file
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
-use Joomla\CMS\Filesystem\Folder;
+use Joomla\Filesystem\Folder;
 use Joomla\CMS\Version;
-use Joomla\CMS\Filesystem\File;
+use Joomla\Filesystem\File;
 
 class pkg_CGAvisClientInstallerScript
 {
@@ -164,7 +164,7 @@ class pkg_CGAvisClientInstallerScript
 	}
 	private function uninstallInstaller()
 	{
-		if ( ! Folder::exists(JPATH_PLUGINS . '/system/' . $this->installerName)) {
+		if ( ! is_dir(JPATH_PLUGINS . '/system/' . $this->installerName)) {
 			return;
 		}
 		$this->delete([

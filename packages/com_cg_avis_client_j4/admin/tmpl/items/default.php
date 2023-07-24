@@ -1,7 +1,7 @@
 <?php
 /**
 * CG Avis Client - Joomla Module 
-* Version			: 2.1.0
+* Version			: 2.1.1
 * Package			: Joomla 4.x/5.x
 * copyright 		: Copyright (C) 2023 ConseilGouz. All rights reserved.
 * license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
@@ -56,7 +56,7 @@ $saveOrder	= $listOrder=='ordering';
 
     <?php if (empty($this->items)) : ?>
         <div class="alert alert-no-items">
-            <?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
+            <?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
         </div>
     <?php else : ?>   
     <table class="table table-striped" id="articleList">
