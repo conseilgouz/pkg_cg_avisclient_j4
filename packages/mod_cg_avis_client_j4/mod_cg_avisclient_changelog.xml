@@ -2,6 +2,28 @@
 	<changelog>
 		<element>mod_cg_avisclient</element>
 		<type>Module</type>
+		<version>2.1.2</version>
+        <note>
+            <item>Update : 30/07/2023</item>
+        </note>
+        <fix>
+            <item>$lang undefined in install script</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>pkg_cg_avis_client</element>
+		<type>package</type>
+		<version>2.1.2</version>
+        <note>
+            <item>Update : 2023-07-24</item>
+        </note>
+        <fix>
+            <item>Invalid version number in manifest file</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>mod_cg_avisclient</element>
+		<type>Module</type>
 		<version>2.1.1</version>
         <note>
             <item>Update : 24/07/2023</item>

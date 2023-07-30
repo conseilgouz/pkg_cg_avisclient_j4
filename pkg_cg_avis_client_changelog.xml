@@ -2,6 +2,17 @@
 	<changelog>
 		<element>pkg_cg_avis_client</element>
 		<type>package</type>
+		<version>2.1.3</version>
+        <note>
+            <item>Update : 2023-07-30</item>
+        </note>
+        <fix>
+            <item>$lang undefined in install script</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>pkg_cg_avis_client</element>
+		<type>package</type>
 		<version>2.1.2</version>
         <note>
             <item>Update : 2023-07-24</item>
