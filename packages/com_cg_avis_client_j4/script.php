@@ -1,10 +1,9 @@
 <?php
 /**
 * CG Avis Client Component  - Joomla 4.x/5.x Component 
-* Version			: 2.1.1
 * Package			: CG Avis Client
-* copyright 		: Copyright (C) 2023 ConseilGouz. All rights reserved.
-* license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
+* license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 */
 // No direct access to this file
 defined('_JEXEC') or die;

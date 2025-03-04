@@ -16,8 +16,8 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use ConseilGouz\Module\CGAvisClient\Site\Helper\CGAvisClientHelper;
 
-$class_sfx = htmlspecialchars($params->get('class_sfx'));
-$limit = htmlspecialchars($params->get('count'));
+$class_sfx = htmlspecialchars($params->get('class_sfx',''));
+$limit = htmlspecialchars($params->get('count',0));
 $app = Factory::getApplication();
 $limitstart = $app->input->get('limitstart', 0, 'uint');
 
@@ -69,6 +69,6 @@ $document->addScriptOptions('mod_cg_avisclient',
 
 $doc->addScript($modulefield."js/cg_avisclient.js");
 
-$moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
+$moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx',''));
 
 require( ModuleHelper::getLayoutPath( 'mod_cg_avisclient', $params->get('layout', 'default') ) );	

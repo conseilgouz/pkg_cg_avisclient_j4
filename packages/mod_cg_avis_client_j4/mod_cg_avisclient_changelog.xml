@@ -2,6 +2,18 @@
 	<changelog>
 		<element>mod_cg_avisclient</element>
 		<type>Module</type>
+		<version>2.2.1</version>
+        <note>
+            <item>Update : 04/03/2025</item>
+        </note>
+        <fix>
+            <item>Joomla 5.3 compatibility : getQuery to createQuery</item>
+            <item>Installation scripts errors</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>mod_cg_avisclient</element>
+		<type>Module</type>
 		<version>2.2.0</version>
         <note>
             <item>Update : 04/03/2025</item>
