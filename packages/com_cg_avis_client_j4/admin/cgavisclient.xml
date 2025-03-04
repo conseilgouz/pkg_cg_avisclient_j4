@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="4.0" method="upgrade">
 	<name>COM_CGAVISCLIENT</name>
-	<creationDate>2023-07-17</creationDate>
+	<creationDate>2025-03-04</creationDate>
 	<author>ConseilGouz</author>
 	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
 	<authorUrl>www.conseilgouz.com</authorUrl>
-	<copyright>Copyright (C) 2021 ConseilGouz.com. All Rights Reserved</copyright>
-	<license>GNU/GPL Version 2 or later - http://www.gnu.org/licenses/gpl-2.0.html</license>
-	<version>2.1.0</version>
+	<copyright>Copyright (C) 2025 ConseilGouz.com. All Rights Reserved</copyright>
+	<license>GNU/GPL Version 3 or later - https://www.gnu.org/licenses/gpl-3.0.html</license>
+	<version>2.2.0</version>
 	<namespace path="src">ConseilGouz\Component\CGAvisClient</namespace>
 	<description><![CDATA[
 		<h1>CG Avis Client</h1>

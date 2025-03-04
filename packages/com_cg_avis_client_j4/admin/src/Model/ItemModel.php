@@ -1,20 +1,20 @@
 <?php
 /**
 * CG Avis Client - Joomla Module 
-* Version			: 2.0.2
-* Package			: Joomla 4.x.x
-* copyright 		: Copyright (C) 2021 ConseilGouz. All rights reserved.
-* license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* Package			: Joomla 4.x/5.x
+* copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
+* license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 * From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
 */
 namespace ConseilGouz\Component\CGAvisClient\Administrator\Model;
 // No direct access.
 defined('_JEXEC') or die;
-use Joomla\Registry\Registry;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Form\Form;
 use Joomla\CMS\MVC\Model\AdminModel;
 use Joomla\CMS\Table\Table;
-use Joomla\CMS\Form\Form;
+use Joomla\Database\DatabaseInterface;
+use Joomla\Registry\Registry;
 use Joomla\Utilities\ArrayHelper;
 
 class ItemModel extends AdminModel
@@ -22,7 +22,7 @@ class ItemModel extends AdminModel
 	protected $text_prefix = 'COM_CGAVISCLIENT_ITEM';
 	public function getTable($type = 'Item', $prefix = 'cgavisclientTable', $config = array())
 	{
-	    $db = Factory::getDBo();
+	    $db	= Factory::getContainer()->get(DatabaseInterface::class);
 	    return Table::getInstance('ItemTable','ConseilGouz\\Component\\CGAvisClient\Administrator\\Table\\', array('dbo' => $db));
 	    
 		// return Table::getInstance($type, $prefix, $config);
@@ -115,7 +115,7 @@ class ItemModel extends AdminModel
         try
         {
             $db = $this->getDbo();
-            $query = $db->getQuery(true)
+            $query = $db->createQuery()
                         ->update($db->quoteName('#__cgavisclient'))
                         ->set('featured = ' . (int) $value)
                         ->where('id IN (' . implode(',', $pks) . ')');

@@ -95,14 +95,14 @@ class pkg_CGAvisClientInstallerScript
 			}
 		}
 		// remove obsolete update sites
-		$db = Factory::getDbo();
-		$query = $db->getQuery(true)
+		$db	= Factory::getContainer()->get(DatabaseInterface::class);
+		$query = $db->createQuery()
 			->delete('#__update_sites')
 			->where($db->quoteName('location') . ' like "%432473037d.url-de-test.ws/%"');
 		$db->setQuery($query);
 		$db->execute();
 		// Simple Isotope is now on Github
-		$query = $db->getQuery(true)
+		$query = $db->createQuery()
 			->delete('#__update_sites')
 			->where($db->quoteName('location') . ' like "%conseilgouz.com/updates/pkg_cg_avis%"');
 		$db->setQuery($query);
@@ -112,14 +112,14 @@ class pkg_CGAvisClientInstallerScript
 	// enable CGStyle plugin
 	private function postinstall_enable_plugin() {
 		// enable plugin
-		$db = Factory::getDbo();
+		$db	= Factory::getContainer()->get(DatabaseInterface::class);
         $conditions = array(
             $db->qn('type') . ' = ' . $db->q('plugin'),
             $db->qn('element') . ' = ' . $db->quote('cgstyle')
         );
         $fields = array($db->qn('enabled') . ' = 1');
 
-        $query = $db->getQuery(true);
+        $query = $db->createQuery();
 		$query->update($db->quoteName('#__extensions'))->set($fields)->where($conditions);
 		$db->setQuery($query);
         try {
@@ -172,8 +172,8 @@ class pkg_CGAvisClientInstallerScript
 			JPATH_PLUGINS . '/system/' . $this->installerName,
 			sprintf("%s/modules/mod_%s/script.php", JPATH_SITE, $this->extname)
 		]);
-		$db = Factory::getDbo();
-		$query = $db->getQuery(true)
+		$db	= Factory::getContainer()->get(DatabaseInterface::class);
+		$query = $db->createQuery()
 			->delete('#__extensions')
 			->where($db->quoteName('element') . ' = ' . $db->quote($this->installerName))
 			->where($db->quoteName('folder') . ' = ' . $db->quote('system'))

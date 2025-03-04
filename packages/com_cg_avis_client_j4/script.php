@@ -10,14 +10,15 @@
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-use Joomla\Filesystem\Folder;
 use Joomla\CMS\Version;
+use Joomla\Database\DatabaseInterface;
 use Joomla\Filesystem\File;
+use Joomla\Filesystem\Folder;
 
 class com_cgavisclientInstallerScript
 {
 	private $min_joomla_version      = '4.0';
-	private $min_php_version         = '7.2';
+	private $min_php_version         = '7.4';
 	private $name                    = 'CG Avis Client';
 	private $exttype                 = 'component';
 	private $extname                 = 'cgavisclient';
@@ -53,24 +54,12 @@ class com_cgavisclientInstallerScript
 	
     }
     
-    function install($parent)
-    {
-    }
-    
-    function uninstall($parent)
-    {
-    }
-    
-    function update($parent)
-    {
-    }
-    
     function postflight($type, $parent)
     {
 	// check previous version com_spavisclient 
 	// 1. check if old version exists
-		$db = Factory::getDbo();
-		$query = $db->getQuery(true)
+		$db	= Factory::getContainer()->get(DatabaseInterface::class);
+		$query = $db->createQuery()
 			->select('*')
 			->from('#__extensions')
 			->where($db->quoteName('element') . ' = "com_spavisclient"')
@@ -79,7 +68,7 @@ class com_cgavisclientInstallerScript
 		$old = $db->loadObjectList();
 	// 2. check if spavisclient contains info.
 		try {
-		  $query = $db->getQuery(true)
+		  $query = $db->createQuery()
 		  ->select('*')
 		  ->from('#__spavisclient');
 		  $db->setQuery($query);
@@ -90,7 +79,7 @@ class com_cgavisclientInstallerScript
 		if (count($old) && count($avis)) { //info in #_spavisclient
 		    try{
     // 3. insert spavisclient into new table
-		        $query = $db->getQuery(true);
+		        $query = $db->createQuery();
 				foreach($avis as $oneavis) {
 		          $result = $db->insertObject('#__cgavisclient', $oneavis);
 		        }
@@ -98,48 +87,48 @@ class com_cgavisclientInstallerScript
                 $query = $db->setQuery('DROP TABLE #__spavisclient' );
                 $db->execute();
     // 5. delete old version from extensions list, assets
-                $query = $db->getQuery(true)
+                $query = $db->createQuery()
                 ->delete('#__schemas')
                 ->where($db->quoteName('extension_id') . ' = '.$old[0]->extension_id);
                 $db->setQuery($query);
                 $result = $db->execute();
-                $query = $db->getQuery(true)
+                $query = $db->createQuery()
                 ->delete('#__update_sites_extensions')
                 ->where($db->quoteName('extension_id') . ' = '.$old[0]->extension_id);
                 $db->setQuery($query);
                 $result = $db->execute();
-                $query = $db->getQuery(true)
+                $query = $db->createQuery()
 		        ->delete('#__extensions')
 		        ->where($db->quoteName('element') . ' = "com_spavisclient"')
 		        ->where($db->quoteName('type') . ' = ' . $db->quote('component'));
 		        $db->setQuery($query);
 		        $result = $db->execute();
-		        $query = $db->getQuery(true)
+		        $query = $db->createQuery()
 		        ->delete('#__assets')
 		        ->where($db->quoteName('name') . ' = "com_spavisclient"');
 		        $db->setQuery($query);
 		        $result = $db->execute();
-		        $query = $db->getQuery(true)
+		        $query = $db->createQuery()
 		        ->delete('#__session')
 		        ->where($db->quoteName('data') . ' like "%com_spavisclient%"');
 		        $db->setQuery($query);
 		        $result = $db->execute();
     // 6. delete system menus 
-		        $query = $db->getQuery(true)
+		        $query = $db->createQuery()
 		        ->delete('#__menu')
 		        ->where($db->quoteName('link') . ' like "%com_spavisclient%"')
 		        ->where($db->quoteName('menutype') . ' = ' . $db->quote('main'));
 		        $db->setQuery($query);
 		        $result = $db->execute();
     // 7. update old menus to new menus		
-		        $query = $db->getQuery(true)
+		        $query = $db->createQuery()
 		        ->update('#__menu')
 		        ->set('link = REPLACE(link,"com_spavisclient","com_cgavisclient")')
 		        ->where($db->quoteName('menutype') . ' <> ' . $db->quote('main').' AND link like "%com_spavisclient%"');
 		        $db->setQuery($query);
 		        $result = $db->execute();
     // 7. update categories		
-		        $query = $db->getQuery(true)
+		        $query = $db->createQuery()
 		        ->update('#__categories')
 		        ->set('extension = "com_cgavisclient"')
 		        ->where('extension = "com_spavisclient"');
@@ -230,14 +219,27 @@ class com_cgavisclientInstallerScript
 			JPATH_PLUGINS . '/system/' . $this->installerName . '/language',
 			JPATH_PLUGINS . '/system/' . $this->installerName,
 		]);
-		$db = Factory::getDbo();
-		$query = $db->getQuery(true)
+		$db	= Factory::getContainer()->get(DatabaseInterface::class);
+		$query = $db->createQuery()
 			->delete('#__extensions')
 			->where($db->quoteName('element') . ' = ' . $db->quote($this->installerName))
 			->where($db->quoteName('folder') . ' = ' . $db->quote('system'))
 			->where($db->quoteName('type') . ' = ' . $db->quote('plugin'));
 		$db->setQuery($query);
 		$db->execute();
-		Factory::getCache()->clean('_system');
+		Factory::getApplication()->getCache()->clean('_system');
 	}
+    public function delete($files = [])
+    {
+        foreach ($files as $file) {
+            if (is_dir($file)) {
+                Folder::delete($file);
+            }
+
+            if (is_file($file)) {
+                File::delete($file);
+            }
+        }
+    }
+	
 }

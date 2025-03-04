@@ -1,10 +1,9 @@
 <?php
 /**
 * CG Avis Client - Joomla Module 
-* Version			: 2.0.2
-* Package			: Joomla 4.x.x
-* copyright 		: Copyright (C) 2022 ConseilGouz. All rights reserved.
-* license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* Package			: Joomla 4.x/5.x
+* copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
+* license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 * From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
 */
 
@@ -14,13 +13,14 @@ namespace ConseilGouz\Module\CGAvisClient\Site\Helper;
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\Database\DatabaseInterface;
 
 class CGAvisClientHelper {
 	var $_total = null;
     public static function getList($params,$limitstart,$limit)
 	{
-		$db = Factory::getDBO();    
-        $query  = $db->getQuery(true);
+		$db	= Factory::getContainer()->get(DatabaseInterface::class);
+        $query  = $db->createQuery();
 		$where = "state = 1";
 		if($params->get('show_featured')) $where .= " AND featured = 1";
         $query->select('*')
@@ -33,8 +33,8 @@ class CGAvisClientHelper {
 	}
 	public static function getTotal($params) {
  	if (empty($_total)) {
-		$db = Factory::getDBO();    
-        $query  = $db->getQuery(true);
+		$db	= Factory::getContainer()->get(DatabaseInterface::class);
+        $query  = $db->createQuery();
 		$where = "state = 1";
 		if($params->get('show_featured')) $where .= " AND featured = 1";
         $query->select('count(*)')
@@ -47,8 +47,8 @@ class CGAvisClientHelper {
  	return $_total;
 	}
 	public static function getCategory($id) {
-		$db = Factory::getDbo();
-		$query = $db->getQuery(true);
+		$db	= Factory::getContainer()->get(DatabaseInterface::class);
+		$query = $db->createQuery();
 		// Construct the query
 		$query->select('title as title, alias as alias ')
 			->from('#__categories')
@@ -61,8 +61,8 @@ class CGAvisClientHelper {
 	static function getAllCategories() {
 		$app  = Factory::getApplication();
 		$lang = $app->getLanguageFilter();
-		$db = Factory::getDbo();
-		$query = $db->getQuery(true);
+		$db	= Factory::getContainer()->get(DatabaseInterface::class);
+		$query = $db->createQuery();
 
 		// Construct the query
 		$query->select('distinct cat.id')
