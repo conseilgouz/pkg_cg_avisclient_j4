@@ -55,7 +55,6 @@
 			<filename>access.xml</filename>
 			<filename>config.xml</filename>
 			<filename>index.html</filename>
-			<filename>cgavisclient.xml</filename>
 			<folder>services</folder>
 			<folder>src</folder>
 			<folder>layouts</folder>
