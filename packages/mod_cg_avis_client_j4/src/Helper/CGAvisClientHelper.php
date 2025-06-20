@@ -1,9 +1,8 @@
 <?php
-/**
+/*
 * CG Avis Client - Joomla Module 
-* Package			: Joomla 4.x/5.x
 * copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
-* license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
+* license    		: https://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 * From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
 */
 
@@ -19,8 +18,8 @@ class CGAvisClientHelper {
 	var $_total = null;
     public static function getList($params,$limitstart,$limit)
 	{
-		$db	= Factory::getContainer()->get(DatabaseInterface::class);
-        $query  = $db->createQuery();
+		$db = Factory::getContainer()->get(DatabaseInterface::class);
+        $query  = $db->getQuery(true);
 		$where = "state = 1";
 		if($params->get('show_featured')) $where .= " AND featured = 1";
         $query->select('*')
@@ -33,8 +32,8 @@ class CGAvisClientHelper {
 	}
 	public static function getTotal($params) {
  	if (empty($_total)) {
-		$db	= Factory::getContainer()->get(DatabaseInterface::class);
-        $query  = $db->createQuery();
+		$db = Factory::getContainer()->get(DatabaseInterface::class);
+        $query  = $db->getQuery(true);
 		$where = "state = 1";
 		if($params->get('show_featured')) $where .= " AND featured = 1";
         $query->select('count(*)')
@@ -47,8 +46,8 @@ class CGAvisClientHelper {
  	return $_total;
 	}
 	public static function getCategory($id) {
-		$db	= Factory::getContainer()->get(DatabaseInterface::class);
-		$query = $db->createQuery();
+		$db = Factory::getContainer()->get(DatabaseInterface::class);
+		$query = $db->getQuery(true);
 		// Construct the query
 		$query->select('title as title, alias as alias ')
 			->from('#__categories')
@@ -61,8 +60,8 @@ class CGAvisClientHelper {
 	static function getAllCategories() {
 		$app  = Factory::getApplication();
 		$lang = $app->getLanguageFilter();
-		$db	= Factory::getContainer()->get(DatabaseInterface::class);
-		$query = $db->createQuery();
+		$db = Factory::getContainer()->get(DatabaseInterface::class);
+		$query = $db->getQuery(true);
 
 		// Construct the query
 		$query->select('distinct cat.id')

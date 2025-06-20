@@ -2,12 +2,12 @@
 <extension type="module" version="4.0" client="site" method="upgrade">
 	<name>CG Avis Client</name>
 	<author>ConseilGouz</author>
-	<creationDate>2025-03-04</creationDate>
+	<creationDate>2025-06-20</creationDate>
 	<copyright>Copyright (c) 2025 ConseilGouz. All rights reserved.</copyright>
 	<license>GNU General Public License version 3 or later; see LICENSE.txt</license>
     <authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
     <authorUrl>https://www.conseilgouz.com</authorUrl>
-	<version>2.2.1</version>
+	<version>2.3.0</version>
 	<description>
 	<![CDATA[
 	Affichage simple des avis clients avec module isotope
@@ -16,7 +16,7 @@
 	<namespace path="src">ConseilGouz\Module\CGAvisClient</namespace>
 	<scriptfile>script.php</scriptfile>
 	<files>
-		<filename module="mod_cg_avisclient">mod_cg_avisclient.php</filename>
+		<folder module="mod_cg_avisclient">services</folder>
 		<filename>mod_cg_avisclient.xml</filename>
         <filename>index.html</filename>
         <folder>layouts</folder>
@@ -30,16 +30,17 @@
 	</languages>	
 	<media destination="mod_cg_avisclient" folder="media">
 		<folder>js</folder>
-		<folder>css</folder>
+        <folder>css</folder>
 		<folder>images</folder>
 		<filename>index.html</filename>
 	</media>
+
 	<config>
 		<fields name="params">
-			<fieldset name="basic">
-                <field name="include_bootstrap" type="hidden" class="btn-group" default="0"
-                >                
-                </field> 				 
+			<fieldset name="basic"
+				addfieldprefix="ConseilGouz\Module\CGAvisClient\Site\Field">
+				<field name="version" type="version"  margintop="-3em" extension="mod_cg_avisclient"/>
+                <field name="include_bootstrap" type="hidden" class="btn-group" default="0" />                
 				<field
 					name="count"
 					type="text"
@@ -267,7 +268,6 @@
 				>
 					<option value="static"></option>
 				</field>
-			</fieldset>		
-		</fields>
+			</fieldset>		</fields>
 	</config>
 </extension>

@@ -1,23 +1,81 @@
 <?php 
 /**
 * CG Avis Client - Joomla Module 
-* Version			: 2.0.2
-* Package			: Joomla 4.x.x
-* copyright 		: Copyright (C) 2022 ConseilGouz. All rights reserved.
+* Version			: 1.1.2
+* Package			: Joomla 3.x.x
+* copyright 		: Copyright (C) 2017 ConseilGouz. All rights reserved.
 * license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 * From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
+* Updated on        : July, 2018
 */
 
 // no direct access
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
-use Joomla\CMS\Router\Route;
 use Joomla\CMS\HTML\HTMLHelper;
-use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Layout\LayoutHelper;
+use Joomla\CMS\Helper\ModuleHelper;
+use Joomla\CMS\Router\Route;
 use ConseilGouz\Module\CGAvisClient\Site\Helper\CGAvisClientHelper;
 
+$class_sfx = htmlspecialchars($params->get('class_sfx',''));
+$limit = htmlspecialchars($params->get('count'));
+$app = Factory::getApplication();
+$limitstart = $app->input->get('limitstart', 0, 'uint');
+
 HTMLHelper::_('jquery.framework');
+
+// Add style and css to header
+$doc = Factory::getDocument();
+$modulefield	= 'media/mod_cg_avisclient/';
+
+/** @var Joomla\CMS\WebAsset\WebAssetManager $wa */
+$wa = Factory::getApplication()->getDocument()->getWebAssetManager();
+$wa->registerAndUseStyle('avis',$modulefield.'/css/cg_avisclient.css');
+$wa->registerAndUseStyle('isotope',$modulefield."css/isotope.css");
+$wa->registerAndUseScript('isotope',$modulefield."js/isotope.min.js");
+$wa->registerAndUseScript('packery',$modulefield.'js/packery-mode.min.js');
+$wa->registerAndUseScript('imagesloaded',$modulefield."js/imagesloaded.min.js");
+$wa->addInlineStyle($params->get('css')); 
+$cats_lib = array();
+$cats_alias = array();
+$categories = $params->get('categories');
+if (is_null($categories)) {
+	$res = CGAvisClientHelper:: getAllCategories();
+	$categories = array();
+	foreach ($res as $catid) {
+			$categories[] = $catid->id;
+	}
+}
+foreach ($categories as $catid) {
+	$res = CGAvisClientHelper::getCategory($catid);
+	$cats_lib[$catid]= $res[0]->title;
+	$cats_alias[$catid] = $res[0]->alias;
+}
+
+$lists = CGAvisClientHelper::getList($params,$limitstart,$limit);
+
+$defaultdisplay = $params->get('defaultdisplay_article', 'date_desc');
+
+$sortBy = "";
+if ($defaultdisplay == "date_asc")  {$sortBy = "[ 'date','cat','vote']";$asc = "true";}
+if ($defaultdisplay == "date_desc") {$sortBy ="[ 'date','cat','vote']";$asc = "false";}
+if ($defaultdisplay == "vote_asc")  {$sortBy = "[ 'vote','cat','date']";$asc ="true";}
+if ($defaultdisplay == "vote_desc") {$sortBy ="[ 'vote','cat','date']";$asc ="false";}
+if ($defaultdisplay == "cat_asc")   {$sortBy ="[ 'cat','vote','date']";$asc ="true";}
+if ($defaultdisplay == "cat_desc")  {$sortBy ="[ 'cat', 'vote','date']";$asc ="false";}
+
+$document 		= Factory::getDocument();
+
+$document->addScriptOptions('mod_cg_avisclient', 
+							array('layout' => $params->get('iso_layout', 'fitRows'),
+									'sortby' => $sortBy,'asc'=>$asc)
+							);
+
+$wa->registerAndUseScript('avis',$modulefield."js/cg_avisclient.js");
+
+$moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx',''));
 
 // récupération des paramètres du module
 $iso_layout = $params->get('iso_layout', 'fitRows');
@@ -31,11 +89,11 @@ $displaysort =  $params->get('displaysort','show');
 $displaysearch = $params->get('displaysearch','show');
 $intro_maxwidth = $params->get('intro_maxwidth','0');
 $cat_list =  $params->get('categories');	
-$cls_spavisclient = $params->get('cls_spavisclient','');
+$cls_cgavisclient = $params->get('cls_cgavisclient','');
 
 $button_bootstrap = "btn btn-sm ";   // classe des boutons
 $col_bootstrap_sort = "col-md-4 col-xs-5";    // largeur de la colonne des boutons de tri
-$col_bootstrap_filter = "col-md-4 col-xs-5";    // largeur de la colonne des boutons de filtrage
+$col_bootstrap_filter = "col-md-4 col-xs-5";    // largeur de la colonne des boutons de tri
 
 // libellés affichés
 $libreverse=Text::_('MOD_CGAVISCLIENT_ISOLIBREVERSE');
@@ -72,19 +130,19 @@ $checked = " is-checked ";
 if ($params->get('btndate','true') == "true") {
 	$sens = "-";
 	$sens = $defaultdisplay=="date_desc"? "+": $sens;
-	echo '<button class="'.$button_bootstrap.' iso_button_date '.$checked.$cls_spavisclient.'" data-sort-value="date,cat,vote" data-sens="'.$sens.'" title="'.$libreverse.'">'.$libdate.'</button>';
+	echo '<button class="'.$button_bootstrap.' iso_button_date '.$checked.$cls_cgavisclient.'" data-sort-value="date,cat,vote" data-sens="'.$sens.'" title="'.$libreverse.'">'.$libdate.'</button>';
 	$checked = "";
 }
 if ($params->get('btnrating','true') == "true") {
 	$sens = "-";
 	$sens = $defaultdisplay=="vote_desc"? "+": $sens;
-	echo '<button class="'.$button_bootstrap.' iso_button_cat  '.$checked.$cls_spavisclient.'" data-sort-value="vote,date,cat" data-sens="'.$sens.'" title="'.$libreverse.'">'.$libvote.'</button>';
+	echo '<button class="'.$button_bootstrap.' iso_button_cat  '.$checked.$cls_cgavisclient.'" data-sort-value="vote,date,cat" data-sens="'.$sens.'" title="'.$libreverse.'">'.$libvote.'</button>';
 	$checked = "";
 }
 if ($params->get('btncat','true') == "true") {
 	$sens = "-";
 	$sens = $defaultdisplay=="cat_desc"? "+": $sens;
-	echo '<button class="'.$button_bootstrap.' iso_button_cat  '.$checked.$cls_spavisclient.'" data-sort-value="cat,vote,date" data-sens="'.$sens.'" title="'.$libreverse.'">'.$libcategory.'</button>';
+	echo '<button class="'.$button_bootstrap.' iso_button_cat  '.$checked.$cls_cgavisclient.'" data-sort-value="cat,vote,date" data-sens="'.$sens.'" title="'.$libreverse.'">'.$libcategory.'</button>';
 	$checked = "";
 }
 ?>
@@ -105,19 +163,19 @@ if($params->get('add_cgavisclient')!=0){?>
     { $lacat = "&cat=".$cat_list[0]; }
 	?>
 			<a href="<?php echo Route::_('index.php?option=com_cgavisclient&view=item'.$lacat); ?>" class="btn 
-			<?php if ($cls_cgavisclient != '') : echo ' '.$cls_spavisclient;endif;?>
+			<?php if ($cls_cgavisclient != '') : echo ' '.$cls_cgavisclient;endif;?>
 			"><?php echo Text::_('MOD_CGAVISCLIENT_ISO_PROPOSE');?></a>
 			</button>
 </div>
 <?php }
 if ($displayfilter == "1") {
 	echo '<div class="'.$col_bootstrap_filter.'  isotope_button-group filter-button-group" data-filter-group="cat">';
-	echo '<button class="'.$button_bootstrap.$cls_spavisclient.'  iso_button_cat_tout is-checked" data-sort-value="0" />'.$liball.'</button>';
+	echo '<button class="'.$button_bootstrap.$cls_cgavisclient.'  iso_button_cat_tout is-checked" data-sort-value="0" />'.$liball.'</button>';
 	foreach ($categories as $filter) {
 		$aff = $cats_lib[$filter]; 
 		$aff_alias = $cats_alias[$filter];
 		if (!is_null($aff)) {
-			echo '<button class="'.$button_bootstrap.$cls_spavisclient.' '.$aff_alias.'" data-sort-value="'.$aff_alias.'" />'.$aff.'</button>';
+			echo '<button class="'.$button_bootstrap.$cls_cgavisclient.' '.$aff_alias.'" data-sort-value="'.$aff_alias.'" />'.$aff.'</button>';
 		}
 	}
 	echo '</div>';
@@ -136,7 +194,7 @@ if ($displayfilter == "1") {
 			?>
 			<div class="cg_tcontent1">
                 <div class="cg_title">
-				<i class="ic-quote"></i>
+				<i class="fa fa-quote-left"></i>
 				<?php 
 				$comment = $item->comment;
 				if ($intro_maxwidth > 0)  {
@@ -144,15 +202,15 @@ if ($displayfilter == "1") {
 					if (substr($trunc,strlen($trunc) - 3,3) == "...") {
 						$comment = '<div class="intr_panel" id="intro'.$item->id.'">'.$trunc;
 						$comment = str_replace('</p>...','...</p>',$comment);
-						$comment .= '<i class="ic-quote-2"></i>';
+						$comment .= '<i class="fa fa-quote-right"></i>';
 						$comment .= '<button id="'.$item->id.'" class="btn btnsuite">Lire la suite...</button></div>';
 						$comment .= '<div class="acc_panel" id="panel'.$item->id.'" style="display:none">';
-						$comment .= $item->comment."<i class='ic-quote-2'></i></div>";
+						$comment .= $item->comment."<i class='fa fa-quote-right' ></i></div>";
 					} else { // ajout du quote final
-						$comment .= '<i class="ic-quote-2"></i>';
+						$comment .= '<i class="fa fa-quote-right" ></i>';
 					}
 				} else { // ajout du quote final
-					$comment .= '<i class="ic-quote-2"></i>';
+					$comment .= '<i class="fa fa-quote-right"></i>';
 				}
 				echo $comment; ?>
 				
@@ -166,14 +224,14 @@ if ($displayfilter == "1") {
 				<?php 
 				$libdateformat = Text::_('MOD_CGAVISCLIENT_DATEFORMAT'); 
 				$stars = '</div><div class="cg_ratting col-xs-12 col-sm-5"';
-				$stars .=' style = "width:30%;float:right;" ';
+				$stars .=' style = "float:right;margin-top:-1em" ';
 				$stars .= ">";
 				for ($j = 0; $j < $item->rating; $j++) { 
-					$stars .= '<i class="ic-featured" style="color:gold"></i> ';
+					$stars .= '<i class="fa fa-star" style="color:gold"></i> ';
 				} 
 				$stars .= '</div> ';
 				$deb = '<div class="cg_name col-xs-12 col-sm-7" ';
-				$deb .=' style = "width:65%;float:left;margin-left:15px;" ';
+				$deb .=' style = "float:left;margin-left:1em;" ';
 				$deb .= '>';
 				$perso = $params->get('perso');
 				$arr_css= array("{name}"=>$item->name,"{first}"=>$item->firstname,"{cat}"=>$cat[0]->title,"{date}"=>$libcreated.HTMLHelper::_('date', $item->created, $libdateformat), "{stars}" =>$stars, "{zip}" => $item->zipcode, "{city}" => $item->city);
@@ -190,7 +248,7 @@ if ($displayfilter == "1") {
 	<?php if($params->get('add_cgavisclient')!=0){?>   
 <p class="iso_propose_2 center" style="margin-top:10px;display: inherit; margin-left:2em;">
 			<a href="<?php echo JRoute::_('index.php?option=com_cgavisclient&view=item'.$lacat) ?>" class="btn 
-			<?php if ($cls_cgavisclient != '') : echo ' '.$cls_spavisclient;endif;?>
+			<?php if ($cls_cgavisclient != '') : echo ' '.$cls_cgavisclient;endif;?>
 			"><?php echo Text::_('MOD_CGAVISCLIENT_ISO_PROPOSE');?></a>
 			</button>
 </p>

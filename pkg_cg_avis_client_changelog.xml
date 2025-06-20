@@ -2,6 +2,27 @@
 	<changelog>
 		<element>pkg_cg_avis_client</element>
 		<type>package</type>
+		<version>2.3.0</version>
+        <note>
+            <item>Update : 2025-03-04</item>
+        </note>
+        <note>
+            <item>Update : 20/06/2025</item>
+        </note>
+		<fix>
+			<item>Lost stars : deprecated icomoon font in Joomla 5.x</item>
+            <item>Incorrect button class</item>
+        </fix>
+        <change>
+            <item>Becomes a service provider</item>
+        </change>
+        <addition>
+            <item>Add version display in parameters</item>
+        </addition>
+	</changelog>
+	<changelog>
+		<element>pkg_cg_avis_client</element>
+		<type>package</type>
 		<version>2.2.1</version>
         <note>
             <item>Update : 2025-03-04</item>

@@ -1,10 +1,9 @@
 <?php
 /**
 * CG Avis Client  - Joomla 4.x/5x package
-* Version			: 2.1.1
 * Package			: CG Avis Client
-* copyright 		: Copyright (C) 2021 ConseilGouz. All rights reserved.
-* license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
+* license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 */
 // No direct access to this file
 defined('_JEXEC') or die;
@@ -47,7 +46,6 @@ class pkg_CGAvisClientInstallerScript
     {
         if (($type == 'install') || ($type == 'update')) { // remove obsolete dir/files
             $this->postinstall_cleanup();
-            $this->postinstall_enable_plugin();
         }
 
         return true;
@@ -107,26 +105,6 @@ class pkg_CGAvisClientInstallerScript
         $db->setQuery($query);
         $db->execute();
 
-    }
-    // enable CGStyle plugin
-    private function postinstall_enable_plugin()
-    {
-        // enable plugin
-        $db	= Factory::getContainer()->get(DatabaseInterface::class);
-        $conditions = array(
-            $db->qn('type') . ' = ' . $db->q('plugin'),
-            $db->qn('element') . ' = ' . $db->quote('cgstyle')
-        );
-        $fields = array($db->qn('enabled') . ' = 1');
-
-        $query = $db->createQuery();
-        $query->update($db->quoteName('#__extensions'))->set($fields)->where($conditions);
-        $db->setQuery($query);
-        try {
-            $db->execute();
-        } catch (RuntimeException $e) {
-            Factory::getApplication()->enqueueMessage('unable to enable Plugin CGStyle', 'jerror');
-        }
     }
     // Check if Joomla version passes minimum requirement
     private function passMinimumJoomlaVersion()
