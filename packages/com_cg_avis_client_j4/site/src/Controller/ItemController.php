@@ -84,7 +84,7 @@ class ItemController extends BaseController
         $mail = Factory::getContainer()->get(MailerFactoryInterface::class)->createMailer();
         try {
             $mail->addRecipient($rec);
-            $mail->setSender(array( $data->email, $data->name ));
+            $mail->setSender(array( $MailFrom, $FromName ));
             $mail->setSubject(mb_convert_encoding($subject, 'UTF-8', 'ISO-8859-1'));
             $mail->setBody($body);
             $mail->isHtml(true);
