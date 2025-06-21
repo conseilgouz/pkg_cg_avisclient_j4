@@ -58,8 +58,8 @@ class ItemController extends BaseController
         $data->created = date("Y-m-d h:i:s");
         $params = ComponentHelper::getParams('com_cgavisclient');
         if ($params->get('captcha') != '' || $params->get('captcha') != 0) {
-            PluginHelper::importPlugin('captcha', $params->captcha);
-            $res = $mainframe->triggerEvent('onCheckAnswer', array($this->input->get($params->captcha.'_response_field', '', 'post', '')));
+            PluginHelper::importPlugin('captcha', $params['captcha']);
+            $res = $mainframe->triggerEvent('onCheckAnswer', array($this->input->get($params['captcha'].'_response_field', '', 'post', '')));
 
             if (!$res[0]) {
                 $message = Text::_("CGAVISCLIENT_CAPTCHA_MESSAGE");
