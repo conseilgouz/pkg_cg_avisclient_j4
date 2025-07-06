@@ -1,10 +1,9 @@
 <?php
 /**
 * CG Avis Client - Joomla Module 
-* Version			: 2.0.2
-* Package			: Joomla 4.x.x
-* copyright 		: Copyright (C) 2021 ConseilGouz. All rights reserved.
-* license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* Package			: Joomla 4.x/5.x
+* copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
+* license    		: https://www.gnu.org/licenses/gpl-6.0.html GNU/GPL
 * From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
 */
 namespace ConseilGouz\Component\CGAvisClient\Administrator\View\Items;
@@ -42,7 +41,7 @@ class HtmlView extends BaseHtmlView
 	protected function addToolbar()
 	{
 		$canDo = ContentHelper::getActions('com_cgavisclient');
-		$user		= Factory::getUser();
+		$user		= Factory::getApplication()->getIdentity();
 		ToolBarHelper::title(Text::_('COM_CGAVISCLIENT_MANAGER_ITEMS'), 'item.png');
 
 		if ($canDo->get('core.create') || (count($user->getAuthorisedCategories('com_cgavisclient', 'core.create'))) > 0 ) {

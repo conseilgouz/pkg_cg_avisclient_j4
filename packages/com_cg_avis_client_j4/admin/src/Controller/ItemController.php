@@ -1,10 +1,9 @@
 <?php
 /**
 * CG Avis Client - Joomla Module 
-* Version			: 2.0.2
-* Package			: Joomla 4.x.x
-* copyright 		: Copyright (C) 2021 ConseilGouz. All rights reserved.
-* license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* Package			: Joomla 4.x/5.x
+* copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
+* license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 * From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
 */
 namespace ConseilGouz\Component\CGAvisClient\Administrator\Controller;
@@ -25,7 +24,7 @@ class ItemController extends FormController
 	protected function allowAdd($data = array())
 	{
 		// Initialise variables.
-		$user		= Factory::getUser();
+		$user		= Factory::getApplication()->getIdentity();
 		
 		$categoryId = ArrayHelper::getValue($data, 'catid', $this->input->getInt('filter_category_id'), 'int');
 		$allow		= null;
@@ -46,7 +45,7 @@ class ItemController extends FormController
 	protected function allowEdit($data = array(), $key = 'id')
 	{
 		// Initialise variables.
-		$user		= Factory::getUser();
+		$user		= Factory::getApplication()->getIdentity();
 		$recordId	= (int) isset($data[$key]) ? $data[$key] : 0;
 		$categoryId = 0;
 

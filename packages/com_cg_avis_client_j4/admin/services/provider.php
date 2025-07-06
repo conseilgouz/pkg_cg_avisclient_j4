@@ -1,9 +1,9 @@
 <?php
 /**
  * @component     CG Avis Client
- * Version			: 2.0.2
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
- * @copyright (c) 2021 ConseilGouz. All Rights Reserved.
+ * Package			: Joomla 4.x/5.x 
+ * @license https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
+ * @copyright (c) 2025 ConseilGouz. All Rights Reserved.
  * @author ConseilGouz 
 **/
 defined('_JEXEC') or die;

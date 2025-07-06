@@ -1,10 +1,9 @@
 <?php
 /**
 * CG Avis Client - Joomla Module 
-* Version			: 2.1.1
 * Package			: Joomla 4.x/5x
-* copyright 		: Copyright (C) 2023 ConseilGouz. All rights reserved.
-* license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
+* license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 * From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
 */
 namespace ConseilGouz\Component\CGAvisClient\Administrator\Table;
@@ -48,7 +47,7 @@ class ItemTable extends Table
 	function store($updateNulls = false)
 	{
 		$date	= Factory::getDate();
-		$user	= Factory::getUser();
+		$user	= Factory::getApplication()->getIdentity();
 		if (empty($this->id))
 		{
 			if (!intval($this->created)) {
@@ -61,7 +60,8 @@ class ItemTable extends Table
 		}
 		else
 		{
-			$oldrow = Table::getInstance('ItemTable','ConseilGouz\\Component\\CGAvisClient\Administrator\\Table\\', array('dbo' => $db));
+            $db = $this->getDatabase();
+            $oldrow = new \ConseilGouz\Component\CGAvisClient\Administrator\Table\ItemTable($db);
 			if (!$oldrow->load($this->id) && $oldrow->getError())
 			{
 				$this->setError($oldrow->getError());
@@ -90,7 +90,8 @@ class ItemTable extends Table
 				return false;
 			}
 		}
-		$table = Table::getInstance('ItemTable','ConseilGouz\\Component\\CGAvisClient\Administrator\\Table\\', array('dbo' => $db));
+        $db = $this->getDatabase();
+        $table = new \ConseilGouz\Component\CGAvisClient\Administrator\Table\ItemTable($db);
 		foreach ($pks as $pk)
 		{
 			if(!$table->load($pk))

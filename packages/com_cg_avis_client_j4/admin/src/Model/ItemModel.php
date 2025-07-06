@@ -23,9 +23,7 @@ class ItemModel extends AdminModel
 	public function getTable($type = 'Item', $prefix = 'cgavisclientTable', $config = array())
 	{
 	    $db	= Factory::getContainer()->get(DatabaseInterface::class);
-	    return Table::getInstance('ItemTable','ConseilGouz\\Component\\CGAvisClient\Administrator\\Table\\', array('dbo' => $db));
-	    
-		// return Table::getInstance($type, $prefix, $config);
+	    return new \ConseilGouz\Component\CGAvisClient\Administrator\Table\ItemTable($db);
 	}
 
 	/**
@@ -114,7 +112,7 @@ class ItemModel extends AdminModel
 
         try
         {
-            $db = $this->getDbo();
+            $db = $this->getDatabase();
             $query = $db->createQuery()
                         ->update($db->quoteName('#__cgavisclient'))
                         ->set('featured = ' . (int) $value)

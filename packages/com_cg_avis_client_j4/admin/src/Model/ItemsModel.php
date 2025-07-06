@@ -42,7 +42,7 @@ class ItemsModel extends ListModel
 	protected function getListQuery()
 	{
 		// Initialise variables.
-		$db		= $this->getDbo();
+		$db		= $this->getDatabase();
 		$query	= $db->createQuery();
 
 		// Select the required fields from the table.
@@ -81,9 +81,7 @@ class ItemsModel extends ListModel
 	public function getTable($type = 'Items', $prefix = 'cgavisclientTable', $config = array())
 	{
 	    $db	= Factory::getContainer()->get(DatabaseInterface::class);
-	    return Table::getInstance('ItemTable','ConseilGouz\\Component\\CGAvisClient\Administrator\\Table\\', array('dbo' => $db));
-	    
-	    // return Table::getInstance($type, $prefix, $config);
+	    return new \ConseilGouz\Component\CGAvisClient\Administrator\Table\ItemTable($db);
 	}
 	
 	protected function populateState($ordering = null, $direction = null)

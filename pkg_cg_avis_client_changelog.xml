@@ -2,6 +2,22 @@
 	<changelog>
 		<element>pkg_cg_avis_client</element>
 		<type>package</type>
+		<version>2.4.0</version>
+        <note>
+            <item>Update : 2025-07-05</item>
+        </note>
+        <fix>
+            <item>Joomla 6 : JPATH_PLATFORM deprecated</item>
+            <item>Joomla 6 : getUser deprecated</item>
+            <item>Joomla 6 : table::getInstance deprecated</item>
+        </fix>
+        <deletion>
+            <item>Remove Jquery dependency</item>
+        </deletion>
+	</changelog>
+	<changelog>
+		<element>pkg_cg_avis_client</element>
+		<type>package</type>
 		<version>2.3.2</version>
         <note>
             <item>Update : 2025-06-21</item>
