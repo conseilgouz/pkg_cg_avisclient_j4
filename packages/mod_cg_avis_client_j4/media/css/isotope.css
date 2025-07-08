@@ -121,7 +121,7 @@ margin : 0px 0px 0px 0px !important;
 .cgavisiso-div {
 	width:100%;
 	height:auto;
-	margin-left: 1em !important;
+	/* margin-left: 1em !important;*/
 }
 .cgavisiso_select { width:150px;height: 30px;
 border:1px solid;
