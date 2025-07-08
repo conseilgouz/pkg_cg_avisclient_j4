@@ -1,12 +1,10 @@
 <?php
 /**
 * CG Avis Client - Joomla Module 
-* Version			: 1.1.2
-* Package			: Joomla 3.x.x
-* copyright 		: Copyright (C) 2017 ConseilGouz. All rights reserved.
-* license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* Package			: Joomla 4.x/5.x
+* copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
+* license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 * From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
-* Updated on        : July, 2018
 */
 
 namespace ConseilGouz\Module\CGAvisClient\Site\Field;

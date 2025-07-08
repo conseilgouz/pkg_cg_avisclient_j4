@@ -28,40 +28,37 @@ $params = ComponentHelper::getParams('com_cgavisclient');
 ?>
 
 <div class="cgavisclient-form row">
-    <div class="col-xs-12 col-sm-4 " style="float:left">
+    <div class="col-sm-12 col-md-4 " style="float:left">
         <h3><?php echo Text::_('COM_CGAVISCLIENT_FORM'); ?></h3>
         <div class="form-content">
             <?php echo $params->get('form_content'); ?>
         </div>
     </div>
-    <div class="col-xs-12 col-sm-8">
+    <div class="col-sm-12 col-md-8">
         <form id="cgavisclient-form" action="<?php echo Route::_('index.php'); ?>" method="post" class="form-validate form-horizontal" enctype="multipart/form-data">          
-            <div class="control-group form-group">
-                <div class="control-label col-md-3 col-sm-12" >
+            <div class="control-group form-group row">
+                <div class="control-label col-md-4 col-sm-4" >
                     <?php echo $this->form->getLabel('category'); ?> 
                 </div>
-                <div class="controls col-md-9 col-sm-12">
+                <div class="controls col-md-6 col-sm-8">
                     <?php echo $this->form->getInput('category'); ?>
                 </div> 
             </div>
-            <div class="control-group form-group">
+            <div class="control-group form-group row">
                 <div class="control-label col-md-3 col-sm-12">
                     <?php echo $this->form->getLabel('firstname'); ?> 
                 </div>
                 <div class="controls col-md-3 col-sm-12" style="float:right">
                     <?php echo $this->form->getInput('firstname'); ?>
                 </div> 
-                <div class="control-label col-md-2 col-sm-12">
+                <div class="control-label col-md-3 col-sm-12">
                     <?php echo $this->form->getLabel('name'); ?> 
                 </div>
-                <div class="controls col-md-3 col-sm-12" style="width:8em;">
+                <div class="controls col-md-3 col-sm-12">
                     <?php echo $this->form->getInput('name'); ?>
                 </div> 
-                <div class="controls col-md-1 col-sm-12" style="float:right">
-				&nbsp;
-				</div>
             </div>
-            <div class="control-group form-group">
+            <div class="control-group form-group row">
                 <div class="control-label col-md-3 col-sm-12">
                     <?php echo $this->form->getLabel('email'); ?> 
                 </div>
@@ -69,21 +66,21 @@ $params = ComponentHelper::getParams('com_cgavisclient');
                     <?php echo $this->form->getInput('email'); ?>
                 </div> 
             </div>                               
-            <div class="control-group form-group">
+            <div class="control-group form-group row">
                 <div class="control-label col-md-3 col-sm-12">
                     <?php echo $this->form->getLabel('zipcode'); ?> 
                 </div>
                 <div class="controls col-md-2 col-sm-12">
                     <?php echo $this->form->getInput('zipcode'); ?>
                 </div> 
-                <div class="control-label col-md-2 col-sm-12 " style="width:8em;">
+                <div class="control-label col-md-2 col-sm-12 ">
                     <?php echo $this->form->getLabel('city'); ?> 
                 </div>
                 <div class="controls col-md-4 col-sm-12" style="float:right">
                     <?php echo $this->form->getInput('city'); ?>
                 </div> 
             </div>
-            <div class="control-group form-group">
+            <div class="control-group form-group row">
                 <div class="control-label col-md-3 col-sm-12">
                     <?php echo $this->form->getLabel('rating'); ?> 
                 </div>
@@ -91,7 +88,7 @@ $params = ComponentHelper::getParams('com_cgavisclient');
                     <?php  echo $this->form->getInput('rating'); ?>
 				</div>
             </div>                               
-            <div class="control-group form-group">
+            <div class="control-group form-group row">
                 <div class="control-label col-md-3 col-sm-12">
                     <?php echo $this->form->getLabel('comment'); ?> 
                 </div>

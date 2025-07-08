@@ -10,6 +10,7 @@
             <item>Joomla 6 : JPATH_PLATFORM deprecated</item>
             <item>Joomla 6 : getUser deprecated</item>
             <item>Joomla 6 : table::getInstance deprecated</item>
+            <item>CG Avis Module : improve responsive mode</item>
         </fix>
         <deletion>
             <item>Remove Jquery dependency</item>

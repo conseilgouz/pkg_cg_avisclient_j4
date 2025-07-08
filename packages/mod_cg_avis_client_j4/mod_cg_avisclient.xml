@@ -22,7 +22,6 @@
         <folder>layouts</folder>
         <folder>tmpl</folder>
 		<folder>src</folder>
-        <folder>language</folder>
 	</files>
     <languages folder="language">
         <language tag="fr-FR">fr-FR/mod_cg_avisclient.ini</language>
@@ -40,7 +39,8 @@
 	<config>
 		<fields name="params">
 			<fieldset name="basic"
-				addfieldprefix="ConseilGouz\Module\CGAvisClient\Site\Field">
+				addfieldprefix="ConseilGouz\Module\CGAvisClient\Site\Field"
+                addruleprefix="ConseilGouz\Module\CGAvisClient\Site\Rule" >
 				<field name="version" type="version"  margintop="-3em" extension="mod_cg_avisclient"/>
                 <field name="include_bootstrap" type="hidden" class="btn-group" default="0" />                
 				<field
@@ -122,10 +122,36 @@
 					max="10"
 					step="1"
 				/>
-				<field name="backgroundcolor" 
+				<field name="bckg-color" type="radio" class="btn-group"  
+                        label="MOD_CGAVISCLIENT_ISOBACKGD" description="MOD_CGAVISCLIENT_ISOBACKGDDESC" 
+                        default="pick">
+                		<option value="pick">MOD_CGAVISCLIENT_PICK</option>
+                        <option value="var">MOD_CGAVISCLIENT_VAR</option>
+				</field>
+				<field name="backgroundcolor" showon="bckg-color:pick"
 					type="color" default="#eee"
 					label="MOD_CGAVISCLIENT_ISOBACKGD"
 					description="MOD_CGAVISCLIENT_ISOBACKGDDESC" />	
+				<field name="backgroundcolorvar" showon="bckg-color:var"
+					type="cgvariable" default=""
+					label="MOD_CGAVISCLIENT_ISOBACKGD"
+					description="MOD_CGAVISCLIENT_ISOBACKGDDESC" 
+                    validate="variable"/>	
+				<field name="btn-color" type="radio" class="btn-group"  
+                        label="MOD_CGAVISCLIENT_ISOBUTTONSBACKGD" description="MOD_CGAVISCLIENT_ISOBUTTONSBACKGDDESC" 
+                        default="pick">
+                		<option value="pick">MOD_CGAVISCLIENT_PICK</option>
+                        <option value="var">MOD_CGAVISCLIENT_VAR</option>
+				</field>
+				<field name="buttoncolor"  showon="btn-color:pick"
+					type="color" default="#eee"
+					label="MOD_CGAVISCLIENT_ISOBUTTONSBACKGD"
+					description="MOD_CGAVISCLIENT_ISOBUTTONSBACKGDDESC" />	
+				<field name="buttoncolorvar" showon="btn-color:var"
+					type="cgvariable" default=""
+					label="MOD_CGAVISCLIENT_ISOBUTTONSBACKGD"
+					description="MOD_CGAVISCLIENT_ISOBUTTONSBACKGDDESC" 
+                    validate="variable"/>	
 				<field
 					name="cls_cgavisclient"
 					type="text"
@@ -133,11 +159,6 @@
 					label="Classe des boutons "
 					description="Classe des boutons">
 				</field>
-
-				<field name="buttoncolor" 
-					type="color" default="#eee"
-					label="MOD_CGAVISCLIENT_ISOBUTTONSBACKGD"
-					description="MOD_CGAVISCLIENT_ISOBUTTONSBACKGDDESC" />	
 				<field
 					name="displaysearch"
 					type="radio" class="btn-group "

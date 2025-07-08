@@ -81,7 +81,10 @@ $moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx',''));
 $iso_layout = $params->get('iso_layout', 'fitRows');
 $iso_nbcol = $params->get('iso_nbcol',2);
 $background = $params->get("backgroundcolor","#eee");
+$background = $params->get("backgroundcolor","#eee");
+$backgroundvar = $params->get("backgroundcolorvar","--bs-grey");
 $buttoncolor = $params->get("buttoncolor","#eee");
+$buttoncolorvar = $params->get("buttoncolorvar","--bs-grey");
 $defaultdisplay = $params->get('defaultdisplay_article', 'date_desc');
 $displaysortinfo = $params->get('displaysortinfo', 'show');
 $displayfilter =  $params->get('displayfilter','hide');
@@ -92,8 +95,8 @@ $cat_list =  $params->get('categories');
 $cls_cgavisclient = $params->get('cls_cgavisclient','');
 
 $button_bootstrap = "btn btn-sm ";   // classe des boutons
-$col_bootstrap_sort = "col-md-4 col-xs-5";    // largeur de la colonne des boutons de tri
-$col_bootstrap_filter = "col-md-4 col-xs-5";    // largeur de la colonne des boutons de tri
+$col_bootstrap_sort = "col-4";    // largeur de la colonne des boutons de tri
+$col_bootstrap_filter = "col-4";    // largeur de la colonne des boutons de tri
 
 // libellés affichés
 $libreverse=Text::_('MOD_CGAVISCLIENT_ISOLIBREVERSE');
@@ -106,25 +109,33 @@ $libdateformat = Text::_('MOD_CGAVISCLIENT_ISODATEFORMAT'); // format d'affichag
 $libsearch = "Recherche";
 
 // génération du CSS en fonction du type d'affichage et du nb de colonnes
-echo '<style type="text/css">';
+$style = "/* CSS module avis client */";
 if (($iso_layout == "masonry") || ($iso_layout == "fitRows")|| ($iso_layout == "packery")) {
-	echo ' .cgavisiso_item {width: '.((100 / $iso_nbcol)-2).'% } ';
-	echo ' @media only screen and (max-width: 768px) {.cgavisiso_item {width:100%} }';
+	$style .= ' .cgavisiso_item {width: '.((100 / $iso_nbcol)-2).'% } ';
+	$style .= ' @media only screen and (max-width: 768px) {.cgavisiso_item {width:100%} }';
 } else if ($iso_layout == "vertical") {
-	echo ' .cgavisiso_item {width: 100%; }';
+	$style .= ' .cgavisiso_item {width: 100%; }';
 }
-echo '.cgavisiso_item {background:'.$background.' !important;}';
-echo '.cgavisiso_button-group .btn {background-color:'.$buttoncolor.';}';
-echo '</style>';
+if ($params->get('bckg-color','pick') == 'pick') {
+    $style .= '.cgavisiso_item {background:'.$background.' !important;}';
+} else {
+    $style .= '.cgavisiso_item {background:var('.$backgroundvar.') !important;}';
+}
+if ($params->get('btn-color','pick') == 'pick') {
+    $style .= '.cgavisiso_button-group .btn {background-color:'.$buttoncolor.' !important;}';
+} else {
+    $style .= '.cgavisiso_button-group .btn {background-color:var('.$buttoncolorvar.') !important;}';
+}
+$wa->addInlineStyle($style);
 
 $plusmenu = $params->get('plusmenu');
 $menu = Factory::getApplication()->getMenu()->getItem($plusmenu);
 $plusroute = Route::_($menu->link);
 
 ?>
-<div class="cgavisiso-div row"  style ="height:3em;" >
+<div class="cgavisiso-div row"  style ="height:auto;" >
 <?php if ($displaysort == "show")  { ?>
-<div class="<?php echo $col_bootstrap_sort; ?> cgavisiso_button-group sort-by-button-group " style = "width:30%;float:left;margin-left:15px;">
+<div class="<?php echo $col_bootstrap_sort; ?> cgavisiso_button-group sort-by-button-group ">
 <?php
 $checked = " is-checked ";
 if ($params->get('btndate','true') == "true") {
@@ -150,24 +161,11 @@ if ($params->get('btncat','true') == "true") {
 <?php } ?>
 <?php 
 if ($displaysearch == "show") {  ?>
-	<div class="<?php echo $col_bootstrap_sort; ?> center" style = "width:30%;float:left;margin-left:15px;">
-	<input type="text" class="quicksearch" style="margin-left: -15%" placeholder="<?php echo $libsearch;?>" />
+	<div class="<?php echo $col_bootstrap_sort; ?> center" >
+	<input type="text" class="quicksearch"  placeholder="<?php echo $libsearch;?>" />
 	</div>
 <?php }
 
-if($params->get('add_cgavisclient')!=0){?>   
-<div class="iso_propose_1 col-md-4 col-xs-5 center" style = "width:30%;float:left;margin-left:15px;">
-    <?php 
-	$lacat="";
-	if ($cat_list && (count($cat_list) == 1)) // une seule catégorie 
-    { $lacat = "&cat=".$cat_list[0]; }
-	?>
-			<a href="<?php echo Route::_('index.php?option=com_cgavisclient&view=item'.$lacat); ?>" class="btn 
-			<?php if ($cls_cgavisclient != '') : echo ' '.$cls_cgavisclient;endif;?>
-			"><?php echo Text::_('MOD_CGAVISCLIENT_ISO_PROPOSE');?></a>
-			</button>
-</div>
-<?php }
 if ($displayfilter == "1") {
 	echo '<div class="'.$col_bootstrap_filter.'  cgavisiso_button-group filter-button-group" data-filter-group="cat">';
 	echo '<button class="'.$button_bootstrap.$cls_cgavisclient.'  iso_button_cat_tout is-checked" data-sort-value="0" />'.$liball.'</button>';
@@ -181,8 +179,21 @@ if ($displayfilter == "1") {
 	echo '</div>';
 
 }
-
+if($params->get('add_cgavisclient')!=0){?>   
+<div class="iso_propose_1 col-4" style = "margin-left:auto;margin-right:auto">
+    <?php 
+	$lacat="";
+	if ($cat_list && (count($cat_list) == 1)) // une seule catégorie 
+    { $lacat = "&cat=".$cat_list[0]; }
+	?>
+			<a href="<?php echo Route::_('index.php?option=com_cgavisclient&view=item'.$lacat); ?>" class="btn 
+			<?php if ($cls_cgavisclient != '') : echo ' '.$cls_cgavisclient;endif;?>
+			"><?php echo Text::_('MOD_CGAVISCLIENT_ISO_PROPOSE');?></a>
+			</button>
+</div>
+<?php }
 ?>
+
 </div>
 <div id="cgavisiso_<?php echo $module->id; ?>" class="cg_avisclient<?php echo $moduleclass_sfx; ?>">
     <div class="cgavisiso_grid">
@@ -224,15 +235,15 @@ if ($displayfilter == "1") {
                 <div class="cg_aditional1 row" style="display: inherit">
 				<?php 
 				$libdateformat = Text::_('MOD_CGAVISCLIENT_DATEFORMAT'); 
-				$stars = '</div><div class="cg_ratting col-xs-12 col-sm-5"';
+				$stars = '</div><div class="cg_ratting col-5"';
 				$stars .=' style = "float:right;margin-top:-1em" ';
 				$stars .= ">";
 				for ($j = 0; $j < $item->rating; $j++) { 
 					$stars .= '<i class="fa fa-star" style="color:gold"></i> ';
 				} 
 				$stars .= '</div> ';
-				$deb = '<div class="cg_name col-xs-12 col-sm-7" ';
-				$deb .=' style = "float:left;margin-left:1em;" ';
+				$deb = '<div class="cg_name col-7" ';
+				$deb .=' style = "padding:0;" ';
 				$deb .= '>';
 				$perso = $params->get('perso');
 				$arr_css= array("{name}"=>$item->name,"{first}"=>$item->firstname,"{cat}"=>$cat[0]->title,"{date}"=>$libcreated.HTMLHelper::_('date', $item->created, $libdateformat), "{stars}" =>$stars, "{zip}" => $item->zipcode, "{city}" => $item->city);
@@ -246,19 +257,21 @@ if ($displayfilter == "1") {
             <?php endforeach; ?>
 		</div>
     </div>
+    <div class="row">
 	<?php if($params->get('add_cgavisclient')!=0){?>   
-<p class="iso_propose_2 center" style="margin-top:10px;display: inherit; margin-left:2em;">
+<div class="iso_propose_2 col-5 center" style="margin-left:auto;margin-right:auto">
 			<a href="<?php echo Route::_('index.php?option=com_cgavisclient&view=item'.$lacat) ?>" class="btn 
 			<?php if ($cls_cgavisclient != '') : echo ' '.$cls_cgavisclient;endif;?>
 			"><?php echo Text::_('MOD_CGAVISCLIENT_ISO_PROPOSE');?></a>
 			</button>
-</p>
+</div>
 <?php }?>
 	<?php if($params->get('plus_cgavisclient')!=0){?>   
-<p class="iso-plus center" style="margin-top:10px;display: inherit; margin-left:2em;">
+<div class="iso-plus center col-5" style="margin-top:10px;display: inherit; margin-left:2em;">
 			<a href="<?php echo $plusroute; ?>" class="btn 
 			<?php if ($cls_cgavisclient != '') : echo ' '.$cls_cgavisclient;endif;?>
 			"><?php echo Text::_('MOD_CGAVISCLIENT_ISO_SEEMORE');?></a>
 			</button>
-</p>
+</div>
+    </div>
 <?php }?>

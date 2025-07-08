@@ -1,9 +1,8 @@
 /**
 * CG Avis Client - Joomla Module 
-* Version			: 2.0.2
-* Package			: Joomla 4.x.x
-* copyright 		: Copyright (C) 2021 ConseilGouz. All rights reserved.
-* license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* Package			: Joomla 4.x/5.x
+* copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
+* license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 * From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
 */
 div.stars {
@@ -27,6 +26,7 @@ label.star:before {
   content: '\f006';
   font-family: FontAwesome;
 }
+/*
 .cgavisclient-form .col-sm-1 {
 	width: 8%;
 	float:left;
@@ -61,6 +61,7 @@ label.star:before {
 	float:right;
     padding-left: 15px;
 }
+
 .cgavisclient-form .col-sm-8 {
     float:right;
 	width: 66%;
@@ -69,6 +70,8 @@ label.star:before {
     float:right;
 	width: 70%;
 }
+*/
+/*
 @media only screen and (max-width: 768px) {
 .cgavisclient-form .col-sm-1 ,
 .cgavisclient-form .col-sm-2 ,
@@ -82,7 +85,7 @@ label.star:before {
 	width: 100%;
 	}
 }
-
+*/
 div.cgavisclient-freetext {
     margin: 10px 0;
     padding: 0 15px;
@@ -126,7 +129,7 @@ div.cgavisclient-form .form-horizontal .control-group {
 }
 
 div.cgavisclient-form .form-horizontal .control-label {
-    width: 25%;
+    width: 20%;
 }
 
 div.cgavisclient-form .form-horizontal .controls {
