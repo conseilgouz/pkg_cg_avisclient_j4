@@ -123,7 +123,7 @@
 					step="1"
 				/>
 				<field name="bckg-color" type="radio" class="btn-group"  
-                        label="MOD_CGAVISCLIENT_ISOBACKGD" description="MOD_CGAVISCLIENT_ISOBACKGDDESC" 
+                        label="MOD_CGAVISCLIENT_ISOBACKGDTYPE" description="MOD_CGAVISCLIENT_ISOBACKGDTYPEDESC" 
                         default="pick">
                 		<option value="pick">MOD_CGAVISCLIENT_PICK</option>
                         <option value="var">MOD_CGAVISCLIENT_VAR</option>
@@ -134,11 +134,11 @@
 					description="MOD_CGAVISCLIENT_ISOBACKGDDESC" />	
 				<field name="backgroundcolorvar" showon="bckg-color:var"
 					type="cgvariable" default=""
-					label="MOD_CGAVISCLIENT_ISOBACKGD"
-					description="MOD_CGAVISCLIENT_ISOBACKGDDESC" 
+					label="MOD_CGAVISCLIENT_ISOBACKGDVAR"
+					description="MOD_CGAVISCLIENT_ISOBACKGDVARDESC" 
                     validate="variable"/>	
 				<field name="btn-color" type="radio" class="btn-group"  
-                        label="MOD_CGAVISCLIENT_ISOBUTTONSBACKGD" description="MOD_CGAVISCLIENT_ISOBUTTONSBACKGDDESC" 
+                        label="MOD_CGAVISCLIENT_ISOBUTTONSBACKGDTYPE" description="MOD_CGAVISCLIENT_ISOBUTTONSBACKGDTYPEDESC" 
                         default="pick">
                 		<option value="pick">MOD_CGAVISCLIENT_PICK</option>
                         <option value="var">MOD_CGAVISCLIENT_VAR</option>
@@ -149,8 +149,8 @@
 					description="MOD_CGAVISCLIENT_ISOBUTTONSBACKGDDESC" />	
 				<field name="buttoncolorvar" showon="btn-color:var"
 					type="cgvariable" default=""
-					label="MOD_CGAVISCLIENT_ISOBUTTONSBACKGD"
-					description="MOD_CGAVISCLIENT_ISOBUTTONSBACKGDDESC" 
+					label="MOD_CGAVISCLIENT_ISOBUTTONSBACKGDVAR"
+					description="MOD_CGAVISCLIENT_ISOBUTTONSBACKGDVARDESC" 
                     validate="variable"/>	
 				<field
 					name="cls_cgavisclient"
