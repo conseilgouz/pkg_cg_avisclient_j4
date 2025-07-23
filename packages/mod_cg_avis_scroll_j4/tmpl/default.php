@@ -40,8 +40,7 @@ $sf_direction = $params->get('direction', 0);
 $sf_delay	= $sf_delay * 1000;
 $sf_slowdown = $params->get('sf_extraslow', 0);
 
-$libcreated=Text::_('MOD_CGAVISSCROLLISOLIBCREATED'); 
-$libdateformat = Text::_('MOD_CGAVISSCROLL_ISODATEFORMAT'); // format d'affichage des dates au format php d/m/Y H:i  = format français avec heure/minutes
+$libdateformat = Text::_('DATE_FORMAT_LC4'); // format d'affichage des dates au format php d/m/Y H:i  = format français avec heure/minutes
 
 /** @var Joomla\CMS\WebAsset\WebAssetManager $wa */
 $wa = Factory::getApplication()->getDocument()->getWebAssetManager();
@@ -109,7 +108,7 @@ for ($twice = 0; $twice < 2; $twice++) { // continuous scroll effect
                 <div class="cg_one">
 				<i class="fa fa-quote-left"></i>
 		<?php
-        $libdateformat = Text::_('MOD_CGAVISSCROLL_DATEFORMAT');
+        // $libdateformat = Text::_('MOD_CGAVISSCROLL_DATEFORMAT');
         $stars = '</div><div class="cg_ratting col-5"';
         $stars .= ' style = "float:right;margin-top:-1.5em" ';
         $stars .= ">";
@@ -118,12 +117,12 @@ for ($twice = 0; $twice < 2; $twice++) { // continuous scroll effect
         }
         $stars .= '</div> ';
         $deb = '';
-        $perso = $params->get('perso','');
+        $perso = $params->get('perso', '');
         if ($perso) {
-            $deb .= '<div class="cg_name col-7" ';
+            $deb .= '<div class="cg_name " ';
             $deb .= ' style = "padding:0;" ';
             $deb .= '>';
-            $arr_css = array("{name}" => $item->name,"{first}" => $item->firstname,"{cat}" => $cat[0]->title,"{date}" => $libcreated.HTMLHelper::_('date', $item->created, $libdateformat), "{stars}" => $stars, "{zip}" => $item->zipcode, "{city}" => $item->city);
+            $arr_css = array("{name}" => $item->name,"{first}" => $item->firstname,"{cat}" => $cat[0]->title,"{date}" => HTMLHelper::_('date', $item->created, $libdateformat), "{stars}" => $stars, "{zip}" => $item->zipcode, "{city}" => $item->city);
             foreach ($arr_css as $key => $val) {
                 $perso = str_replace($key, $val, $perso);
             }
