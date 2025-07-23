@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="4.x" client="site" method="upgrade">
+	<name>CG Avis Scroll</name>
+	<author>ConseilGouz</author>
+	<creationDate>2025-07-21</creationDate>
+	<copyright>Copyright (C) 2025 ConseilGouz. All rights reserved.</copyright>
+	<license>https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
+	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
+	<authorUrl>www.conseilgouz.com</authorUrl>
+	<version>2.4.1</version>
+	<description>CGAVISSCROLLDESC</description>
+	<namespace path="src">ConseilGouz\Module\CGAvisScroll</namespace>
+	<scriptfile>script.php</scriptfile>
+	<files>
+		<folder module="mod_cg_avis_scroll">services</folder>
+		<filename>index.html</filename>
+		<folder>src</folder>
+		<folder>tmpl</folder>
+        <folder>layouts</folder>
+	</files>
+	<media destination="mod_cg_avis_scroll" folder="media">
+		<folder>js</folder>
+		<folder>css</folder>
+		<filename>index.html</filename>
+	</media>
+	<languages>
+		<language tag="en-GB">language/en-GB/mod_cg_avis_scroll.ini</language>
+		<language tag="en-GB">language/en-GB/mod_cg_avis_scroll.sys.ini</language>
+		<language tag="fr-FR">language/fr-FR/mod_cg_avis_scroll.ini</language>
+		<language tag="fr-FR">language/fr-FR/mod_cg_avis_scroll.sys.ini</language>
+	</languages>
+	
+	<config>
+		<fields name="params">
+			<fieldset name="basic" addfieldprefix="ConseilGouz\Module\CGAvisScroll\Site\Field">
+				<field name="version" type="version"  margintop="-3em" extension="mod_cg_avis_scroll"/>	
+				<field
+					name="sf_type"
+					type="list"
+					class="list"
+					label="SFS_TYPE"
+					default="FEED"
+					description="SFS_TYPEDESC">
+					<option value="all">JALL</option>
+					<option value="latest">SFS_LATEST</option>
+					<option value="random">SFS_RANDOM</option>
+				</field>
+				<field
+					name="show_featured" type="radio" class="btn-group"	default="0"
+					label="Montrer les 'en vedette'" description="Montrer ou non uniquement les 'en vedette'">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="categories" 
+					type="category" 
+					extension="com_cgavisclient"
+					label="MOD_CGAVISSCROLL_CAT" 
+					description="MOD_CGAVISSCROLL_CATDESC" 
+					multiple="true" 
+					custom="deny"/>	
+				<field 	name="sf_limit" 	type="cgrange" 	default="0" class="limits"
+					label="SF_LIMIT" 	description="SF_LIMITDESC" 
+					min="0" max="30" step="1"	/>	
+				<field 	name="intro_maxwidth" 	type="cgrange" 	default="0" class="limits"
+					label="SF_INTROMAX" 	description="SF_INTROMAXDESC" 
+					min="0" max="100" step="1"	/>	
+                    
+				<field	name="direction"	type="radio"	class="btn-group"
+					default="1"	label="DIRECTION"	description="DIRECTIONDESC">
+					<option	value="1">JBASENHAUT</option>
+					<option	value="0">JDROITEGAUCHE</option>
+				</field>
+				<field  showon="direction:0" name="sf_width" 	type="text" 
+					size="5" 	default="200" 
+					label="SF_WIDTH" 	description="SF_WIDTHDESC" />
+				<field  name="sf_height" 
+					type="text" 	size="5" 	default="200" 
+					label="SF_HEIGHT" 	description="SF_HEIGHTDESC" />
+				<field 	name="sf_delay" 	type="cgrange" 	default="2" class="limits"
+					label="SF_DELAY" 	description="SF_DELAYDESC" 
+					min="0" max="30" step="1"	/>	
+				<field name="sf_speed" 	type="cgrange" 	default="5"
+					label="SF_SPEED" description="SF_SPEEDDESC"  class="limits"
+					min="1" max="10" step="1" />	
+				<field	name="sf_pause"	type="radio"
+					class="btn-group btn-group-yesno"	default="1"
+					label="SF_PAUSE"	description="SF_PAUSEDESC">
+					<option	value="1">JYES</option>
+					<option	value="0">JNO</option>
+				</field>	
+				<field	name="rssrtl"	type="radio"	class="btn-group btn-group-yesno"	default="0"
+					label="RTLFEED"	description="RTLFEEDDESC">
+					<option	value="1">JYES</option>
+					<option	value="0">JNO</option>
+				</field>
+				<field name="perso" type="textarea" label="MOD_CGAVISSCROLL_PERSO" description="MOD_CGAVISSCROLL_PERSO_DESC" cols="40" rows="4" filter="raw" 
+					default="{first} - {zip} {stars}"
+					/>			
+                
+			</fieldset>
+			<fieldset name="advanced">
+				<field	name="moduleclass_sfx"	type="text"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+				<field name="cache"	type="list"	label="COM_MODULES_FIELD_CACHING_LABEL"
+					default="0"	filter="integer" validate="options"	>
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>	

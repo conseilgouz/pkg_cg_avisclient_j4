@@ -2,6 +2,20 @@
 	<changelog>
 		<element>pkg_cg_avis_client</element>
 		<type>package</type>
+		<version>2.4.1</version>
+        <note>
+            <item>Update : 2025-07-21</item>
+        </note>
+        <fix>
+            <item>GetDatabase error on update</item>
+        </fix>
+        <addition>
+            <item>New module : Avis Client Scroll</item>
+        </addition>
+	</changelog>
+	<changelog>
+		<element>pkg_cg_avis_client</element>
+		<type>package</type>
 		<version>2.4.0</version>
         <note>
             <item>Update : 2025-07-05</item>

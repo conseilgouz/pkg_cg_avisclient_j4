@@ -60,7 +60,7 @@ class ItemTable extends Table
 		}
 		else
 		{
-            $db = $this->getDatabase();
+            $db = Factory::getContainer()->get('DatabaseDriver');
             $oldrow = new \ConseilGouz\Component\CGAvisClient\Administrator\Table\ItemTable($db);
 			if (!$oldrow->load($this->id) && $oldrow->getError())
 			{
@@ -90,7 +90,7 @@ class ItemTable extends Table
 				return false;
 			}
 		}
-        $db = $this->getDatabase();
+        $db = Factory::getContainer()->get('DatabaseDriver');
         $table = new \ConseilGouz\Component\CGAvisClient\Administrator\Table\ItemTable($db);
 		foreach ($pks as $pk)
 		{
