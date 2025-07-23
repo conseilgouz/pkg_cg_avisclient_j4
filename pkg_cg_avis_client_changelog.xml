@@ -2,9 +2,20 @@
 	<changelog>
 		<element>pkg_cg_avis_client</element>
 		<type>package</type>
+		<version>2.4.2</version>
+        <note>
+            <item>Update : 2025-07-23</item>
+        </note>
+        <fix>
+            <item>Install : wrong module name</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>pkg_cg_avis_client</element>
+		<type>package</type>
 		<version>2.4.1</version>
         <note>
-            <item>Update : 2025-07-21</item>
+            <item>Update : 2025-07-23</item>
         </note>
         <fix>
             <item>GetDatabase error on update</item>
