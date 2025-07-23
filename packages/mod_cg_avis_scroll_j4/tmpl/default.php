@@ -120,7 +120,7 @@ for ($twice = 0; $twice < 2; $twice++) { // continuous scroll effect
         $deb = '';
         $perso = $params->get('perso','');
         if ($perso) {
-            $deb .= '</div><div class="cg_name col-7" ';
+            $deb .= '<div class="cg_name col-7" ';
             $deb .= ' style = "padding:0;" ';
             $deb .= '>';
             $arr_css = array("{name}" => $item->name,"{first}" => $item->firstname,"{cat}" => $cat[0]->title,"{date}" => $libcreated.HTMLHelper::_('date', $item->created, $libdateformat), "{stars}" => $stars, "{zip}" => $item->zipcode, "{city}" => $item->city);
@@ -136,8 +136,8 @@ for ($twice = 0; $twice < 2; $twice++) { // continuous scroll effect
             if (substr($trunc, strlen($trunc) - 3, 3) == "...") {
                 $comment = '<div class="sc_intr_panel collapse show" id="scintro'.$item->id.'"><div>'.$trunc;
                 $comment = str_replace('</p>...', '...</p>', $comment);
-                $comment .= '<button id="'.$item->id.'" class="btn btnsuite">Lire la suite...</button>'.$deb.$perso;
-                $comment .= '<div class="sc_acc_panel collapse" id="scpanel'.$item->id.'"><div>';
+                $comment .= '<button id="'.$item->id.'" class="btn btnsuite">Lire la suite...</button>'.$deb.$perso.'</div>';
+                $comment .= '<div class="sc_acc_panel collapse" id="scpanel'.$item->id.'">';
                 $comment .= $item->comment."<i class='fa fa-quote-right' ></i>".$deb.$perso;
             } else { // ajout du quote final
                 $comment .= '<i class="fa fa-quote-right" ></i>'.$deb.$perso;

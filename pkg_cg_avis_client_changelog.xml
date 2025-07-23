@@ -2,23 +2,13 @@
 	<changelog>
 		<element>pkg_cg_avis_client</element>
 		<type>package</type>
-		<version>2.4.2</version>
+		<version>2.4.3</version>
         <note>
             <item>Update : 2025-07-23</item>
         </note>
         <fix>
+            <item>Scroll module : fix empty category list</item>
             <item>Install : wrong module name</item>
-        </fix>
-	</changelog>
-	<changelog>
-		<element>pkg_cg_avis_client</element>
-		<type>package</type>
-		<version>2.4.1</version>
-        <note>
-            <item>Update : 2025-07-23</item>
-        </note>
-        <fix>
-            <item>GetDatabase error on update</item>
         </fix>
         <addition>
             <item>New module : Avis Client Scroll</item>

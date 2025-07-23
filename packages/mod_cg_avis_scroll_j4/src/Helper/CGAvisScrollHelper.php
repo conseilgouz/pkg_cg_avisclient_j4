@@ -25,7 +25,7 @@ class CGAvisScrollHelper
             $where .= " AND featured = 1";
         }
         $categories = $params->get('categories', array());
-        if (!is_null($categories)) {
+        if (sizeof($categories)) {
             $categories = implode(',', $categories);
             $where .= ' AND category IN ('.$categories.')';
         }
