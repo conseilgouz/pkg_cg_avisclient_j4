@@ -2,6 +2,20 @@
 	<changelog>
 		<element>pkg_cg_avis_client</element>
 		<type>package</type>
+		<version>2.4.5</version>
+        <note>
+            <item>Update : 2025-07-24</item>
+        </note>
+        <addition>
+            <item>Scroll : add propose button</item>
+        </addition>
+        <delete>
+            <item>Avis Client module : suppress created text before creation date</item>
+        </delete>
+	</changelog>
+	<changelog>
+		<element>pkg_cg_avis_client</element>
+		<type>package</type>
 		<version>2.4.4</version>
         <note>
             <item>Update : 2025-07-23</item>

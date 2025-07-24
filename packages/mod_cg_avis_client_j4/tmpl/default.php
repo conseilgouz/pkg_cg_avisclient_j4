@@ -246,7 +246,7 @@ if($params->get('add_cgavisclient')!=0){?>
 				$deb .=' style = "padding:0;" ';
 				$deb .= '>';
 				$perso = $params->get('perso');
-				$arr_css= array("{name}"=>$item->name,"{first}"=>$item->firstname,"{cat}"=>$cat[0]->title,"{date}"=>$libcreated.HTMLHelper::_('date', $item->created, $libdateformat), "{stars}" =>$stars, "{zip}" => $item->zipcode, "{city}" => $item->city);
+				$arr_css= array("{name}"=>$item->name,"{first}"=>$item->firstname,"{cat}"=>$cat[0]->title,"{date}"=>HTMLHelper::_('date', $item->created, $libdateformat), "{stars}" =>$stars, "{zip}" => $item->zipcode, "{city}" => $item->city);
 				foreach ($arr_css as $key => $val) {
 					$perso = str_replace($key,$val,$perso);
 				}

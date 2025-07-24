@@ -10,6 +10,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 use ConseilGouz\Module\CGAvisScroll\Site\Helper\CGAvisScrollHelper;
 
@@ -58,21 +59,7 @@ $document->addScriptOptions(
     array('id' => $module->id,'speed' => $sf_speed, 'pause' => $sf_pause, 'height' => $sf_height, 'width' => $sf_width, 'direction' => $sf_direction,'count' => $count,'delay' => $sf_delay,'slowdown' => $sf_slowdown)
 );
 $lang = Factory::getApplication()->getLanguage();
-$rssrtl = $params->get('rssrtl');
-$direction = " ";
-if ($lang->isRTL() && $rssrtl == 0) {
-    $direction = " redirect-rtl";
-} elseif ($lang->isRTL() && $rssrtl == 1) {
-    $direction = " redirect-ltr";
-} elseif ($lang->isRTL() && $rssrtl == 2) {
-    $direction = " redirect-rtl";
-} elseif ($rssrtl == 0) {
-    $direction = " redirect-ltr";
-} elseif ($rssrtl == 1) {
-    $direction = " redirect-ltr";
-} elseif ($rssrtl == 2) {
-    $direction = " redirect-rtl";
-}
+
 $sh_button = $params->get('rssupdn', 1);
 
 echo '<div id="cg_avis_scroll_'.$module->id.'" class="cg_avis_scroll" data="'.$module->id.'">';
@@ -83,9 +70,9 @@ if (($sh_button == 1) && ($module->showtitle == 1)) {
     CGAvisScrollHelper::showDirection($num_sf, $sf_direction);
 }
 ?>
-	
-		<div style="direction: <?php echo $rssrtl ? 'rtl' : 'ltr'; ?>; text-align: <?php echo $rssrtl ? 'right' : 'left'; ?> ! important"  class="cg-scroll" data="<?php echo $module->id ?>">
-		<?php
+
+        <div style="text-align: left! important"  class="cg-scroll" data="<?php echo $module->id ?>">
+<?php
 if ($sh_button == 1) { // show up/down button
     CGAvisScrollHelper::showDirection($num_sf, $sf_direction);
 }
@@ -108,7 +95,6 @@ for ($twice = 0; $twice < 2; $twice++) { // continuous scroll effect
                 <div class="cg_one">
 				<i class="fa fa-quote-left"></i>
 		<?php
-        // $libdateformat = Text::_('MOD_CGAVISSCROLL_DATEFORMAT');
         $stars = '</div><div class="cg_ratting col-5"';
         $stars .= ' style = "float:right;margin-top:-1.5em" ';
         $stars .= ">";
@@ -133,18 +119,19 @@ for ($twice = 0; $twice < 2; $twice++) { // continuous scroll effect
             $trunc = CGAvisScrollHelper::truncate($comment, $intro_maxwidth);
             HTMLHelper::_('bootstrap.collapse', '.selector', []);
             if (substr($trunc, strlen($trunc) - 3, 3) == "...") {
-                $comment = '<div class="sc_intr_panel collapse show" id="scintro'.$item->id.'"><div>'.$trunc;
+                $comment = '<div class="cg_tcontent1 sc_intr_panel collapse show" id="scintro'.$item->id.'">'.$trunc;
                 $comment = str_replace('</p>...', '...</p>', $comment);
-                $comment .= '<button id="'.$item->id.'" class="btn btnsuite">Lire la suite...</button>'.$deb.$perso.'</div>';
-                $comment .= '<div class="sc_acc_panel collapse" id="scpanel'.$item->id.'">';
-                $comment .= $item->comment."<i class='fa fa-quote-right' ></i>".$deb.$perso;
+                $comment .= '<button id="'.$item->id.'" class="btn btnsuite">Lire la suite...</button></div>';
+                $comment .= '<div class="cg_tcontent1 sc_acc_panel collapse" id="scpanel'.$item->id.'">';
+                $comment .= $item->comment."<i class='fa fa-quote-right' ></i></div>";
             } else { // ajout du quote final
-                $comment .= '<i class="fa fa-quote-right" ></i>'.$deb.$perso;
+                $comment .= '<i class="fa fa-quote-right" ></i>';
             }
         } else { // ajout du quote final
-            $comment .= '<i class="fa fa-quote-right"></i>'.$deb.$perso;
+            $comment .= '<i class="fa fa-quote-right"></i>';
+            $comment = '<div class="cg_tcontent1">'.$comment.'</div>';
         }
-        echo $comment
+        echo $comment.$deb.$perso;
         ?>
 				
 		</li>
@@ -155,4 +142,12 @@ for ($twice = 0; $twice < 2; $twice++) { // continuous scroll effect
 ?>
 		</div>
 	</div>
-</div>	
+	<?php if($params->get('add_cgavisclient',0)!=0){?>   
+<div class="scroll_propose text-center m-1">
+			<a href="<?php echo Route::_('index.php?option=com_cgavisclient&view=item'.$lacat) ?>" class="btn">
+                <?php echo Text::_('MOD_CGAVISSCROLL_PROPOSE');?></a>
+			</button>
+</div>
+<?php }?>
+    
+</div>

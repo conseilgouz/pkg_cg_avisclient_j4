@@ -2,12 +2,12 @@
 <extension type="module" version="4.x" client="site" method="upgrade">
 	<name>CG Avis Scroll</name>
 	<author>ConseilGouz</author>
-	<creationDate>2025-07-23</creationDate>
+	<creationDate>2025-07-24</creationDate>
 	<copyright>Copyright (C) 2025 ConseilGouz. All rights reserved.</copyright>
 	<license>https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
 	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
 	<authorUrl>www.conseilgouz.com</authorUrl>
-	<version>2.4.4</version>
+	<version>2.4.5</version>
 	<description>CGAVISSCROLLDESC</description>
 	<namespace path="src">ConseilGouz\Module\CGAvisScroll</namespace>
 	<scriptfile>script.php</scriptfile>
@@ -88,10 +88,11 @@
 					<option	value="1">JYES</option>
 					<option	value="0">JNO</option>
 				</field>	
-				<field	name="rssrtl"	type="radio"	class="btn-group btn-group-yesno"	default="0"
-					label="RTLFEED"	description="RTLFEEDDESC">
-					<option	value="1">JYES</option>
-					<option	value="0">JNO</option>
+				<field
+					name="add_cgavisclient" type="radio" class="btn-group btn-group-yesno" default="0"
+					label="MOD_CGAVISSCROLL_SHOW_PROPOSE_LABEL" description="MOD_CGAVISSCROLL_SHOW_PROPOSE_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
 				</field>
 				<field name="perso" type="textarea" label="MOD_CGAVISSCROLL_PERSO" description="MOD_CGAVISSCROLL_PERSO_DESC" cols="40" rows="4" filter="raw" 
 					default="{first} - {zip} {stars}"
