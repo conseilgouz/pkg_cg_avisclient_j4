@@ -9,35 +9,31 @@
     line-height:16px;
     width:90%;
 } 
-.cg_scroll .cg-scroll-feed-img {
-    margin-bottom:0.5em;
-    width:95%
-}
-#vmarquee{padding: 0;
+.cg_avis_scroll #vmarquee{padding: 0;
     margin: 0;
     list-style-type: none;
 }
-ul.cg-scroll-items-0,
-ul.cg-scroll-items-1{
+.cg_avis_scroll ul.cg-scroll-items-0,
+.cg_avis_scroll ul.cg-scroll-items-1{
 	padding: 0 0 .2rem 0;
 	margin: 0;
 	list-style-type: none;
 }
-ul.cg-scroll-items-0 li, 
-ul.cg-scroll-items-1 li{
+.cg_avis_scroll ul.cg-scroll-items-0 li, 
+.cg_avis_scroll ul.cg-scroll-items-1 li{
 	padding: 0;
 }
-ul.cg-scroll-items-1{
+.cg_avis_scroll ul.cg-scroll-items-1{
     position: absolute;
     top: 0;
 }
-#sfdmarqueecontainer {
+.cg_avis_scroll #sfdmarqueecontainer {
     position: relative;
     width: 100%;
     overflow: hidden;
 } 
-#toDirection {
-margin-top: -2.5em;
+.cg_avis_scroll #toDirection {
+margin-top: -2.2em;
 position: relative;
 left: 95%;
 cursor: pointer;
@@ -46,7 +42,7 @@ float:left
 } 
 
 
-#toDirection .icon-dir-left:before {
+.cg_avis_scroll #toDirection .icon-dir-left:before {
 display: inline-block;
 content: "\f0a8";
 font-size:28px;
@@ -58,10 +54,10 @@ opacity:0.6;
 -o-transition : all 0.3s ease-in-out;
 transition : all 0.3s ease-in-out;
 } 
-#toDirection:hover .icon-dir-left:before {
+.cg_avis_scroll #toDirection:hover .icon-dir-left:before {
 opacity:0.8;
 } 
-#toDirection .icon-dir-right:before {
+.cg_avis_scroll #toDirection .icon-dir-right:before {
 display: inline-block;
 content: "\f0a9";
 font-size:28px;
@@ -73,10 +69,10 @@ opacity:0.6;
 -o-transition : all 0.3s ease-in-out;
 transition : all 0.3s ease-in-out;
 } 
-#toDirection:hover .icon-dir-right:before {
+.cg_avis_scroll #toDirection:hover .icon-dir-right:before {
 opacity:0.8;
 }
-#toDirection .icon-dir-down:before {
+.cg_avis_scroll #toDirection .icon-dir-down:before {
 display: inline-block;
 content: "\f0ab";
 font-size:28px;
@@ -88,10 +84,10 @@ opacity:0.6;
 -o-transition : all 0.3s ease-in-out;
 transition : all 0.3s ease-in-out;
 } 
-#toDirection:hover .icon-dir-down:before {
+.cg_avis_scroll #toDirection:hover .icon-dir-down:before {
 opacity:0.8;
 } 
-#toDirection .icon-dir-up:before {
+.cg_avis_scroll #toDirection .icon-dir-up:before {
 display: inline-block;
 content: "\f0aa";
 font-size:28px;
@@ -103,16 +99,15 @@ opacity:0.6;
 -o-transition : all 0.3s ease-in-out;
 transition : all 0.3s ease-in-out;
 }
-#toDirection:hover .icon-dir-up:before {
+.cg_avis_scroll #toDirection:hover .icon-dir-up:before {
 opacity:0.8;
 }
-#toDirectionText{
+.cg_avis_scroll #toDirectionText{
 display: none;
 }
-#toDirection span {
+.cg_avis_scroll #toDirection span {
 color: #FFFFFF;
 }
-
 .cg_avis_scroll .collapse.show {
     display : block
 }
@@ -123,3 +118,9 @@ color: #FFFFFF;
     background: rgb(238, 238, 238);
     box-shadow: 0 5px 6px -6px #777;
 }
+.cg_avis_scroll .cg_tcontent1 {
+    font-style: italic;
+    padding: 10px 0 10px 0;
+    color: var(--bs-primary)
+}
+

@@ -26,6 +26,7 @@ $limit = $params->get('sf_limit', '0');
 $app = Factory::getApplication();
 $intro_maxwidth = $params->get('intro_maxwidth', '0');
 
+$scrolltype  = $params->get('scrolltype', 'lines');
 $sf_type = $params->get('sf_type', 'all');
 $sf_height	= $params->get('sf_height', 200);
 $sf_width   = $params->get('sf_width', 200);
@@ -56,7 +57,7 @@ $count = 0;
 
 $document->addScriptOptions(
     $module->module.'_'.$module->id,
-    array('id' => $module->id,'speed' => $sf_speed, 'pause' => $sf_pause, 'height' => $sf_height, 'width' => $sf_width, 'direction' => $sf_direction,'count' => $count,'delay' => $sf_delay,'slowdown' => $sf_slowdown)
+    array('id' => $module->id,'scrolltype' => $scrolltype,'speed' => $sf_speed, 'pause' => $sf_pause, 'height' => $sf_height, 'width' => $sf_width, 'direction' => $sf_direction,'count' => $count,'delay' => $sf_delay,'slowdown' => $sf_slowdown)
 );
 $lang = Factory::getApplication()->getLanguage();
 
@@ -92,8 +93,8 @@ for ($twice = 0; $twice < 2; $twice++) { // continuous scroll effect
         $cat = CGAvisScrollHelper::getCategory($item->category);
         ?>
 			<li>
-                <div class="cg_one">
-				<i class="fa fa-quote-left"></i>
+                <div class="cg_one" style="clear:both">
+				<i class="fa fa-quote-left" style="float:left"></i>
 		<?php
         $stars = '</div><div class="cg_ratting col-5"';
         $stars .= ' style = "float:right;margin-top:-1.5em" ';
@@ -112,8 +113,8 @@ for ($twice = 0; $twice < 2; $twice++) { // continuous scroll effect
             foreach ($arr_css as $key => $val) {
                 $perso = str_replace($key, $val, $perso);
             }
+            $perso = $deb.$perso.'</div>';
         }
-        $perso .= '</div>';
         $comment = $item->comment;
         if ($intro_maxwidth > 0) {
             $trunc = CGAvisScrollHelper::truncate($comment, $intro_maxwidth);
@@ -123,15 +124,15 @@ for ($twice = 0; $twice < 2; $twice++) { // continuous scroll effect
                 $comment = str_replace('</p>...', '...</p>', $comment);
                 $comment .= '<button id="'.$item->id.'" class="btn btnsuite">Lire la suite...</button></div>';
                 $comment .= '<div class="cg_tcontent1 sc_acc_panel collapse" id="scpanel'.$item->id.'">';
-                $comment .= $item->comment."<i class='fa fa-quote-right' ></i></div>";
+                $comment .= $item->comment."<i class='fa fa-quote-right' style='float:right;margin-top:-1.5em'></i></div>";
             } else { // ajout du quote final
-                $comment .= '<i class="fa fa-quote-right" ></i>';
+                $comment .= '<i class="fa fa-quote-right" style="float:right;margin-top:-1.5em"></i>';
             }
         } else { // ajout du quote final
-            $comment .= '<i class="fa fa-quote-right"></i>';
+            $comment .= '<i class="fa fa-quote-right" style="float:right;margin-top:-1.5em"></i>';
             $comment = '<div class="cg_tcontent1">'.$comment.'</div>';
         }
-        echo $comment.$deb.$perso;
+        echo $comment.$perso;
         ?>
 				
 		</li>

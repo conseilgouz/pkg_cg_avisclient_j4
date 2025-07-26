@@ -77,28 +77,17 @@ function CGAvisScroll(myid,me,options) {
 		this.items_ul_0.style.width = $total_width + "px"; 
 		this.items_ul_1.style.width = $total_width + "px"; 
 	}
-
 }
 CGAvisScroll.prototype.go_avis_scroll = function (myid) {
 	$this = cgavisscroll[myid];
 
-    var active = false;
-    var currentX;
-    var currentY;
-    var initialX;
-    var initialY;
-    var xOffset = 0;
-    var yOffset = 0;
-    
-    $this.container.addEventListener("touchstart", dragStart, false);
-    $this.container.addEventListener("touchmove", drag, false);
-    document.addEventListener("touchend", dragEnd, false);
-    document.addEventListener("touchcancel", dragEnd, false);
-
-    $this.container.addEventListener("mousedown", dragStart, false);
-    $this.container.addEventListener("mousemove", drag, false);
-    document.addEventListener("mouseup", dragEnd, false);
-    document.addEventListener("mouseleave", dragEnd, false);
+    $this.active = false;
+    $this.currentX = 0;
+    $this.currentY = 0;
+    $this.initialX = 0;
+    $this.initialY = 0;
+    $this.xOffset = 0;
+    $this.yOffset = 0;
     
 	var suite = document.querySelectorAll('.cg_avis_scroll .btn.btnsuite');
 	for (var i=0; i< suite.length;i++) {
@@ -116,14 +105,34 @@ CGAvisScroll.prototype.go_avis_scroll = function (myid) {
                     panels[s].classList.add('show');
                     if ($this.options.direction == '0') {
                         panels[s].style.overflow = "auto";
-                        panels[s].style.height = ($this.options.height - 50)+'px';
+                        nameHeight = (panels[s].parentNode.querySelector('.cg_name').offsetHeight) + 2;
+                        panels[s].style.height = ($this.options.height - nameHeight - 40)+'px';
                     }
                 }
                 e.currentTarget.style.display = 'none';
             });
         });
     }
+    if ($this.options.scrolltype == 'lines') {
+         cgavisscroll[myid].go_avis_lines(myid);
+    } else { // blocks
+        cgavisscroll[myid].go_avis_blocks(myid);
+    }
+}
+CGAvisScroll.prototype.go_avis_lines = function (myid) {
 
+	$this = cgavisscroll[myid];
+    // drag move 
+    $this.container.addEventListener("touchstart", $this.dragStart, false);
+    $this.container.addEventListener("touchmove", $this.drag, false);
+    document.addEventListener("touchend", $this.dragEnd, false);
+    document.addEventListener("touchcancel", $this.dragEnd, false);
+
+    $this.container.addEventListener("mousedown", $this.dragStart, false);
+    $this.container.addEventListener("mousemove", $this.drag, false);
+    document.addEventListener("mouseup", $this.dragEnd, false);
+    document.addEventListener("mouseleave", $this.dragEnd, false);
+    // drag move end
 	if ($this.options.direction == 1) {
         translate = "translateY"; // up/down
         height = parseInt($this.items_ul_0.clientHeight);
@@ -229,57 +238,154 @@ CGAvisScroll.prototype.go_avis_scroll = function (myid) {
     this.animation1.onfinish = e => {
         e.currentTarget.play(); // restart it
     };
-    
-    function dragStart(e) {
-      if (active) // already active : ignore 
-          return;
-      if (e.type === "touchstart") {
-        initialX = e.touches[0].clientX - xOffset;
-        initialY = e.touches[0].clientY - yOffset;
-      } else {
-        initialX = e.clientX - xOffset;
-        initialY = e.clientY - yOffset;
-      }
-      e.preventDefault();
-      if ((e.target.localName == 'li') || (e.target.id == 'vmarquee') ||
-            (e.currentTarget.id === $this.container.id)) {
-        active = true;
-      }
+}
+CGAvisScroll.prototype.go_avis_blocks = function (myid) {
+	$this = cgavisscroll[myid];
+    $this.currentLi = 0;
+    $this.currentPos = 0;
+	if ($this.me_up) {
+        $this.items_ul_1.style.position = 'relative';
+        $this.me_up.parentNode.style.left = "80%";
+		$this.me_up.addEventListener("click",function() {
+			id = this.parentNode.parentNode.getAttribute('data');
+			$this = cgavisscroll[id];
+            items = document.querySelectorAll($this.me + 'ul li');
+            let elementheight = 0;
+            if ($this.currentLi <= 0) { // end of list : restart to top position
+                $this.currentLi = 0; 
+                elementheight = parseInt(items[$this.currentLi].getBoundingClientRect().height)
+                $this.currentPos = parseInt($this.items_ul_0.clientHeight) + elementheight;
+                $this.currentLi = (items.length/2)+1; 
+                elementheight = items[$this.currentLi].getBoundingClientRect().height;
+                items[$this.currentLi].parentElement.parentElement.style.transition = "transform 0s";
+                $this.currentPos -= elementheight;
+                items[$this.currentLi].parentElement.parentElement.style.transform = 'translateY(-'+$this.currentPos+'px)';
+                $this.currentLi -= 1;
+            } 
+            elementheight = items[$this.currentLi].getBoundingClientRect().height ;
+            items[$this.currentLi].parentElement.parentElement.style.transition = "transform 1s";
+            $this.currentPos -= elementheight;
+            items[$this.currentLi].parentElement.parentElement.style.transform = 'translateY(-'+$this.currentPos+'px)';
+            $this.currentLi -= 1;
+            return false;
+		});	
+		$this.me_down.addEventListener("click",function() {
+			id = this.parentNode.parentNode.getAttribute('data');
+			$this = cgavisscroll[id];
+            items = document.querySelectorAll($this.me + 'ul li');
+            let elementheight = 0;
+            if ($this.currentLi >= (items.length/2) ) { // end of list : restart to top position
+                $this.currentLi = 0; 
+                $this.currentPos = 0;
+                items[$this.currentLi].parentElement.parentElement.style.transition = "transform 0s";
+                items[$this.currentLi].parentElement.parentElement.style.transform = 'translateY(-'+$this.currentPos+'px)';
+            }
+            elementheight = items[$this.currentLi].getBoundingClientRect().height;
+            items[$this.currentLi].parentElement.parentElement.style.transition = "transform 1s";
+            $this.currentPos += elementheight;
+            items[$this.currentLi].parentElement.parentElement.style.transform = 'translateY(-'+$this.currentPos+'px)';
+            $this.currentLi += 1;
+		});
+	}
+	if ($this.me_left) {
+        $this.items_ul_1.style.position = 'absolute';
+        $this.items_ul_1.style.left = $this.items_ul_1.getBoundingClientRect().width+'px';
+		// $this.me_left.style.display = "none";
+		$this.me_right.addEventListener('click', function(e) {
+			id = this.parentNode.parentNode.getAttribute('data');
+			$this = cgavisscroll[id];
+            items = document.querySelectorAll($this.me + 'ul li');
+            let elementwidth = 0;
+            if ($this.currentLi >= (items.length/2) || $this.currentLi < 0) { // end of list : restart to top position
+                $this.currentLi = 0; 
+                $this.currentPos = 0;
+                items[$this.currentLi].parentElement.parentElement.style.transition = "transform 0s";
+                items[$this.currentLi].parentElement.parentElement.style.transform = 'translateX(-'+$this.currentPos+'px)';
+            }
+            elementwidth = parseInt(items[$this.currentLi].style.marginLeft) + items[$this.currentLi].getBoundingClientRect().width + parseInt(items[$this.currentLi].style.marginRight);
+            items[$this.currentLi].parentElement.parentElement.style.transition = "transform 1s";
+            $this.currentPos += elementwidth;
+            items[$this.currentLi].parentElement.parentElement.style.transform = 'translateX(-'+$this.currentPos+'px)';
+            $this.currentLi += 1;
+            return false;
+		});
+		$this.me_left.addEventListener('click', function(e) {
+			id = this.parentNode.parentNode.getAttribute('data');
+			$this = cgavisscroll[id];
+            items = document.querySelectorAll($this.me + 'ul li');
+            let elementwidth = 0;
+            if ($this.currentLi <= 0) { // end of list : restart to top position
+                $this.currentLi = 0; 
+                elementwidth = parseInt(items[$this.currentLi].style.marginLeft) + items[$this.currentLi].getBoundingClientRect().width + parseInt(items[$this.currentLi].style.marginRight)
+                $this.currentPos = parseInt($this.items_ul_0.style.width) + elementwidth;
+                $this.currentLi = (items.length/2)+1; 
+                elementwidth = parseInt(items[$this.currentLi].style.marginLeft) + items[$this.currentLi].getBoundingClientRect().width + parseInt(items[$this.currentLi].style.marginRight);
+                items[$this.currentLi].parentElement.parentElement.style.transition = "transform 0s";
+                $this.currentPos -= elementwidth;
+                items[$this.currentLi].parentElement.parentElement.style.transform = 'translateX(-'+$this.currentPos+'px)';
+                $this.currentLi -= 1;
+            } 
+            elementwidth = parseInt(items[$this.currentLi].style.marginLeft) + items[$this.currentLi].getBoundingClientRect().width + parseInt(items[$this.currentLi].style.marginRight);
+            items[$this.currentLi].parentElement.parentElement.style.transition = "transform 1s";
+            $this.currentPos -= elementwidth;
+            items[$this.currentLi].parentElement.parentElement.style.transform = 'translateX(-'+$this.currentPos+'px)';
+            $this.currentLi -= 1;
+            return false;
+		});
+	}
+}
+
+CGAvisScroll.prototype.dragStart = function(e) {
+    id = this.getAttribute('data');
+    $this = cgavisscroll[id];
+    if ($this.active) // already active : ignore 
+        return;
+    if (e.type === "touchstart") {
+        $this.initialX = e.touches[0].clientX - $this.xOffset;
+        $this.initialY = e.touches[0].clientY - $this.yOffset;
+    } else {
+        $this.initialX = e.clientX - $this.xOffset;
+        $this.initialY = e.clientY - $this.yOffset;
     }
-
-    function dragEnd(e) {
-      initialX = currentX;
-      initialY = currentY;
-
-      active = false;
+    e.preventDefault();
+    if ((e.target.localName == 'li') || (e.target.id == 'vmarquee') ||
+        (e.currentTarget.id === $this.container.id)) {
+        $this.active = true;
     }
+}
 
-    function drag(e) {
-      if (active) {
+CGAvisScroll.prototype.dragEnd = function(e) {
+      $this.initialX = $this.currentX;
+      $this.initialY = $this.currentY;
+      $this.active = false;
+}
+
+CGAvisScroll.prototype.drag = function(e) {
+      id = this.getAttribute('data');
+      $this = cgavisscroll[id];
+      if ($this.active) {
       
         e.preventDefault();
       
         if (e.type === "touchmove") {
-          currentX = e.touches[0].clientX - initialX;
-          currentY = e.touches[0].clientY - initialY;
+          $this.currentX = e.touches[0].clientX - $this.initialX;
+          $this.currentY = e.touches[0].clientY - $this.initialY;
         } else {
-          currentX = e.clientX - initialX;
-          currentY = e.clientY - initialY;
+          $this.currentX = e.clientX - $this.initialX;
+          $this.currentY = e.clientY - $this.initialY;
         }
 
-        xOffset = currentX;
-        yOffset = currentY;
+        $this.xOffset = $this.currentX;
+        $this.yOffset = $this.currentY;
         cross_marquee = this.querySelector('#vmarquee');
-        id = this.getAttribute('data');
-        $this = cgavisscroll[id];
-        setTranslate($this,currentX, currentY, cross_marquee);
+        $this.setTranslate($this,$this.currentX, $this.currentY, $this.cross_marquee);
       }
-    }
-    function setTranslate($this,xPos, yPos, el) {
+}
+CGAvisScroll.prototype.setTranslate = function($this,xPos, yPos, el) {
       if ($this.options.direction == 1)    
         el.style.transform = "translateY("+ yPos + "px)";
       else 
         el.style.transform = "translateX(" + xPos + "px)";
-    }    
 }
+
 

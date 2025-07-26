@@ -2,6 +2,21 @@
 	<changelog>
 		<element>pkg_cg_avis_client</element>
 		<type>package</type>
+		<version>2.4.6</version>
+        <note>
+            <item>Update : 2025-07-26</item>
+        </note>
+        <fix>
+            <item>Scroll : invalid installation script name</item>
+            <item>Scroll : missing cgrange layout</item>
+        </fix>
+        <addition>
+            <item> Scroll : add block mode</item>
+        </addition>
+	</changelog>
+	<changelog>
+		<element>pkg_cg_avis_client</element>
+		<type>package</type>
 		<version>2.4.5</version>
         <note>
             <item>Update : 2025-07-24</item>

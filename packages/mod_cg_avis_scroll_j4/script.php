@@ -9,13 +9,14 @@
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-use Joomla\Filesystem\Folder;
 use Joomla\CMS\Version;
+use Joomla\Database\DatabaseInterface;
 use Joomla\Filesystem\File;
+use Joomla\Filesystem\Folder;
 
-class mod_cg_avisscrollInstallerScript
+class mod_cg_avis_scrollInstallerScript
 {
-	private $min_joomla_version      = '3.9.0';
+	private $min_joomla_version      = '4.0.0';
 	private $min_php_version         = '7.4';
 	private $name                    = 'CG Avis Scroll';
 	private $exttype                 = 'module';
@@ -114,19 +115,12 @@ class mod_cg_avisscrollInstallerScript
 			}
 		}
 		// remove obsolete update sites
-		$db = Factory::getDbo();
+		$db = Factory::getContainer()->get(DatabaseInterface::class);
 		$query = $db->getQuery(true)
 			->delete('#__update_sites')
 			->where($db->quoteName('location') . ' like "%432473037d.url-de-test.ws/%"');
 		$db->setQuery($query);
 		$db->execute();
-		// Simple Isotope is now on Github
-		$query = $db->getQuery(true)
-			->delete('#__update_sites')
-			->where($db->quoteName('location') . ' like "%conseilgouz.com/updates/cg_scroll%"');
-		$db->setQuery($query);
-		$db->execute();
-		
 	}
 
 	// Check if Joomla version passes minimum requirement
@@ -171,7 +165,7 @@ class mod_cg_avisscrollInstallerScript
 			JPATH_PLUGINS . '/system/' . $this->installerName . '/language',
 			JPATH_PLUGINS . '/system/' . $this->installerName,
 		]);
-		$db = Factory::getDbo();
+		$db = Factory::getContainer()->get(DatabaseInterface::class);
 		$query = $db->getQuery(true)
 			->delete('#__extensions')
 			->where($db->quoteName('element') . ' = ' . $db->quote($this->installerName))
