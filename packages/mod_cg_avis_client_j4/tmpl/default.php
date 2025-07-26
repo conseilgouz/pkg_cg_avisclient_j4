@@ -205,7 +205,6 @@ if($params->get('add_cgavisclient')!=0){?>
 			?>
 			<div class="cg_tcontent1">
                 <div class="cg_title">
-				<i class="fa fa-quote-left"></i>
 				<?php 
 				$comment = $item->comment;
 				if ($intro_maxwidth > 0)  {
@@ -214,15 +213,10 @@ if($params->get('add_cgavisclient')!=0){?>
 					if (substr($trunc,strlen($trunc) - 3,3) == "...") {
 						$comment = '<div class="intr_panel collapse show" id="intro'.$item->id.'">'.$trunc;
 						$comment = str_replace('</p>...','...</p>',$comment);
-						$comment .= '<i class="fa fa-quote-right"></i>';
 						$comment .= '<button id="'.$item->id.'" class="btn btnsuite">Lire la suite...</button></div>';
 						$comment .= '<div class="acc_panel collapse" id="panel'.$item->id.'">';
-						$comment .= $item->comment."<i class='fa fa-quote-right' ></i></div>";
-					} else { // ajout du quote final
-						$comment .= '<i class="fa fa-quote-right" ></i>';
-					}
-				} else { // ajout du quote final
-					$comment .= '<i class="fa fa-quote-right"></i>';
+						$comment .= $item->comment."</div>";
+					} 
 				}
 				echo $comment; ?>
 				

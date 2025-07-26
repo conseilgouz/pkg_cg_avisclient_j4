@@ -8,6 +8,7 @@
         </note>
         <fix>
             <item>Scroll : insert quotes using CSS before and after</item>
+            <item>Avis Client module : insert quotes using CSS before and after</item>
         </fix>
 	</changelog>
 	<changelog>
