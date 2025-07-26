@@ -94,7 +94,6 @@ for ($twice = 0; $twice < 2; $twice++) { // continuous scroll effect
         ?>
 			<li>
                 <div class="cg_one" style="clear:both">
-				<i class="fa fa-quote-left" style="float:left"></i>
 		<?php
         $stars = '</div><div class="cg_ratting col-5"';
         $stars .= ' style = "float:right;margin-top:-1.5em" ';
@@ -123,14 +122,11 @@ for ($twice = 0; $twice < 2; $twice++) { // continuous scroll effect
                 $comment = '<div class="cg_tcontent1 sc_intr_panel collapse show" id="scintro'.$item->id.'">'.$trunc;
                 $comment = str_replace('</p>...', '...</p>', $comment);
                 $comment .= '<button id="'.$item->id.'" class="btn btnsuite">Lire la suite...</button></div>';
-                $comment .= '<div class="cg_tcontent1 sc_acc_panel collapse" id="scpanel'.$item->id.'">';
-                $comment .= $item->comment."<i class='fa fa-quote-right' style='float:right;margin-top:-1.5em'></i></div>";
-            } else { // ajout du quote final
-                $comment .= '<i class="fa fa-quote-right" style="float:right;margin-top:-1.5em"></i>';
-            }
-        } else { // ajout du quote final
-            $comment .= '<i class="fa fa-quote-right" style="float:right;margin-top:-1.5em"></i>';
-            $comment = '<div class="cg_tcontent1">'.$comment.'</div>';
+                $comment .= '<div class="cg_tcontent2 sc_acc_panel collapse" id="scpanel'.$item->id.'">';
+                $comment .= $item->comment."</div>";
+            } 
+        } else { // avis complet
+            $comment = '<div class="cg_tcontent ">'.$comment.'</div>';
         }
         echo $comment.$perso;
         ?>

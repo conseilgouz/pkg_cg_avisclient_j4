@@ -118,9 +118,24 @@ color: #FFFFFF;
     background: rgb(238, 238, 238);
     box-shadow: 0 5px 6px -6px #777;
 }
-.cg_avis_scroll .cg_tcontent1 {
+.cg_avis_scroll .cg_tcontent,
+.cg_avis_scroll .cg_tcontent1,
+.cg_avis_scroll .cg_tcontent2 {
     font-style: italic;
     padding: 10px 0 10px 0;
     color: var(--bs-primary)
+}
+.cg_avis_scroll .cg_tcontent p:first-child::before,
+.cg_avis_scroll .cg_tcontent1 p:first-child::before,
+.cg_avis_scroll .cg_tcontent2 p:first-child::before {
+    content: "\f10d";
+    font-family: var(--fa-style-family, "FontAwesome");
+    margin-right: 1em;
+}
+.cg_avis_scroll .cg_tcontent p:last-of-type::after,
+.cg_avis_scroll .cg_tcontent2 p:last-of-type::after {
+    content: "\f10e";
+    font-family: var(--fa-style-family, "FontAwesome");
+    margin-left: 1em;
 }
 
