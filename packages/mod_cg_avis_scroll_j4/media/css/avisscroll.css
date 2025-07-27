@@ -125,12 +125,12 @@ color: #FFFFFF;
     padding: 10px 0 10px 0;
     color: var(--bs-primary)
 }
-.cg_avis_scroll .cg_tcontent p:first-child::before,
-.cg_avis_scroll .cg_tcontent1 p:first-child::before,
-.cg_avis_scroll .cg_tcontent2 p:first-child::before {
+.cg_avis_scroll .cg_one::before {
     content: "\f10d";
     font-family: var(--fa-style-family, "FontAwesome");
     margin-right: 1em;
+    margin-top:0.5em;
+    float:left;
 }
 .cg_avis_scroll .cg_tcontent p:last-of-type::after,
 .cg_avis_scroll .cg_tcontent2 p:last-of-type::after {

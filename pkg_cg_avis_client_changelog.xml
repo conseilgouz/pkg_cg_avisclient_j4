@@ -2,6 +2,18 @@
 	<changelog>
 		<element>pkg_cg_avis_client</element>
 		<type>package</type>
+		<version>2.4.10</version>
+        <note>
+            <item>Update : 2025-07-27</item>
+        </note>
+        <fix>
+            <item>Scroll : missing new CSS parameter</item>
+            <item>Scroll module : force opening quotes</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>pkg_cg_avis_client</element>
+		<type>package</type>
 		<version>2.4.9</version>
         <note>
             <item>Update : 2025-07-27</item>
