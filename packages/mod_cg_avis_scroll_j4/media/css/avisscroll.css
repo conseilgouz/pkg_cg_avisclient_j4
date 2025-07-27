@@ -44,6 +44,7 @@ float:left
 
 .cg_avis_scroll #toDirection .icon-dir-left:before {
 display: inline-block;
+font-family: var(--fa-style-family, "Font Awesome 6 Free");
 content: "\f0a8";
 font-size:28px;
 color:#444;
@@ -59,6 +60,7 @@ opacity:0.8;
 } 
 .cg_avis_scroll #toDirection .icon-dir-right:before {
 display: inline-block;
+font-family: var(--fa-style-family, "Font Awesome 6 Free");
 content: "\f0a9";
 font-size:28px;
 color:#444;
@@ -74,6 +76,7 @@ opacity:0.8;
 }
 .cg_avis_scroll #toDirection .icon-dir-down:before {
 display: inline-block;
+font-family: var(--fa-style-family, "Font Awesome 6 Free");
 content: "\f0ab";
 font-size:28px;
 color:#444;
@@ -89,6 +92,7 @@ opacity:0.8;
 } 
 .cg_avis_scroll #toDirection .icon-dir-up:before {
 display: inline-block;
+font-family: var(--fa-style-family, "Font Awesome 6 Free");
 content: "\f0aa";
 font-size:28px;
 color:#444;
@@ -125,17 +129,10 @@ color: #FFFFFF;
     padding: 10px 0 10px 0;
     color: var(--bs-primary)
 }
-.cg_avis_scroll .cg_one::before {
-    content: "\f10d";
-    font-family: var(--fa-style-family, "FontAwesome");
-    margin-right: 1em;
-    margin-top:0.5em;
-    float:left;
-}
 .cg_avis_scroll .cg_tcontent p:last-of-type::after,
 .cg_avis_scroll .cg_tcontent2 p:last-of-type::after {
     content: "\f10e";
-    font-family: var(--fa-style-family, "FontAwesome");
+    font-family: var(--fa-style-family, "Font Awesome 6 Free");
     margin-left: 1em;
 }
 

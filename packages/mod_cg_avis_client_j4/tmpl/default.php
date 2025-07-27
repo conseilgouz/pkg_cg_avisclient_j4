@@ -215,11 +215,14 @@ if($params->get('add_cgavisclient')!=0){?>
 						$comment = str_replace('</p>...','...</p>',$comment);
 						$comment .= '<button id="'.$item->id.'" class="btn btnsuite">Lire la suite...</button></div>';
 						$comment .= '<div class="acc_panel collapse" id="panel'.$item->id.'">';
-						$comment .= $item->comment."</div>";
-					} 
-				}
-				echo $comment; ?>
-				
+						$comment .= $item->comment."<i class='fa-solid fa-quote-right'></i></div>";
+					} else {
+                        $comment .= '<i class="fa-solid fa-quote-right"></i>';
+                    }
+				} else {
+                    $comment .= '<i class="fa-solid fa-quote-right"></i>';
+                }
+				echo '<i class="fa-solid fa-quote-left"></i>'.$comment; ?>
 		        </div>                     
             </div>
 			<?php 

@@ -42,20 +42,21 @@ $sf_direction = $params->get('direction', 0);
 $sf_delay	= $sf_delay * 1000;
 $sf_slowdown = $params->get('sf_extraslow', 0);
 
-$cat_list =  $params->get('categories');	
+$cat_list =  $params->get('categories');
 
 $libdateformat = Text::_('DATE_FORMAT_LC4'); // format d'affichage des dates au format php d/m/Y H:i  = format français avec heure/minutes
 
 /** @var Joomla\CMS\WebAsset\WebAssetManager $wa */
 $wa = Factory::getApplication()->getDocument()->getWebAssetManager();
 $wa->registerAndUseStyle('avisscroll', 'media/'.$module->module.'/css/avisscroll.css');
+
 if ((bool)Factory::getApplication()->getConfig()->get('debug')) { // Mode debug
     $document->addScript($modulefield.'js/avisscroll.js');
 } else {
     $wa->registerAndUseScript('avisscroll', 'media/'.$module->module.'/js/avisscroll.js');
 }
-if ($params->get('css','')) {
-    $wa->addInlineStyle($params->get('css','')); 
+if ($params->get('css', '')) {
+    $wa->addInlineStyle($params->get('css', ''));
 }
 $lists = CGAvisScrollHelper::getList($params);
 $count = 0;
@@ -99,6 +100,7 @@ for ($twice = 0; $twice < 2; $twice++) { // continuous scroll effect
         ?>
 			<li>
                 <div class="cg_one" style="clear:both">
+                <i class="fa-solid fa-quote-left" style="float:left"></i>
 		<?php
         $stars = '</div><div class="cg_ratting col-5"';
         $stars .= ' style = "float:right;margin-top:-1.5em" ';
@@ -128,12 +130,12 @@ for ($twice = 0; $twice < 2; $twice++) { // continuous scroll effect
                 $comment = str_replace('</p>...', '...</p>', $comment);
                 $comment .= '<button id="'.$item->id.'" class="btn btnsuite">Lire la suite...</button></div>';
                 $comment .= '<div class="cg_tcontent2 sc_acc_panel collapse" id="scpanel'.$item->id.'">';
-                $comment .= $item->comment."</div>";
+                $comment .= $item->comment."<i class='fa-solid fa-quote-right' style='float:right'></i></div>";
             } else {
-                $comment = '<div class="cg_tcontent ">'.$comment.'</div>';
+                $comment = '<div class="cg_tcontent ">'.$comment.'<i class="fa-solid fa-quote-left" style="float:right"></i></div>';
             }
         } else { // avis complet
-            $comment = '<div class="cg_tcontent ">'.$comment.'</div>';
+            $comment = '<div class="cg_tcontent ">'.$comment.'<i class="fa-solid fa-quote-left" style="float:right"></i></div>';
         }
         echo $comment.$perso;
         ?>
@@ -146,12 +148,12 @@ for ($twice = 0; $twice < 2; $twice++) { // continuous scroll effect
 ?>
 		</div>
 	</div>
-	<?php if($params->get('add_cgavisclient',0)!=0){
-        $lacat="";
-        if ($cat_list && (count($cat_list) == 1)) {// une seule catégorie 
-            $lacat = "&cat=".$cat_list[0]; 
-        }
-        ?>   
+	<?php if ($params->get('add_cgavisclient', 0) != 0) {
+	    $lacat = "";
+	    if ($cat_list && (count($cat_list) == 1)) {// une seule catégorie
+	        $lacat = "&cat=".$cat_list[0];
+	    }
+	    ?>   
 <div class="scroll_propose text-center m-1">
 			<a href="<?php echo Route::_('index.php?option=com_cgavisclient&view=item'.$lacat) ?>" class="btn">
                 <?php echo Text::_('MOD_CGAVISSCROLL_PROPOSE');?></a>

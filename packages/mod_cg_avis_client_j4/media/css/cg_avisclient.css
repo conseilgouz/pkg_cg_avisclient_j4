@@ -33,7 +33,7 @@
     .tabs .tab {margin-left: 0;}
 }
 
-.cg_info {
+.cg_avisclient .cg_info {
     display: table-cell;
     padding-left: 10px;
     padding-right: 10px;
@@ -41,14 +41,14 @@
     padding-bottom: 5px;
 
 }
-.cg_info .cg_image {
+.cg_avisclient .cg_info .cg_image {
     display: table-cell;
     padding-left: 10px;
     padding-right: 10px;
     vertical-align: top;
 }
 
-.cg_info .cg_image img {
+.cg_avisclient .cg_info .cg_image img {
     border-radius: 50%;
     border: 1px solid #efefef;
     float: right;
@@ -56,7 +56,7 @@
     padding: 3px;
     width: 85px;
 }
-.cg_info .cg_aditional {
+.cg_avisclient .cg_info .cg_aditional {
     display: table-cell;
     padding-left: 10px;
     vertical-align: middle;
@@ -76,7 +76,7 @@
     font-size: 0.9em;
     opacity: 0.8;
 }
-.cg_ratting .glyphicon-star {
+.cg_avisclient .cg_ratting .glyphicon-star {
     color: gold;
     padding-right: 2px;
 }
@@ -97,30 +97,25 @@
 
 }
 
-.cg_title:before {
+.cg_avisclient .cg_title:before {
 	font-style: normal;
     left: 10px;
     top: 0;
 }
 
-.cg_avisclient {
+.cg_avisclient .cg_avisclient {
     line-height: 1;
     margin: 0;
     position: relative;
 	/*margin-left: 1em;*/
 }
 
-.fa-quote-left {
+.cg_avisclient .fa-quote-left {
 	float: left;
     margin-left: -1.5em;
-	color: #999;
-    font-size: 0.8em;	
 }
-.fa-quote-right {
+.cg_avisclient .fa-quote-right {
 	float: right;
-	margin-top:-2em;
-	color: #999;
-    font-size: 0.8em;	
 }
 .cg_avisclient .cg_info1 {
 	font-size: 1.2em;
