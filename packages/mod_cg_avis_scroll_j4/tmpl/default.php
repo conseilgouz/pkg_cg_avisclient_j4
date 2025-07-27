@@ -129,7 +129,9 @@ for ($twice = 0; $twice < 2; $twice++) { // continuous scroll effect
                 $comment .= '<button id="'.$item->id.'" class="btn btnsuite">Lire la suite...</button></div>';
                 $comment .= '<div class="cg_tcontent2 sc_acc_panel collapse" id="scpanel'.$item->id.'">';
                 $comment .= $item->comment."</div>";
-            } 
+            } else {
+                $comment = '<div class="cg_tcontent ">'.$comment.'</div>';
+            }
         } else { // avis complet
             $comment = '<div class="cg_tcontent ">'.$comment.'</div>';
         }
