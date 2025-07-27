@@ -8,16 +8,6 @@
         </note>
         <fix>
             <item>Scroll module : small  text : show quotes anyway</item>
-        </fix>
-	</changelog>
-	<changelog>
-		<element>pkg_cg_avis_client</element>
-		<type>package</type>
-		<version>2.4.8</version>
-        <note>
-            <item>Update : 2025-07-27</item>
-        </note>
-        <fix>
             <item>Avis form : force tinymce editor</item>
             <item>Scroll module : $catlist undefined on propose button</item>
         </fix>
