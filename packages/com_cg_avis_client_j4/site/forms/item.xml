@@ -48,13 +48,13 @@
             <option value="2">2</option>
             <option value="1">1</option>
         </field>
-		<field name="comment" type="textarea"
+		<field name="comment" type="editor"
+            editor="tinymce"
 			label="COM_CGAVISCLIENT_FIELD_COMMENT_LABEL" 
 			description="COM_CGAVISCLIENT_FIELD_COMMENT_DESC" 
-			rows="6" cols="30"
+			rows="3" cols="300"
 			required="true"
 			filter="safehtml"
-			hide="engagebox,readmore"
 			 />
 		<field name="state" type="list"
 			label="JSTATUS" description="COM_CGAVISCLIENT_FIELD_STATE_DESC"
