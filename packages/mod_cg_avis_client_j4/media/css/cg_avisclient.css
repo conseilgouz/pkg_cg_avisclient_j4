@@ -149,21 +149,4 @@
 .cg_avisclient .cg_left .cg_aditional1 .cg_work, .cg_avisclient .cg_left .cg_aditional1 .cg_website,.cg_avisclient .cg_left .cg_aditional1 .cg_ratting {
     text-align: left;
 }
-.cg_avisclient .cg_tcontent1 p:first-child::before,
-.cg_avisclient .intr_panel p:first-child::before,
-.cg_avisclient .acc_panel p:first-child::before {
-    content: "\f10d";
-    font-family: var(--fa-style-family, "FontAwesome");
-    margin-right: 1em;
-}
-
-.cg_avisclient .cg_tcontent1 p:last-of-type::after,
-.cg_avisclient .acc_panel p:last-of-type::after {
-    content: "\f10e";
-    font-family: var(--fa-style-family, "FontAwesome");
-    margin-left: 1em;
-}
-.cg_avisclient .intr_panel p:last-of-type::after {
-    content: "" !important;
-}
 
