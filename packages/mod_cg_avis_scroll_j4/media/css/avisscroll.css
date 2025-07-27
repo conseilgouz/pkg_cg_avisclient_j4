@@ -129,10 +129,4 @@ color: #FFFFFF;
     padding: 10px 0 10px 0;
     color: var(--bs-primary)
 }
-.cg_avis_scroll .cg_tcontent p:last-of-type::after,
-.cg_avis_scroll .cg_tcontent2 p:last-of-type::after {
-    content: "\f10e";
-    font-family: var(--fa-style-family, "Font Awesome 6 Free");
-    margin-left: 1em;
-}
 
