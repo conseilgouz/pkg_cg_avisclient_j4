@@ -2,6 +2,21 @@
 	<changelog>
 		<element>pkg_cg_avis_client</element>
 		<type>package</type>
+		<version>2.4.15</version>
+        <note>
+            <item>Update : 2025-07-28</item>
+        </note>
+        <fix>
+            <item>Joomla 4.x compatibility</item>
+            <item>Remove Jquery from star field</item>
+        </fix>
+        <addition>
+            <item>Modules : new parameter : load fontawesome</item>
+        </addition>
+	</changelog>
+	<changelog>
+		<element>pkg_cg_avis_client</element>
+		<type>package</type>
 		<version>2.4.14</version>
         <note>
             <item>Update : 2025-07-28</item>

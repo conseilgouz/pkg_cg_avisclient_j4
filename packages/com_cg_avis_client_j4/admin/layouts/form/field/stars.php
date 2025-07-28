@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 extract($displayData);
 
 // Including fallback code for HTML5 non supported browsers.
-HTMLHelper::_('jquery.framework');
+// HTMLHelper::_('jquery.framework');
 HTMLHelper::_('script', 'system/html5fallback.js', array('version' => 'auto', 'relative' => true));
 
 $format = '<input class="star" type="radio" id="%1$s" name="%2$s" value="%3$s" %4$s />';

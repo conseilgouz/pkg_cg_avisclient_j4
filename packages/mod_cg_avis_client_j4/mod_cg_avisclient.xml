@@ -7,7 +7,7 @@
 	<license>GNU General Public License version 3 or later; see LICENSE.txt</license>
     <authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
     <authorUrl>https://www.conseilgouz.com</authorUrl>
-	<version>2.4.14</version>
+	<version>2.4.15</version>
 	<description>
 	<![CDATA[
 	Affichage simple des avis clients avec module isotope
@@ -84,7 +84,12 @@
 					type="menuitem"  
 					label="MOD_CGAVISCLIENT_PLUS_MENU_LABEL" 
 					description="MOD_CGAVISCLIENT_PLUS_MENU_DESC" />
-				
+				<field name="fontawesome"	type="radio"
+					class="btn-group btn-group-yesno"	default="0"
+					label="MOD_CGAVISCLIENT_NEED_FONT"	description="MOD_CGAVISCLIENT_NEED_FONT_DESC">
+					<option	value="1">JYES</option>
+					<option	value="0">JNO</option>
+				</field>	
 			</fieldset>
 			<fieldset name="isotope">
 				<field

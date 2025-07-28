@@ -37,7 +37,12 @@ $wa->registerAndUseStyle('isotope',$modulefield."css/isotope.css");
 $wa->registerAndUseScript('isotope',$modulefield."js/isotope.min.js");
 $wa->registerAndUseScript('packery',$modulefield.'js/packery-mode.min.js');
 $wa->registerAndUseScript('imagesloaded',$modulefield."js/imagesloaded.min.js");
-$wa->addInlineStyle($params->get('css')); 
+if ($params->get('css','')) {
+    $wa->addInlineStyle($params->get('css')); 
+}
+if ($params->get('fontawesome', '')) {
+    $wa->registerAndUseStyle('fontawesome','media/system/css/joomla-fontawesome.css');
+}
 $cats_lib = array();
 $cats_alias = array();
 $categories = $params->get('categories');
@@ -215,14 +220,14 @@ if($params->get('add_cgavisclient')!=0){?>
 						$comment = str_replace('</p>...','...</p>',$comment);
 						$comment .= '<button id="'.$item->id.'" class="btn btnsuite">Lire la suite...</button></div>';
 						$comment .= '<div class="acc_panel collapse" id="panel'.$item->id.'">';
-						$comment .= $item->comment."<i class='fa-solid fa-quote-right'></i></div>";
+						$comment .= $item->comment."<i class='fa fa-quote-right'></i></div>";
 					} else {
-                        $comment .= '<i class="fa-solid fa-quote-right"></i>';
+                        $comment .= '<i class="fa fa-quote-right"></i>';
                     }
 				} else {
-                    $comment .= '<i class="fa-solid fa-quote-right"></i>';
+                    $comment .= '<i class="fa fa-quote-right"></i>';
                 }
-				echo '<i class="fa-solid fa-quote-left"></i>'.$comment; ?>
+				echo '<i class="fa fa-quote-left"></i>'.$comment; ?>
 		        </div>                     
             </div>
 			<?php 
