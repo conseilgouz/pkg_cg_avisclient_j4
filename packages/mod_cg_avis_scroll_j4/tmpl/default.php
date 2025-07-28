@@ -99,7 +99,7 @@ for ($twice = 0; $twice < 2; $twice++) { // continuous scroll effect
         $cat = CGAvisScrollHelper::getCategory($item->category);
         ?>
 			<li>
-                <div class="cg_one" style="clear:both">
+                <div class="cg_one" style="clear:both" data="<?php echo $module->id ?>">
                 <i class="fa-solid fa-quote-left" style="float:left"></i>
 		<?php
         $stars = '</div><div class="cg_ratting col-5"';

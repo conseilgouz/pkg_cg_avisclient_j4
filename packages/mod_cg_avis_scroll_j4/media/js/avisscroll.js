@@ -94,8 +94,12 @@ CGAvisScroll.prototype.go_avis_scroll = function (myid) {
 		['click', 'touchstart'].forEach(type => {
 			suite[i].addEventListener(type,e => {
                 let id = e.currentTarget.getAttribute('id');
-                panel = '#scpanel'+id;
-                intro = '#scintro'+id;
+                let moduleid = e.currentTarget.parentNode.parentNode.getAttribute('data');
+                if (moduleid) {
+                    $this = cgavisscroll[moduleid];
+                }                    
+                panel = $this.me + '#scpanel'+id;
+                intro = $this.me + '#scintro'+id;
                 intros = document.querySelectorAll(intro);
                 for (var s=0; s< intros.length;s++) {
                     intros[s].classList.remove('show');
