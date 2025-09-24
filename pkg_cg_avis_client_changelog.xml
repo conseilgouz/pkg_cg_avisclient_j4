@@ -13,7 +13,7 @@
             <item>Use ConseilGouz Library</item>
         </change>
         <addition>
-            <item>Select note's icon in component's config and/or in modules</item>
+            <item>Set note's icon in component's config and/or in modules</item>
         </addition>
 	</changelog>
 	<changelog>
