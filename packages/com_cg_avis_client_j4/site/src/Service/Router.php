@@ -26,24 +26,4 @@ use Joomla\CMS\Menu\AbstractMenu;
  */
 class Router extends RouterView
 {
-	/**
-	 * CG ISotope Component router constructor
-	 *
-	 * @param   CMSApplication  $app   The application object
-	 * @param   AbstractMenu    $menu  The menu object to work with
-	 *
-	 * @since   Joomla 3.9.0
-	 */
-	public function __construct($app = null, $menu = null)
-	{
-		$page = new RouterViewConfiguration('page');
-		$page->setKey('id');
-		$this->registerView($page);
-
-		parent::__construct($app, $menu);
-
-		$this->attachRule(new MenuRules($this));
-		$this->attachRule(new StandardRules($this));
-		$this->attachRule(new NomenuRules($this));
-	}
 }

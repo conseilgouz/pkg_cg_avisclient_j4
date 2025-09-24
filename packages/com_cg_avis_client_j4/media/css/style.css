@@ -17,14 +17,12 @@ label.star {
   transition: all .2s;
 }
 input.star:checked ~ label.star:before {
-  content: '\f005';
-  color: #FD4;
+  color: gold;
   transition: all .25s;
 }
 label.star:hover { transform: rotate(-15deg) scale(1.3); }
 label.star:before {
-  content: '\f006';
-  font-family: FontAwesome;
+  color: lightgrey;
 }
 /*
 .cgavisclient-form .col-sm-1 {

@@ -1,6 +1,6 @@
 <?php
 /**
-* CG Avis Client  - Joomla 4.x/5x package
+* CG Avis Client  - Joomla 4.x/5x/6.x package
 * Package			: CG Avis Client
 * copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
 * license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
@@ -20,6 +20,7 @@ class pkg_CGAvisClientInstallerScript
     private $name                    = 'CG Avis Client';
     private $exttype                 = 'package';
     private $extname                 = 'cg_avis_client';
+    private $newlib_version	         = '';
     private $lang           = null;
     private $dir           = null;
     private $installerName = 'cgavisclientinstaller';
@@ -47,6 +48,22 @@ class pkg_CGAvisClientInstallerScript
         if (($type == 'install') || ($type == 'update')) { // remove obsolete dir/files
             $this->postinstall_cleanup();
         }
+        if (!$this->checkLibrary('conseilgouz')) { // need library installation
+            $ret = $this->installPackage('lib_conseilgouz');
+            if ($ret) {
+                Factory::getApplication()->enqueueMessage('ConseilGouz Library ' . $this->newlib_version . ' installed', 'notice');
+            }
+        }
+        // delete obsolete version.php file
+        $this->delete([
+            JPATH_SITE . '/modules/mod_cg_avis_scroll/src/Field/VersionField.php',
+            JPATH_SITE . '/modules/mod_cg_avis_scroll/src/Field/CgrangeField.php',
+            JPATH_SITE . '/media/mod_cg_avis_scroll/js/cgrange.js',
+            JPATH_SITE . '/media/mod_cg_avis_scroll/css/cgrange.css',
+            JPATH_SITE . '/modules/mod_cg_avisclient/src/Field/VersionField.php',
+            JPATH_SITE . '/modules/mod_cg_avisclient/src/Field/CgvariableField.php',
+            JPATH_SITE . '/modules/mod_cg_avisclient/layouts/cgvariable.php',
+        ]);
 
         return true;
     }
@@ -137,6 +154,42 @@ class pkg_CGAvisClientInstallerScript
 
         return true;
     }
+    private function checkLibrary($library)
+    {
+        $file = $this->dir.'/lib_conseilgouz/conseilgouz.xml';
+        if (!is_file($file)) {// library not installed
+            return false;
+        }
+        $xml = simplexml_load_file($file);
+        $this->newlib_version = $xml->version;
+        $db = Factory::getContainer()->get(DatabaseInterface::class);
+        $conditions = array(
+             $db->qn('type') . ' = ' . $db->q('library'),
+             $db->qn('element') . ' = ' . $db->quote($library)
+            );
+        $query = $db->getQuery(true)
+                ->select('manifest_cache')
+                ->from($db->quoteName('#__extensions'))
+                ->where($conditions);
+        $db->setQuery($query);
+        $manif = $db->loadObject();
+        if ($manif) {
+            $manifest = json_decode($manif->manifest_cache);
+            if ($manifest->version >= $this->newlib_version) { // compare versions
+                return true; // library ok
+            }
+        }
+        return false; // need library
+    }
+    private function installPackage($package)
+    {
+        $tmpInstaller = new Joomla\CMS\Installer\Installer();
+        $db = Factory::getContainer()->get(DatabaseInterface::class);
+        $tmpInstaller->setDatabase($db);
+        $installed = $tmpInstaller->install($this->dir . '/' . $package);
+        return $installed;
+    }
+    
     private function uninstallInstaller()
     {
         if (! is_dir(JPATH_PLUGINS . '/system/' . $this->installerName)) {
@@ -155,7 +208,8 @@ class pkg_CGAvisClientInstallerScript
             ->where($db->quoteName('type') . ' = ' . $db->quote('plugin'));
         $db->setQuery($query);
         $db->execute();
-        Factory::getApplication()->getCache()->clean('_system');
+        $cache = Factory::getContainer()->get(Joomla\CMS\Cache\CacheControllerFactoryInterface::class)->createCacheController();
+        $cache->clean('_system');
     }
     public function delete($files = [])
     {

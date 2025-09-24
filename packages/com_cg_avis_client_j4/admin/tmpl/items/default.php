@@ -1,7 +1,7 @@
 <?php
 /**
-* CG Avis Client - Joomla Module 
-* Package			: Joomla 4.x/5.x
+* CG Avis Client
+* Package			: Joomla 4.x/5.x/6.x
 * copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
 * license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 * From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
@@ -17,8 +17,8 @@ use Joomla\CMS\Button\FeaturedButton;
 // HTMLHelper::_('behavior.tooltip');
 HTMLHelper::_('behavior.multiselect');
 
-$user		= Factory::getUser();
-$userId		= $user->get('id');
+$user		= Factory::getApplication()->getIdentity();
+$userId		= $user->id;
 $listOrder	= $this->escape($this->state->get('list.ordering'));
 $listDirn	= $this->escape($this->state->get('list.direction'));
 $canOrder	= $user->authorise('core.edit.state', 'com_cgavisclient.category');

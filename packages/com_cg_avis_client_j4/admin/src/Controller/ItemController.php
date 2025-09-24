@@ -1,7 +1,7 @@
 <?php
 /**
-* CG Avis Client - Joomla Module
-* Package			: Joomla 4.x/5.x
+* CG Avis Client
+* Package			: Joomla 4.x/5.x/6.x
 * copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
 * license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 * From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
@@ -70,7 +70,7 @@ class ItemController extends FormController
         // Initialise variables.
         $app = Factory::getApplication();
 
-        $input = $app->input;
+        $input = $app->getInput();
 
         $model = $this->getModel('item');
         $data = $input->getRaw('jform', array(), 'post', 'array');
@@ -78,7 +78,7 @@ class ItemController extends FormController
         $context = 'com_cgavisclient.edit.item';
         $recordId = $input->getInt('id');
 
-        $jinput = Factory::getApplication()->input;
+        $jinput = Factory::getApplication()->getInput();
 
         if (!$this->checkEditId($context, $recordId)) {
             // Somehow the person just went to the form and saved it - we don't allow that.

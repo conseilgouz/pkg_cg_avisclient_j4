@@ -2,12 +2,12 @@
 <extension type="module" version="4.x" client="site" method="upgrade">
 	<name>CG Avis Scroll</name>
 	<author>ConseilGouz</author>
-	<creationDate>2025-07-28</creationDate>
+	<creationDate>2025-09-23</creationDate>
 	<copyright>Copyright (C) 2025 ConseilGouz. All rights reserved.</copyright>
 	<license>https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
 	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
 	<authorUrl>www.conseilgouz.com</authorUrl>
-	<version>2.4.15</version>
+	<version>2.5.0</version>
 	<description>CGAVISSCROLLDESC</description>
 	<namespace path="src">ConseilGouz\Module\CGAvisScroll</namespace>
 	<scriptfile>script.php</scriptfile>
@@ -32,8 +32,8 @@
 	
 	<config>
 		<fields name="params">
-			<fieldset name="basic" addfieldprefix="ConseilGouz\Module\CGAvisScroll\Site\Field">
-				<field name="version" type="version"  margintop="-3em" extension="mod_cg_avis_scroll"/>	
+			<fieldset name="basic" addfieldprefix="">
+				<field name="version" type="ConseilGouz\Library\Field\Version"  margintop="-3em" extension="mod_cg_avis_scroll"/>	
 				<field name="scrolltype"  type="radio" class="btn-group"
 					label="SFS_SCROLLTYPE" default="lines" description="SFS_SCROLLTYPEDESC">
 					<option value="lines">SFS_LINES</option>
@@ -58,11 +58,11 @@
 					description="MOD_CGAVISSCROLL_CATDESC" 
 					multiple="true" 
 					custom="deny"/>	
-				<field 	name="sf_limit" 	type="cgrange" 	default="0" class="limits"
-					label="SF_LIMIT" 	description="SF_LIMITDESC" 
+				<field 	name="sf_limit" 	type="ConseilGouz\Library\Field\Cgrange" 	default="0" class="limits"
+					label="SF_LIMIT" 	description="SF_LIMITDESC" unit=""
 					min="0" max="30" step="1"	/>	
-				<field 	name="intro_maxwidth" 	type="cgrange" 	default="0" class="limits"
-					label="SF_INTROMAX" 	description="SF_INTROMAXDESC" 
+				<field 	name="intro_maxwidth" 	type="ConseilGouz\Library\Field\Cgrange" 	default="0" class="limits"
+					label="SF_INTROMAX" 	description="SF_INTROMAXDESC"  unit=""
 					min="0" max="100" step="1"	/>	
                     
 				<field	name="direction"	type="radio"	class="btn-group"
@@ -76,11 +76,11 @@
 				<field  name="sf_height" 
 					type="text" 	size="5" 	default="200" 
 					label="SF_HEIGHT" 	description="SF_HEIGHTDESC" />
-				<field 	showon="scrolltype:lines" name="sf_delay" 	type="cgrange" 	default="2" class="limits"
-					label="SF_DELAY" 	description="SF_DELAYDESC" 
+				<field 	showon="scrolltype:lines" name="sf_delay" 	type="ConseilGouz\Library\Field\Cgrange" 	default="2" class="limits"
+					label="SF_DELAY" 	description="SF_DELAYDESC"  unit="s"
 					min="0" max="30" step="1"	/>	
-				<field showon="scrolltype:lines" name="sf_speed" 	type="cgrange" 	default="5"
-					label="SF_SPEED" description="SF_SPEEDDESC"  class="limits"
+				<field showon="scrolltype:lines" name="sf_speed" 	type="ConseilGouz\Library\Field\Cgrange" 	default="5"
+					label="SF_SPEED" description="SF_SPEEDDESC"  class="limits" unit=""
 					min="1" max="10" step="1" />	
 				<field	showon="scrolltype:lines" name="sf_pause"	type="radio"
 					class="btn-group btn-group-yesno"	default="1"
@@ -105,7 +105,15 @@
 					label="MOD_CGAVISSCROLL_NEED_FONT"	description="MOD_CGAVISSCROLL_NEED_FONT_DESC">
 					<option	value="1">JYES</option>
 					<option	value="0">JNO</option>
-				</field>	
+				</field>
+				<field name="rating_icon"	type="ConseilGouz\Module\CGAvisScroll\Site\Field\Radioavis"
+					class="btn-group btn-group-yesno"	default="" useglobal="true"
+					label="MOD_CGAVISSCROLL_RATING_ICON_VAL_LABEL"	description="MOD_CGAVISSCROLL_RATING_ICON_VAL_DESC">
+					<option	value="1">MOD_CGAVISSCROLL_OTHER</option>
+				</field>
+                <field showon="rating_icon:1" name="rating_icon_mod" type="text" 
+                    label="MOD_CGAVISSCROLL_RATING_ICON_VAL_LABEL" description="MOD_CGAVISSCROLL_RATING_ICON_VAL_DESC">
+                </field>
 			</fieldset>
 			<fieldset name="advanced">
 				<field	name="moduleclass_sfx"	type="text"

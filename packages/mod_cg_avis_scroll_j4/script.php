@@ -1,6 +1,6 @@
 <?php
 /**
-* CG Avis Scroll Module  - Joomla 4.x/5.x Module 
+* CG Avis Scroll Module  - Joomla 4.x/5.x/6.x Module 
 * Package			: CG Scroll
 * copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
 * license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
@@ -69,12 +69,6 @@ class mod_cg_avis_scrollInstallerScript
 		return true;
     }
 	private function postinstall_cleanup() {
-        // move layout to its correct directory
-        $f = JPATH_SITE . "/layouts/conseilgouz";
-        if (!is_dir($f)) {
-            mkdir($f);
-        }
-        copy(JPATH_SITE."/modules/mod_cg_avis_scroll/layouts/cgrange.php",$f.'/'."cgrange.php");
         
 		$obsloteFolders = ['css', 'js','language','layouts'];
 		// Remove plugins' files which load outside of the component. If any is not fully updated your site won't crash.
@@ -173,7 +167,8 @@ class mod_cg_avis_scrollInstallerScript
 			->where($db->quoteName('type') . ' = ' . $db->quote('plugin'));
 		$db->setQuery($query);
 		$db->execute();
-		Factory::getCache()->clean('_system');
+		$cache = Factory::getContainer()->get(Joomla\CMS\Cache\CacheControllerFactoryInterface::class)->createCacheController();
+        $cache->clean('_system');
 	}
     public function delete($files = [])
     {

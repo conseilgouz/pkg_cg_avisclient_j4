@@ -1,12 +1,13 @@
 <?php
 /**
 * CG Avis Scroll - Joomla Module
-* Package			: Joomla 4.x - 5.x
+* Package			: Joomla 4.x/5.x/6.x
 * copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
 * license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 */
 // no direct access
 defined('_JEXEC') or die;
+use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
@@ -26,6 +27,14 @@ $limit = $params->get('sf_limit', '0');
 $app = Factory::getApplication();
 $intro_maxwidth = $params->get('intro_maxwidth', '0');
 
+$sf_icon = $params->get('rating_icon', 0);
+if (!$sf_icon) { // config icon
+    $component  = 'com_cgavisclient';
+    $comparams = ComponentHelper::getParams($component);
+    $sf_icon  = $comparams->get('rating_icon','fa-star');
+} else { // other icon
+    $sf_icon = $params->get('rating_icon_mod','fa-star');
+}
 $scrolltype  = $params->get('scrolltype', 'lines');
 $sf_type = $params->get('sf_type', 'all');
 $sf_height	= $params->get('sf_height', 200);
@@ -59,7 +68,7 @@ if ($params->get('css', '')) {
     $wa->addInlineStyle($params->get('css', ''));
 }
 if ($params->get('fontawesome', '')) {
-    $wa->registerAndUseStyle('fontawesome','media/system/css/joomla-fontawesome.css');
+    $wa->registerAndUseStyle('fontawesome','media/system/css/joomla-fontawesome.min.css');
 }
 $lists = CGAvisScrollHelper::getList($params);
 $count = 0;
@@ -109,7 +118,7 @@ for ($twice = 0; $twice < 2; $twice++) { // continuous scroll effect
         $stars .= ' style = "float:right;margin-top:-1.5em" ';
         $stars .= ">";
         for ($j = 0; $j < $item->rating; $j++) {
-            $stars .= '<i class="fa fa-star" style="color:gold"></i> ';
+            $stars .= '<i class="fa '.$sf_icon.'" style="color:gold"></i> ';
         }
         $stars .= '</div> ';
         $deb = '';

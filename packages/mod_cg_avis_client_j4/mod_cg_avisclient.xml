@@ -2,12 +2,12 @@
 <extension type="module" version="4.0" client="site" method="upgrade">
 	<name>CG Avis Client</name>
 	<author>ConseilGouz</author>
-	<creationDate>2025-07-28</creationDate>
+	<creationDate>2025-09-23</creationDate>
 	<copyright>Copyright (c) 2025 ConseilGouz. All rights reserved.</copyright>
 	<license>GNU General Public License version 3 or later; see LICENSE.txt</license>
     <authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
     <authorUrl>https://www.conseilgouz.com</authorUrl>
-	<version>2.4.15</version>
+	<version>2.5.0</version>
 	<description>
 	<![CDATA[
 	Affichage simple des avis clients avec module isotope
@@ -39,9 +39,9 @@
 	<config>
 		<fields name="params">
 			<fieldset name="basic"
-				addfieldprefix="ConseilGouz\Module\CGAvisClient\Site\Field"
+				addfieldprefix=""
                 addruleprefix="ConseilGouz\Module\CGAvisClient\Site\Rule" >
-				<field name="version" type="version"  margintop="-3em" extension="mod_cg_avisclient"/>
+				<field name="version" type="ConseilGouz\Library\Field\Version"  margintop="-3em" extension="mod_cg_avisclient"/>
                 <field name="include_bootstrap" type="hidden" class="btn-group" default="0" />                
 				<field
 					name="count"
@@ -89,7 +89,15 @@
 					label="MOD_CGAVISCLIENT_NEED_FONT"	description="MOD_CGAVISCLIENT_NEED_FONT_DESC">
 					<option	value="1">JYES</option>
 					<option	value="0">JNO</option>
-				</field>	
+				</field>
+				<field name="rating_icon"	type="ConseilGouz\Module\CGAvisClient\Site\Field\Radioavis"
+					class="btn-group btn-group-yesno"	default="" useglobal="true"
+					label="MOD_CGAVISCLIENT_RATING_ICON_VAL_LABEL"	description="MOD_CGAVISCLIENT_RATING_ICON_VAL_DESC">
+					<option	value="1">MOD_CGAVISCLIENT_OTHER</option>
+				</field>
+                <field showon="rating_icon:1" name="rating_icon_mod" type="text" 
+                    label="MOD_CGAVISCLIENT_RATING_ICON_VAL_LABEL" description="MOD_CGAVISCLIENT_RATING_ICON_VAL_DESC">
+                </field>
 			</fieldset>
 			<fieldset name="isotope">
 				<field

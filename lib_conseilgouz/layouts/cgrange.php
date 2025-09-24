@@ -1,22 +1,22 @@
 <?php
 /**
-* CG Avis Client - Joomla Module 
-* Package			: Joomla 4.x/5.x
-* copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
-* license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
-* From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
-*/
+ * ConseilGouz Custom Field CG Range for Joomla 4.x/5.x/6.x
+ *
+ * @author     ConseilgGouz
+ * @copyright (C) 2025 www.conseilgouz.com. All Rights Reserved.
+ * @license    GNU/GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
+ */
 
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 
 extract($displayData);
 
-$extdir = $field->_ext.'_'.$field->_type.'_'.$field->_name;
 
 /** @var Joomla\CMS\WebAsset\WebAssetManager $wa */
 $wa = Factory::getApplication()->getDocument()->getWebAssetManager();
-$wa->registerAndUseScript('cgvariable', 'media/'.$extdir.'/js/cgvariable.js');
+$wa->registerAndUseStyle('cgrange', 'media/conseilgouz/fields/css/cgrange.css');
+$wa->registerAndUseScript('cgrange', 'media/conseilgouz/fields/js/cgrange.js');
 
 /**
  * Layout variables
@@ -55,28 +55,40 @@ $wa->registerAndUseScript('cgvariable', 'media/'.$extdir.'/js/cgvariable.js');
 
 // Initialize some field attributes.
 $attributes = [
-    $class ? 'class="form-cgvariable ' . $class . '"' : 'class="form-cgvariable"',
+    $class ? 'class="form-cgrange ' . $class . '"' : 'class="form-cgrange"',
     !empty($description) ? 'aria-describedby="' . ($id ?: $name) . '-desc"' : '',
     $disabled ? 'disabled' : '',
     $readonly ? 'readonly' : '',
     !empty($onchange) ? 'onchange="' . $onchange . '"' : '',
+    !empty($max) ? 'max="' . $max . '"' : '',
+    !empty($step) ? 'step="' . $step . '"' : '',
+    !empty($min) ? 'min="' . $min . '"' : '',
+    !empty($unit) ? 'unit="' . $unit . '"' : '',
     $autofocus ? 'autofocus' : '',
     $dataAttribute,
 ];
-$color = "";
-if ($value) {
-    $color = "background-color: var(".$value.");";
-}
+
+$value = is_numeric($value) ? (float) $value : $min;
+// CG Range : display current value after range
+//             add class="limits" to display range limits
+//             add class="buttons" to display reset, + , - buttons 
 ?>
 <div style="display:flex">
 <div>
 <input
-    type="text"
+    type="range"
     name="<?php echo $name; ?>"
     id="<?php echo $id; ?>"
     value="<?php echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>"
     <?php echo implode(' ', $attributes); ?>>
-<span class="<?php echo $id; ?>_color" style="display:inline-block">---> Light: <span id="<?php echo $id; ?>_light" data-bs-theme="light" style="<?php echo $color;?> height:1.5em;width:1.5em;display:inline-block"></span></span>
-<span class="<?php echo $id; ?>_color" style="display:inline-block">,Dark : <span id="<?php echo $id; ?>_dark"  data-bs-theme="dark" style="<?php echo $color;?> height:1.5em;width:1.5em;display:inline-block"></span></span>
+<?php if (strpos($class, 'buttons') !== false) { ?>
+<div class="rangebuttons text-center">
+<span id="cgrange-minus-<?php echo $id;?>" class="cgrange-minus" data="<?php echo $id;?>" style="margin-left:1em">&nbsp;-&nbsp;</span>
+<span id="cgrange-reset-<?php echo $id;?>" class="cgrange-reset" data="<?php echo $id;?>" style="margin-left:.2em" >Reset</span>
+<span id="cgrange-plus-<?php echo $id;?>" class="cgrange-plus" data="<?php echo $id;?>"  style="margin-left:.2em" >&nbsp;+&nbsp;</span>
 </div>
+<?php } ?>
+</div>
+<span id="cgrange-label-<?php echo $id;?>" class="cgrange-label" data="<?php echo $id;?>" style="margin-left:1em"></span>
+
 </div>

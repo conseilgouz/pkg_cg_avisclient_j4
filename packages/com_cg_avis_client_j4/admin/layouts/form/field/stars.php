@@ -6,14 +6,18 @@
 * license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 * From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
 */
-use Joomla\CMS\HTML\HTMLHelper;
 defined('_JEXEC') or die;
+
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 
 extract($displayData);
 
 // Including fallback code for HTML5 non supported browsers.
 // HTMLHelper::_('jquery.framework');
 HTMLHelper::_('script', 'system/html5fallback.js', array('version' => 'auto', 'relative' => true));
+
+$params = ComponentHelper::getParams('com_cgavisclient');
 
 $format = '<input class="star" type="radio" id="%1$s" name="%2$s" value="%3$s" %4$s />';
 $alt    = preg_replace('/[^a-zA-Z0-9_\-]/', '_', $name);
@@ -43,7 +47,7 @@ $alt    = preg_replace('/[^a-zA-Z0-9_\-]/', '_', $name);
 				<?php $attributes[] = 'required aria-required="true"'; ?>
 			<?php endif; ?>
 			<?php echo sprintf($format, $oid, $name, $ovalue, implode(' ', $attributes)); ?>
-			<label for="<?php echo $oid; ?>" <?php echo $optionClass; ?> class="star">
+			<label for="<?php echo $oid; ?>" <?php echo $optionClass; ?> class="fa <?php echo $params->get('rating_icon', 'fa-star');?> star">
 				<?php  // echo $option->text; ?>
 			</label>
 		<?php endforeach; ?>

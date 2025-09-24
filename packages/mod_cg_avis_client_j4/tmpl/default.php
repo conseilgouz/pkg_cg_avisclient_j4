@@ -1,16 +1,15 @@
 <?php 
 /**
 * CG Avis Client - Joomla Module 
-* Version			: 1.1.2
-* Package			: Joomla 3.x.x
-* copyright 		: Copyright (C) 2017 ConseilGouz. All rights reserved.
-* license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* Package			: Joomla 4.x/5.x/6.x
+* copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
+* license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 * From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
-* Updated on        : July, 2018
 */
 
 // no direct access
 defined('_JEXEC') or die;
+use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
@@ -22,9 +21,16 @@ use ConseilGouz\Module\CGAvisClient\Site\Helper\CGAvisClientHelper;
 $class_sfx = htmlspecialchars($params->get('class_sfx',''));
 $limit = htmlspecialchars($params->get('count'));
 $app = Factory::getApplication();
-$limitstart = $app->input->get('limitstart', 0, 'uint');
+$limitstart = $app->getInput()->get('limitstart', 0, 'uint');
 
-// HTMLHelper::_('jquery.framework')
+$sf_icon = $params->get('rating_icon', 0);
+if (!$sf_icon) { // config icon
+    $component  = 'com_cgavisclient';
+    $comparams = ComponentHelper::getParams($component);
+    $sf_icon  = $comparams->get('rating_icon','fa-star');
+} else { // other icon
+    $sf_icon = $params->get('rating_icon_mod','fa-star');
+}
 
 // Add style and css to header
 $doc = Factory::getDocument();
@@ -241,7 +247,7 @@ if($params->get('add_cgavisclient')!=0){?>
 				$stars .=' style = "float:right;margin-top:-1em" ';
 				$stars .= ">";
 				for ($j = 0; $j < $item->rating; $j++) { 
-					$stars .= '<i class="fa fa-star" style="color:gold"></i> ';
+					$stars .= '<i class="fa '.$sf_icon.'" style="color:gold"></i> ';
 				} 
 				$stars .= '</div> ';
 				$deb = '<div class="cg_name col-7" ';

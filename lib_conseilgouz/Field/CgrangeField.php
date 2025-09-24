@@ -1,20 +1,20 @@
 <?php
 /**
-* CG Avis Client - Joomla Module 
-* Package			: Joomla 4.x/5.x
-* copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
-* license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
-* From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
-*/
+ * ConseilGouz Custom Field CG Range for Joomla 4.x/5.x/6.x
+ *
+ * @author     ConseilgGouz
+ * @copyright (C) 2025 www.conseilgouz.com. All Rights Reserved.
+ * @license    GNU/GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
+ */
 
-namespace ConseilGouz\Module\CGAvisClient\Site\Field;
+namespace ConseilGouz\Library\Field;
 
 defined('_JEXEC') or die;
-use Joomla\CMS\Form\Field\TextField;
+use Joomla\CMS\Form\Field\RangeField;
 
-class CgvariableField extends TextField
+class CgrangeField extends RangeField
 {
-    public $type = 'Cgvariable';
+    public $type = 'Cgrange';
 
     /**
      * Name of the layout being used to render the field
@@ -22,24 +22,21 @@ class CgvariableField extends TextField
      * @var    string
      * @since  3.7
      */
-    protected $layout = 'cgvariable';
+    protected $layout = 'cgrange';
 
     /**
      * Unit
      *
      * @var    string
      */
-
     protected $unit = "";
-    /* module's information */
-    public $_ext = "mod";
-    public $_type = "cg";
-    public $_name = "memo";
+
+    protected $layoutData;
 
     protected function getLayoutPaths()
     {
         $paths = parent::getLayoutPaths();
-        $paths[] = dirname(__DIR__).'/../layouts';
+        $paths[] = JPATH_SITE.'/libraries/conseilgouz/layouts';
         return $paths;
 
     }
@@ -72,5 +69,11 @@ class CgvariableField extends TextField
         $this->layoutData = $this->getLayoutData();
         return $this->layoutData;
     }
-
+    protected function getLayoutData()
+    {
+        $data      = parent::getLayoutData();
+        $extraData = ["unit" => $this->element['unit']
+        ];
+        return array_merge($data, $extraData);
+    }
 }

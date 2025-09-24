@@ -1,7 +1,7 @@
 <?php
 /**
-* CG Avis Client - Joomla Module
-* Package			: Joomla 4.x/5.x
+* CG Avis Client
+* Package			: Joomla 4.x/5.x/6.x
 * copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
 * license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 * From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
@@ -77,7 +77,7 @@ class ItemModel extends ListModel
         $app = Factory::getApplication();
         $limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'), 'uint');
         $this->setState('list.limit', $limit);
-        $limitstart = $app->input->get('limitstart', 0, 'uint');
+        $limitstart = $app->getInput()->get('limitstart', 0, 'uint');
         $this->setState('list.start', $limitstart);
     }
 }
