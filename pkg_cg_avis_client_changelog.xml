@@ -2,6 +2,17 @@
 	<changelog>
 		<element>pkg_cg_avis_client</element>
 		<type>package</type>
+		<version>2.5.2</version>
+        <note>
+            <item>Update : 2025-09-25</item>
+        </note>
+        <fix>
+            <item>Avis Client module : use CG Variable field from ConseilGouz Library</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>pkg_cg_avis_client</element>
+		<type>package</type>
 		<version>2.5.1</version>
         <note>
             <item>Update : 2025-09-25</item>
