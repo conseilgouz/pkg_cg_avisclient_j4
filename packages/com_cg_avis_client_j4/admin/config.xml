@@ -32,6 +32,9 @@
         <field name="rating_icon" type="text" default="fa-star"
             label="COM_CGAVISCLIENT_RATING_ICON_VAL_LABEL" description="COM_CGAVISCLIENT_RATING_ICON_VAL_DESC">
         </field>
+        <field name="rating_color" type="text" default="gold"
+            label="COM_CGAVISCLIENT_RATING_COLOR_VAL_LABEL" description="COM_CGAVISCLIENT_RATING_COLOR_VAL_DESC">
+        </field>
     </fieldset>
 	<fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">
 		<field name="rules"	type="rules" label="JCONFIG_PERMISSIONS_LABEL"

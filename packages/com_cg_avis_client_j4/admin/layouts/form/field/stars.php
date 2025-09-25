@@ -1,13 +1,13 @@
 <?php
 /**
 * CG Avis Client - Joomla Module 
-* Package			: Joomla 4.x/5.x
+* Package			: Joomla 4.x/5.x/6.x
 * copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
 * license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 * From              : OT Testimonies  version 1.0, OmegaTheme Extensions - http://omegatheme.com
 */
 defined('_JEXEC') or die;
-
+use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 
@@ -21,6 +21,16 @@ $params = ComponentHelper::getParams('com_cgavisclient');
 
 $format = '<input class="star" type="radio" id="%1$s" name="%2$s" value="%3$s" %4$s />';
 $alt    = preg_replace('/[^a-zA-Z0-9_\-]/', '_', $name);
+
+$document = Factory::getApplication()->getDocument(); 
+$wa = $document->getWebAssetManager();
+
+$color = $params->get('rating_color','gold');
+if (str_starts_with($color,'--')) {// variable color
+    $color = 'var('.$color.')';
+}
+$color_css = "input.star:checked ~ label.star:before {color:".$color."}";
+$wa->addInlineStyle($color_css);
 ?>
 <fieldset id="<?php echo $id; ?>" class="<?php echo trim($class . ' stars'); ?>"
 	<?php echo $disabled ? 'disabled' : ''; ?>

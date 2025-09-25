@@ -35,6 +35,18 @@ if (!$sf_icon) { // config icon
 } else { // other icon
     $sf_icon = $params->get('rating_icon_mod','fa-star');
 }
+$rating_color = $params->get('rating_color', 0);
+if (!$rating_color) { // config icon
+    $component  = 'com_cgavisclient';
+    $comparams = ComponentHelper::getParams($component);
+    $rating_color  = $comparams->get('rating_color','gold');
+} else { // other color
+    $rating_color = $params->get('rating_color_mod','gold');
+}
+if (str_starts_with($rating_color,'--')) {// variable color
+    $rating_color = 'var('.$rating_color.')';
+}
+
 $scrolltype  = $params->get('scrolltype', 'lines');
 $sf_type = $params->get('sf_type', 'all');
 $sf_height	= $params->get('sf_height', 200);
@@ -118,7 +130,7 @@ for ($twice = 0; $twice < 2; $twice++) { // continuous scroll effect
         $stars .= ' style = "float:right;margin-top:-1.5em" ';
         $stars .= ">";
         for ($j = 0; $j < $item->rating; $j++) {
-            $stars .= '<i class="fa '.$sf_icon.'" style="color:gold"></i> ';
+            $stars .= '<i class="fa '.$sf_icon.'" style="color:'.$rating_color.'"></i> ';
         }
         $stars .= '</div> ';
         $deb = '';

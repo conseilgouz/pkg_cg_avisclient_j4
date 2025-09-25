@@ -98,6 +98,22 @@
                 <field showon="rating_icon:1" name="rating_icon_mod" type="text" 
                     label="MOD_CGAVISCLIENT_RATING_ICON_VAL_LABEL" description="MOD_CGAVISCLIENT_RATING_ICON_VAL_DESC">
                 </field>
+				<field name="rating_icon"	type="ConseilGouz\Module\CGAvisClient\Site\Field\Radioavis"
+					class="btn-group btn-group-yesno"	default="" useglobal="true"
+					label="MOD_CGAVISCLIENT_RATING_ICON_VAL_LABEL"	description="MOD_CGAVISCLIENT_RATING_ICON_VAL_DESC">
+					<option	value="1">MOD_CGAVISCLIENT_OTHER</option>
+				</field>
+                <field showon="rating_icon:1" name="rating_icon_mod" type="text" 
+                    label="MOD_CGAVISCLIENT_RATING_ICON_VAL_LABEL" description="MOD_CGAVISCLIENT_RATING_ICON_VAL_DESC">
+                </field>
+				<field name="rating_color"	type="ConseilGouz\Module\CGAvisClient\Site\Field\Radioavis"
+					class="btn-group btn-group-yesno"	default="" useglobal="true"
+					label="MOD_CGAVISCLIENT_RATING_COLOR_VAL_LABEL"	description="MOD_CGAVISCLIENT_RATING_COLOR_VAL_DESC">
+					<option	value="1">MOD_CGAVISCLIENT_OTHER_COLOR</option>
+				</field>
+                <field showon="rating_color:1" name="rating_color_mod" type="text" 
+                    label="MOD_CGAVISCLIENT_RATING_COLOR_VAL_LABEL" description="MOD_CGAVISCLIENT_RATING_COLOR_VAL_DESC">
+                </field>
 			</fieldset>
 			<fieldset name="isotope">
 				<field

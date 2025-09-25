@@ -18,6 +18,9 @@ use Joomla\CMS\Helper\ModuleHelper;
 use Joomla\CMS\Router\Route;
 use ConseilGouz\Module\CGAvisClient\Site\Helper\CGAvisClientHelper;
 
+/** @var Joomla\CMS\WebAsset\WebAssetManager $wa */
+$wa = Factory::getApplication()->getDocument()->getWebAssetManager();
+
 $class_sfx = htmlspecialchars($params->get('class_sfx',''));
 $limit = htmlspecialchars($params->get('count'));
 $app = Factory::getApplication();
@@ -31,13 +34,22 @@ if (!$sf_icon) { // config icon
 } else { // other icon
     $sf_icon = $params->get('rating_icon_mod','fa-star');
 }
+$rating_color = $params->get('rating_color', 0);
+if (!$rating_color) { // config icon
+    $component  = 'com_cgavisclient';
+    $comparams = ComponentHelper::getParams($component);
+    $rating_color  = $comparams->get('rating_color','gold');
+} else { // other color
+    $rating_color = $params->get('rating_color_mod','gold');
+}
+if (str_starts_with($rating_color,'--')) {// variable color
+    $rating_color = 'var('.$rating_color.')';
+}
 
 // Add style and css to header
 $doc = Factory::getDocument();
 $modulefield	= 'media/mod_cg_avisclient/';
 
-/** @var Joomla\CMS\WebAsset\WebAssetManager $wa */
-$wa = Factory::getApplication()->getDocument()->getWebAssetManager();
 $wa->registerAndUseStyle('avis',$modulefield.'/css/cg_avisclient.css');
 $wa->registerAndUseStyle('isotope',$modulefield."css/isotope.css");
 $wa->registerAndUseScript('isotope',$modulefield."js/isotope.min.js");
@@ -247,7 +259,7 @@ if($params->get('add_cgavisclient')!=0){?>
 				$stars .=' style = "float:right;margin-top:-1em" ';
 				$stars .= ">";
 				for ($j = 0; $j < $item->rating; $j++) { 
-					$stars .= '<i class="fa '.$sf_icon.'" style="color:gold"></i> ';
+					$stars .= '<i class="fa '.$sf_icon.'" style="color:'.$rating_color.'"></i> ';
 				} 
 				$stars .= '</div> ';
 				$deb = '<div class="cg_name col-7" ';

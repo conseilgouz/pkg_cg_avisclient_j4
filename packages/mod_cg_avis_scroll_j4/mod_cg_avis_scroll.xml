@@ -114,6 +114,14 @@
                 <field showon="rating_icon:1" name="rating_icon_mod" type="text" 
                     label="MOD_CGAVISSCROLL_RATING_ICON_VAL_LABEL" description="MOD_CGAVISSCROLL_RATING_ICON_VAL_DESC">
                 </field>
+				<field name="rating_color"	type="ConseilGouz\Module\CGAvisClient\Site\Field\Radioavis"
+					class="btn-group btn-group-yesno"	default="" useglobal="true"
+					label="MOD_CGAVISSCROLL_RATING_COLOR_VAL_LABEL"	description="MOD_CGAVISSCROLL_RATING_COLOR_VAL_DESC">
+					<option	value="1">MOD_CGAVISSCROLL_OTHER_COLOR</option>
+				</field>
+                <field showon="rating_color:1" name="rating_color_mod" type="text" 
+                    label="MOD_CGAVISSCROLL_RATING_COLOR_VAL_LABEL" description="MOD_CGAVISSCROLL_RATING_COLOR_VAL_DESC">
+                </field>
 			</fieldset>
 			<fieldset name="advanced">
 				<field	name="moduleclass_sfx"	type="text"

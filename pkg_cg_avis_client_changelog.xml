@@ -15,6 +15,7 @@
         </change>
         <addition>
             <item>Set note's icon in component's config and/or in modules</item>
+            <item>Set icon's color in component's config and/or in modules</item>
         </addition>
 	</changelog>
 	<changelog>
