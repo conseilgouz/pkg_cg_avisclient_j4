@@ -281,5 +281,5 @@ if($params->get('add_cgavisclient')!=0){?>
 			"><?php echo Text::_('MOD_CGAVISCLIENT_ISO_SEEMORE');?></a>
 			</button>
 </div>
-    </div>
 <?php }?>
+    </div>
