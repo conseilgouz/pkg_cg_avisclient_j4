@@ -4,10 +4,11 @@
 		<type>package</type>
 		<version>2.5.0</version>
         <note>
-            <item>Update : 2025-09-23</item>
+            <item>Update : 2025-09-25</item>
         </note>
         <fix>
             <item>Joomla 6.x compatibility</item>
+            <item>Avis Client module : Category buttons fix</item>
         </fix>
         <change>
             <item>Use ConseilGouz Library</item>

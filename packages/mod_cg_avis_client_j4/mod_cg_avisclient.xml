@@ -2,7 +2,7 @@
 <extension type="module" version="4.0" client="site" method="upgrade">
 	<name>CG Avis Client</name>
 	<author>ConseilGouz</author>
-	<creationDate>2025-09-23</creationDate>
+	<creationDate>2025-09-25</creationDate>
 	<copyright>Copyright (c) 2025 ConseilGouz. All rights reserved.</copyright>
 	<license>GNU General Public License version 3 or later; see LICENSE.txt</license>
     <authorEmail>pascal.leconte@conseilgouz.com</authorEmail>

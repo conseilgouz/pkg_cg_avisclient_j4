@@ -179,12 +179,12 @@ if ($displaysearch == "show") {  ?>
 
 if ($displayfilter == "1") {
 	echo '<div class="'.$col_bootstrap_filter.'  cgavisiso_button-group filter-button-group" data-filter-group="cat">';
-	echo '<button class="'.$button_bootstrap.$cls_cgavisclient.'  iso_button_cat_tout is-checked" data-sort-value="0" />'.$liball.'</button>';
+	echo '<button class="'.$button_bootstrap.$cls_cgavisclient.'  iso_button_cat_tout is-checked" data-sort-value="0">'.$liball.'</button>';
 	foreach ($categories as $filter) {
 		$aff = $cats_lib[$filter]; 
 		$aff_alias = $cats_alias[$filter];
 		if (!is_null($aff)) {
-			echo '<button class="'.$button_bootstrap.$cls_cgavisclient.' '.$aff_alias.'" data-sort-value="'.$aff_alias.'" />'.$aff.'</button>';
+			echo '<button class="'.$button_bootstrap.$cls_cgavisclient.' '.$aff_alias.'" data-sort-value="'.$aff_alias.'">'.$aff.'</button>';
 		}
 	}
 	echo '</div>';
